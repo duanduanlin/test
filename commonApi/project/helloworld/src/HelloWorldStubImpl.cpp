@@ -1,7 +1,7 @@
 #include "HelloWorldStubImpl.hpp"
 
-HelloWorldStubImpl::HelloWorldStubImpl() { }
-HelloWorldStubImpl::~HelloWorldStubImpl() { }
+HelloWorldStubImpl::HelloWorldStubImpl() {}
+HelloWorldStubImpl::~HelloWorldStubImpl() {}
 
 void HelloWorldStubImpl::sayHello(const std::shared_ptr<CommonAPI::ClientId> _client,
                                   std::string _name, sayHelloReply_t _reply)

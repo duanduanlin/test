@@ -1,3 +1,11 @@
+/*
+ * @Author: dding3
+ * @Date: 2023-07-27 14:53:49
+ * @LastEditors: dding3
+ * @LastEditTime: 2023-07-27 14:53:57
+ * @Description:
+ * @FilePath: \test\commonApi\project\helloworld\src\HelloWorldService.cpp
+ */
 #include <iostream>
 #include <thread>
 #include <CommonAPI/CommonAPI.hpp>
@@ -14,9 +22,9 @@ int main()
     std::cout << "Successfully Registered Service!" << std::endl;
 
     while (true)
-        {
-            std::cout << "Waiting for calls... (Abort with CTRL+C)" << std::endl;
-            std::this_thread::sleep_for(std::chrono::seconds(30));
-        }
+    {
+        std::cout << "Waiting for calls... (Abort with CTRL+C)" << std::endl;
+        std::this_thread::sleep_for(std::chrono::seconds(30));
+    }
     return 0;
 }
