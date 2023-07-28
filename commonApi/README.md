@@ -9,10 +9,9 @@
 - 编译
     ./build.sh
 - 准备
-    -- export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
-    -- export DBUS_SESSION_BUS_ADDRESS=unix:path=/tmp/dbus-o6ujiqBKsY
-
-    -- dbus-daemon --fork --session --address=unix:path=/tmp/dbus-o6ujiqBKsY
+  1. export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib/
+  2. export DBUS_SESSION_BUS_ADDRESS=unix:path=/tmp/dbus-o6ujiqBKsY
+  3. dbus-daemon --fork --session --address=unix:path=/tmp/dbus-o6ujiqBKsY
 ### hello world程序
 - HelloWorldService 会提供一个sayHello的方法。
 - HelloWorldClient 会去调用HelloWorldService的sayHello方法。
