@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 
 #项目名
-PROJECT(hello_world)
+PROJECT(welcome)
 message(STATUS "Project name: ${PROJECT_NAME}")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -pthread -std=c++0x")
@@ -17,18 +17,18 @@ include_directories(
 	${WORKSPACE}/3rdlibs/dbus-1.10.10
 	)
 
-file(GLOB FIDL_SRCS_HELLOWORLD "${WORKSPACE}/fidl/src-gen/v1/hello_world/*.cpp")
-list(SORT FIDL_SRCS_HELLOWORLD)
+file(GLOB FIDL_SRCS_WELCOME "${WORKSPACE}/fidl/src-gen/v1/welcome/*.cpp")
+list(SORT FIDL_SRCS_WELCOME)
 
-add_executable(HelloWorldClient
-	src/HelloWorldClient.cpp
-	${FIDL_SRCS_HELLOWORLD}
+add_executable(WelcomeClient
+	src/WelcomeClient.cpp
+	${FIDL_SRCS_WELCOME}
 	)
-target_link_libraries(HelloWorldClient CommonAPI CommonAPI-DBus dbus-1)
+target_link_libraries(WelcomeClient CommonAPI CommonAPI-DBus dbus-1)
 
-add_executable(HelloWorldService
-	src/HelloWorldService.cpp
-	src/HelloWorldStubImpl.cpp
-	${FIDL_SRCS_HELLOWORLD}
+add_executable(WelcomeService
+	src/WelcomeService.cpp
+	src/WelcomeStubImpl.cpp
+	${FIDL_SRCS_WELCOME}
 	)
-target_link_libraries(HelloWorldService CommonAPI CommonAPI-DBus dbus-1)
+target_link_libraries(WelcomeService CommonAPI CommonAPI-DBus dbus-1)

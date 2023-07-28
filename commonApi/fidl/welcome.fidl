@@ -1,0 +1,14 @@
+package welcome
+
+interface Welcome {
+	version {major 1 minor 0}
+
+    broadcast welcome  {
+    out { String message }
+    }
+
+	method sayHi  {
+	in { String name}
+	out { String message }
+	}
+}
