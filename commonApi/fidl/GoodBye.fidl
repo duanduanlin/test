@@ -1,0 +1,9 @@
+package good_bye
+
+interface GoodBye {
+	version {major 1 minor 0}
+	method sayGoodBye  {
+	in { String name}
+	out { String message }
+	}
+}

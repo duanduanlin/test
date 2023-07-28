@@ -5,5 +5,5 @@ interface HelloWorld {
 	method sayHello  {
 	in { String name}
 	out { String message }
-	}	
+	}
 }
