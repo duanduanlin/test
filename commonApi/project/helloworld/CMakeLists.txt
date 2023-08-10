@@ -17,7 +17,7 @@ include_directories(
 	${WORKSPACE}/3rdlibs/dbus-1.10.10
 	)
 
-file(GLOB FIDL_SRCS_HELLOWORLD "${WORKSPACE}/fidl/src-gen/v1/hello_world/*.cpp")
+#[[file(GLOB FIDL_SRCS_HELLOWORLD "${WORKSPACE}/fidl/src-gen/v1/hello_world/*.cpp")
 list(SORT FIDL_SRCS_HELLOWORLD)
 
 add_executable(HelloWorldClient
@@ -31,4 +31,9 @@ add_executable(HelloWorldService
 	src/HelloWorldStubImpl.cpp
 	${FIDL_SRCS_HELLOWORLD}
 	)
-target_link_libraries(HelloWorldService CommonAPI CommonAPI-DBus dbus-1)
+target_link_libraries(HelloWorldService CommonAPI CommonAPI-DBus dbus-1)]]
+
+add_executable(HelloMain
+	src/HelloMain.cpp
+	)
+target_link_libraries(HelloMain CommonAPI CommonAPI-DBus dbus-1)
