@@ -33,7 +33,17 @@ add_executable(HelloWorldService
 	)
 target_link_libraries(HelloWorldService CommonAPI CommonAPI-DBus dbus-1)]]
 
-add_executable(HelloMain
+add_executable(HelloMainU01
 	src/HelloMain.cpp
 	)
-target_link_libraries(HelloMain CommonAPI CommonAPI-DBus dbus-1)
+target_link_libraries(HelloMainU01 CommonAPI CommonAPI-DBus dbus-1)
+
+add_executable(HelloMainU02
+	src/HelloMain.cpp
+	)
+target_link_libraries(HelloMainU02)
+
+add_executable(HelloMainURPC
+	src/HelloMainRPC.cpp
+	)
+target_link_libraries(HelloMainURPC CommonAPI CommonAPI-DBus dbus-1)

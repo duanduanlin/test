@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 2.8)
 PROJECT(hello_world_j02)
 message(STATUS "Project name: ${PROJECT_NAME}")
 
-set(J02WORKSPACE "/home/dding3/work/sync/jbox02/jbox02")
+set(J02WORKSPACE "/home/dding3/work/mpu/jbox02/jbox02")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -pthread -std=c++0x")
 #设置输出路径
 SET( WORKSPACE "${CMAKE_CURRENT_SOURCE_DIR}/../../")
@@ -24,7 +24,17 @@ link_directories(
   ${J02WORKSPACE}/platforms/ql_ec20/sdk/a07/prebuild/lib
 )
 
-add_executable(HelloMainJ02
+add_executable(HelloMainJ0201
 	src/HelloMain.cpp
 	)
-target_link_libraries(HelloMainJ02 CommonAPI CommonAPI-DBus dbus-1)
+target_link_libraries(HelloMainJ0201 CommonAPI CommonAPI-DBus dbus-1)
+
+add_executable(HelloMainJ0202
+	src/HelloMain.cpp
+	)
+target_link_libraries(HelloMainJ0202)
+
+add_executable(HelloMainJ02RPC
+	src/HelloMainRPC.cpp
+	)
+target_link_libraries(HelloMainJ02RPC CommonAPI CommonAPI-DBus dbus-1)
