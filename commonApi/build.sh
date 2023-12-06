@@ -1,11 +1,12 @@
 #!/bin/bash
+
 ###
  # @Author: dding3
  # @Date: 2023-07-27 17:22:53
  # @LastEditors: dding3
- # @LastEditTime: 2023-07-28 10:33:12
+ # @LastEditTime: 2023-11-03 02:02:20
  # @Description:
- # @FilePath: \test\commonApi\build.sh
+ # @FilePath: /test/commonapi/test/commonApi/build.sh
 ###
 set -e
 

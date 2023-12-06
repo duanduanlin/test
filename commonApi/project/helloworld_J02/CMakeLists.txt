@@ -38,3 +38,16 @@ add_executable(HelloMainJ02RPC
 	src/HelloMainRPC.cpp
 	)
 target_link_libraries(HelloMainJ02RPC CommonAPI CommonAPI-DBus dbus-1)
+
+add_executable(HelloWorldClientJ02
+	src/HelloWorldClient.cpp
+	${FIDL_SRCS_HELLOWORLD}
+	)
+target_link_libraries(HelloWorldClientJ02 CommonAPI CommonAPI-DBus dbus-1)
+
+add_executable(HelloWorldServiceJ02
+	src/HelloWorldService.cpp
+	src/HelloWorldStubImpl.cpp
+	${FIDL_SRCS_HELLOWORLD}
+	)
+target_link_libraries(HelloWorldServiceJ02 CommonAPI CommonAPI-DBus dbus-1)
