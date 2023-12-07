@@ -32,6 +32,10 @@ nm -D  external/ql_ec20/ql-ol-extsdk/lib/libql_peripheral.so | grep ql_log_print
 ## 生成patch和打patch
 diff -u ori.c tar.c > update.patch
 patch ori.c < update.patch
+## git diff生成patch
+git diff ./ > test.patch //生成patch
+patch -p1 < test.patch //打patch
+git apply test.patch //也可用这个命令打patch
 ## 清除内存缓存
 echo 3 > /proc/sys/vm/drop_caches
 ## 文件切割
