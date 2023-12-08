@@ -2,8 +2,8 @@
  * @Author: dding3
  * @Date: 2023-12-07 17:45:04
  * @LastEditors: dding3
- * @LastEditTime: 2023-12-07 17:46:50
- * @Description:
+ * @LastEditTime: 2023-12-07 18:05:03
+ * @Description:参数模板可以用于函数或者类可变参数的场景
  * @FilePath: /test/commonapi/test/other/project/cpp/src/template_test.cpp
  */
 #include <iostream>

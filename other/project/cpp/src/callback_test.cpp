@@ -2,8 +2,8 @@
  * @Author: dding3
  * @Date: 2023-12-07 17:35:28
  * @LastEditors: dding3
- * @LastEditTime: 2023-12-07 17:37:09
- * @Description:
+ * @LastEditTime: 2023-12-07 18:04:19
+ * @Description:回调函数有三种形式，typedef，using，以及std::function
  * @FilePath: /test/commonapi/test/other/project/cpp/src/callback_test.cpp
  */
 #include <iostream>
