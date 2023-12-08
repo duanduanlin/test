@@ -13,6 +13,7 @@ set( TARGET_BIN_MOVE cpp_move )
 set( TARGET_BIN_CB cpp_callback )
 set( TARGET_BIN_TEMPLATE cpp_template )
 set( TARGET_BIN_ENUM cpp_enum )
+set( TARGET_BIN_LAMBDA cpp_lambda )
 
 include_directories(
 	include
@@ -37,3 +38,8 @@ file(GLOB SRCS_ENUM "src/enum_test.cpp")
 list(SORT SRCS_ENUM)
 
 add_executable(${TARGET_BIN_ENUM} ${SRCS_ENUM} )
+
+file(GLOB SRCS_LAMBDA "src/lambda_test.cpp")
+list(SORT SRCS_LAMBDA)
+
+add_executable(${TARGET_BIN_LAMBDA} ${SRCS_LAMBDA} )
