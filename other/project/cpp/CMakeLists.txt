@@ -11,6 +11,7 @@ SET( CMAKE_RUNTIME_OUTPUT_DIRECTORY "${WORKSPACE}/build/output/apps/bin")
 
 set( TARGET_BIN_MOVE cpp_move )
 set( TARGET_BIN_CB cpp_callback )
+set( TARGET_BIN_TEMPLATE cpp_template )
 
 include_directories(
 	include
@@ -19,8 +20,14 @@ include_directories(
 file(GLOB SRCS_MOVE "src/move_test.cpp")
 list(SORT SRCS_MOVE)
 
+add_executable(${TARGET_BIN_MOVE} ${SRCS_MOVE} )
+
 file(GLOB SRCS_CB "src/callback_test.cpp")
 list(SORT SRCS_CB)
 
-add_executable(${TARGET_BIN_MOVE} ${SRCS_MOVE} )
 add_executable(${TARGET_BIN_CB} ${SRCS_CB} )
+
+file(GLOB SRCS_TEMPLATE "src/template_test.cpp")
+list(SORT SRCS_TEMPLATE)
+
+add_executable(${TARGET_BIN_TEMPLATE} ${SRCS_TEMPLATE} )
