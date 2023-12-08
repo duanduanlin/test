@@ -14,6 +14,7 @@ set( TARGET_BIN_CB cpp_callback )
 set( TARGET_BIN_TEMPLATE cpp_template )
 set( TARGET_BIN_ENUM cpp_enum )
 set( TARGET_BIN_LAMBDA cpp_lambda )
+set( TARGET_BIN_SYSCALL cpp_syscall )
 
 include_directories(
 	include
@@ -43,3 +44,8 @@ file(GLOB SRCS_LAMBDA "src/lambda_test.cpp")
 list(SORT SRCS_LAMBDA)
 
 add_executable(${TARGET_BIN_LAMBDA} ${SRCS_LAMBDA} )
+
+file(GLOB SRCS_SYSCALL "src/syscall_test.cpp")
+list(SORT SRCS_SYSCALL)
+
+add_executable(${TARGET_BIN_SYSCALL} ${SRCS_SYSCALL} )
