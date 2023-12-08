@@ -9,7 +9,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -pthread -std=c++0x")
 SET( WORKSPACE "${CMAKE_CURRENT_SOURCE_DIR}/../../")
 SET( CMAKE_RUNTIME_OUTPUT_DIRECTORY "${WORKSPACE}/build/output/apps/bin")
 
-set( TARGET_BIN cpp_move )
+set( TARGET_BIN_MOVE cpp_move )
+set( TARGET_BIN_CB cpp_callback )
 
 include_directories(
 	include
@@ -18,4 +19,8 @@ include_directories(
 file(GLOB SRCS_MOVE "src/move_test.cpp")
 list(SORT SRCS_MOVE)
 
-add_executable(${TARGET_BIN} ${SRCS_MOVE} )
+file(GLOB SRCS_CB "src/callback_test.cpp")
+list(SORT SRCS_CB)
+
+add_executable(${TARGET_BIN_MOVE} ${SRCS_MOVE} )
+add_executable(${TARGET_BIN_CB} ${SRCS_CB} )
