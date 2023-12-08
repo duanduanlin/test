@@ -2,101 +2,76 @@
  * @Author: dding3
  * @Date: 2023-12-07 18:34:53
  * @LastEditors: dding3
- * @LastEditTime: 2023-12-07 18:42:04
+ * @LastEditTime: 2023-12-07 19:36:41
  * @Description:lambda一种匿名函数：[capture list] (parameters) -> return_type { function_body }
  * @FilePath: /test/commonapi/test/other/project/cpp/src/lambda_test.cpp
  */
 #include <iostream>
-#include <string>
-#include <functional>
+#include <algorithm>
+#include <vector>
 
-typedef std::function<int(int x, int y)> Callback;
-using UCallback = std::function<int(int x, int y)>;
-
-// v1.0
-int call_add(std::function<int(int x, int y)> call)
+// 重载
+void test_case_3()
 {
-    int a = 100, b = 500;
-    call(a, b); // 传值a,b给调用者.
-    return a + b;
+    int num1 = 5;
+    double num2 = 2.5;
+    // Lambda 函数重载
+    auto lambda1 = [](int x) -> int
+    {
+        return x * x;
+    };
+
+    auto lambda2 = [](double x) -> double
+    {
+        return x * x;
+    };
+    std::cout << "lambda1 ret:" << lambda1(num1) << std::endl;
+    std::cout << "lambda2 ret:" << lambda2(num2) << std::endl;
 }
 
-// v2.0: 与以上等同:使用typedef定义Callback类型别名定义
-int call_add_01(Callback call)
+// 类型推导
+void test_case_2()
 {
-    int a = 100, b = 500;
-    call(a, b); // 传值a,b给调用者.
-    return a + b;
+    // 自动类型推断的 Lambda 函数
+    auto lambda1 = [](int x, int y)
+    {
+        return x + y;
+    };
+
+    // 显式指定返回类型的 Lambda 函数
+    auto lambda2 = [](int x) -> int
+    {
+        return x * x;
+    };
+
+    // 使用 Lambda 函数进行计算并输出结果
+    std::cout << "自动类型推断的结果：" << lambda1(3, 4) << std::endl;
+    std::cout << "显式指定返回类型的结果：" << lambda2(5) << std::endl;
 }
 
-// v3.0: 与以上等同:使用using定义UCallback类型别名定义
-int call_add_02(UCallback call)
+// 捕获外部变量
+void test_case_1()
 {
-    int a = 100, b = 500;
-    call(a, b); // 传值a,b给调用者.
-    return a + b;
+    int a = 5;
+    int b = 3;
+    std::vector<int> nums = {2, 5, 1, 7, 3};
+
+    // 捕获变量 a 和引用捕获变量 b，并按照特定规则排序
+    std::sort(nums.begin(), nums.end(), [a, &b](int x, int y)
+              { return a * x < b * y; });
+
+    // 输出排序后的结果
+    for (int num : nums)
+    {
+        std::cout << num << " ";
+    }
+    std::cout << std::endl;
 }
 
 int main()
 {
-    // v1.0:匿名lambda函数,无参数,无返回值.
-    []()
-    {
-        printf("xxx----->%s(), line = %d\n", __FUNCTION__, __LINE__);
-    }();
-
-    // v2.0:匿名lambda函数,带string参数,无返回值.
-    [](std::string content)
-    {
-        printf("xxx----->%s(), line = %d, content = %s\n", __FUNCTION__, __LINE__, content.c_str());
-    }("Hello Wolrd.");
-
-    // v3.0:匿名lambda函数,带string和int类型参数,无返回值.
-    std::string buf = "Hello, C++!";
-    int year = 2023;
-    [](std::string buf, int years)
-    {
-        printf("xxx----->%s(), line = %d, buf = %s, years = %d\n", __FUNCTION__, __LINE__, buf.c_str(), years);
-    }(buf, year);
-
-    // v3.1: lambda带返回值
-    int moth = [](std::string buf, int years)
-    {
-        printf("xxx----->%s(), line = %d, buf = %s, years = %d\n", __FUNCTION__, __LINE__, buf.c_str(), years);
-        int month = 10;
-        return month;
-    }(buf, year);
-    printf("xxx----->%s(), line = %d, moth = %d\n", __FUNCTION__, __LINE__, moth);
-
-    // 4.0: 使用typedef创建别名类型Callback,然后调用回调函数.
-    Callback add = [](int a, int b) -> int
-    {
-        printf("xxx---------->%s(), line = %d, a = %d, b = %d\n", __FUNCTION__, __LINE__, a, b);
-        return a + b;
-    };
-    printf("xxx----->%s(), line = %d, add = %d\n", __FUNCTION__, __LINE__, add(2, 3));
-
-    // v5.0: 使用typedef定义回调函数类型别名
-    int ret1 = call_add(add);
-    printf("xxx----->%s(), line = %d, ret1 = %d\n", __FUNCTION__, __LINE__, ret1);
-
-    // v6.0: 直接使用lambda匿名回调函数
-    int ret2 = call_add([](int x, int y) -> int
-                        { return x + y; });
-    printf("xxx----->%s(), line = %d, ret2 = %d\n", __FUNCTION__, __LINE__, ret2);
-
-    // v7.0: 使用typedef定义回调函数类型别名
-    int ret3 = call_add_01(add);
-    printf("xxx----->%s(), line = %d, ret3 = %d\n", __FUNCTION__, __LINE__, ret3);
-
-    // v8.0: 使用using定义回调函数类型别名
-    int ret4 = call_add_02(add);
-    printf("xxx----->%s(), line = %d, ret4 = %d\n", __FUNCTION__, __LINE__, ret4);
-
-    // v9.0: 直接使用lambda匿名回调函数
-    int ret5 = call_add_02([](int x, int y) -> int
-                           { return x + y; });
-    printf("xxx----->%s(), line = %d, ret5 = %d\n", __FUNCTION__, __LINE__, ret5);
-
+    test_case_1();
+    test_case_2();
+    test_case_3();
     return 0;
 }
