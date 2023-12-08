@@ -17,6 +17,7 @@ set( TARGET_BIN_LAMBDA cpp_lambda )
 set( TARGET_BIN_SYSCALL cpp_syscall )
 set( TARGET_BIN_ATOMIC cpp_atomic )
 set( TARGET_BIN_LIST cpp_list )
+set( TARGET_BIN_OPERATOR cpp_operator )
 
 include_directories(
 	include
@@ -61,3 +62,8 @@ file(GLOB SRCS_LIST "src/list_test.cpp")
 list(SORT SRCS_LIST)
 
 add_executable(${TARGET_BIN_LIST} ${SRCS_LIST} )
+
+file(GLOB SRCS_OPERATOR "src/operator_test.cpp")
+list(SORT SRCS_OPERATOR)
+
+add_executable(${TARGET_BIN_OPERATOR} ${SRCS_OPERATOR} )
