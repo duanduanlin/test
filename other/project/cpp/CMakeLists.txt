@@ -18,6 +18,7 @@ set( TARGET_BIN_SYSCALL cpp_syscall )
 set( TARGET_BIN_ATOMIC cpp_atomic )
 set( TARGET_BIN_LIST cpp_list )
 set( TARGET_BIN_OPERATOR cpp_operator )
+set( TARGET_BIN_HEXSTR cpp_hexStr )
 
 include_directories(
 	include
@@ -67,3 +68,8 @@ file(GLOB SRCS_OPERATOR "src/operator_test.cpp")
 list(SORT SRCS_OPERATOR)
 
 add_executable(${TARGET_BIN_OPERATOR} ${SRCS_OPERATOR} )
+
+file(GLOB SRCS_HEXSTR "src/hexStr_test.cpp")
+list(SORT SRCS_HEXSTR)
+
+add_executable(${TARGET_BIN_HEXSTR} ${SRCS_HEXSTR} )
