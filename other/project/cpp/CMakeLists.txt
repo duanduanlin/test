@@ -23,6 +23,7 @@ set( TARGET_BIN_POLL cpp_poll )
 set( TARGET_BIN_EPOLL cpp_epoll )
 set( TARGET_BIN_TYPEXX cpp_typeXX )
 set( TARGET_BIN_ATTRIBUTE cpp_attribute )
+set( TARGET_BIN_TIME cpp_time )
 
 include_directories(
 	include
@@ -97,3 +98,8 @@ file(GLOB SRCS_ATTRIBUTE "src/attribute_test.cpp")
 list(SORT SRCS_ATTRIBUTE)
 
 add_executable(${TARGET_BIN_ATTRIBUTE} ${SRCS_ATTRIBUTE} )
+
+file(GLOB SRCS_TIME "src/time_test.cpp")
+list(SORT SRCS_TIME)
+
+add_executable(${TARGET_BIN_TIME} ${SRCS_TIME} )
