@@ -22,6 +22,7 @@ set( TARGET_BIN_HEXSTR cpp_hexStr )
 set( TARGET_BIN_POLL cpp_poll )
 set( TARGET_BIN_EPOLL cpp_epoll )
 set( TARGET_BIN_TYPEXX cpp_typeXX )
+set( TARGET_BIN_ATTRIBUTE cpp_attribute )
 
 include_directories(
 	include
@@ -91,3 +92,8 @@ file(GLOB SRCS_TYPEXX "src/typeXX_test.cpp")
 list(SORT SRCS_TYPEXX)
 
 add_executable(${TARGET_BIN_TYPEXX} ${SRCS_TYPEXX} )
+
+file(GLOB SRCS_ATTRIBUTE "src/attribute_test.cpp")
+list(SORT SRCS_ATTRIBUTE)
+
+add_executable(${TARGET_BIN_ATTRIBUTE} ${SRCS_ATTRIBUTE} )
