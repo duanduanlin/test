@@ -24,6 +24,7 @@ set( TARGET_BIN_EPOLL cpp_epoll )
 set( TARGET_BIN_TYPEXX cpp_typeXX )
 set( TARGET_BIN_ATTRIBUTE cpp_attribute )
 set( TARGET_BIN_TIME cpp_time )
+set( TARGET_BIN_STRINGSTREAM cpp_stringstream )
 
 include_directories(
 	include
@@ -103,3 +104,8 @@ file(GLOB SRCS_TIME "src/time_test.cpp")
 list(SORT SRCS_TIME)
 
 add_executable(${TARGET_BIN_TIME} ${SRCS_TIME} )
+
+file(GLOB SRCS_STRINGSTREAM "src/stringstream_test.cpp")
+list(SORT SRCS_STRINGSTREAM)
+
+add_executable(${TARGET_BIN_STRINGSTREAM} ${SRCS_STRINGSTREAM} )
