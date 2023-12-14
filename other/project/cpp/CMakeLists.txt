@@ -20,6 +20,7 @@ set( TARGET_BIN_LIST cpp_list )
 set( TARGET_BIN_OPERATOR cpp_operator )
 set( TARGET_BIN_HEXSTR cpp_hexStr )
 set( TARGET_BIN_POLL cpp_poll )
+set( TARGET_BIN_EPOLL cpp_epoll )
 
 include_directories(
 	include
@@ -79,3 +80,8 @@ file(GLOB SRCS_POLL "src/poll_test.cpp")
 list(SORT SRCS_POLL)
 
 add_executable(${TARGET_BIN_POLL} ${SRCS_POLL} )
+
+file(GLOB SRCS_EPOLL "src/epoll_test.cpp")
+list(SORT SRCS_EPOLL)
+
+add_executable(${TARGET_BIN_EPOLL} ${SRCS_EPOLL} )
