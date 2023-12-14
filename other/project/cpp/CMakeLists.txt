@@ -19,6 +19,7 @@ set( TARGET_BIN_ATOMIC cpp_atomic )
 set( TARGET_BIN_LIST cpp_list )
 set( TARGET_BIN_OPERATOR cpp_operator )
 set( TARGET_BIN_HEXSTR cpp_hexStr )
+set( TARGET_BIN_POLL cpp_poll )
 
 include_directories(
 	include
@@ -73,3 +74,8 @@ file(GLOB SRCS_HEXSTR "src/hexStr_test.cpp")
 list(SORT SRCS_HEXSTR)
 
 add_executable(${TARGET_BIN_HEXSTR} ${SRCS_HEXSTR} )
+
+file(GLOB SRCS_POLL "src/poll_test.cpp")
+list(SORT SRCS_POLL)
+
+add_executable(${TARGET_BIN_POLL} ${SRCS_POLL} )
