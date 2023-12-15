@@ -27,6 +27,7 @@ set( TARGET_BIN_TIME cpp_time )
 set( TARGET_BIN_STRINGSTREAM cpp_stringstream )
 set( TARGET_BIN_COND cpp_cond )
 set( TARGET_BIN_OFFSETOF cpp_offsetof )
+set( TARGET_BIN_MACRO cpp_macro )
 
 include_directories(
 	include
@@ -121,3 +122,8 @@ file(GLOB SRCS_OFFSETOF "src/offsetof_test.cpp")
 list(SORT SRCS_OFFSETOF)
 
 add_executable(${TARGET_BIN_OFFSETOF} ${SRCS_OFFSETOF} )
+
+file(GLOB SRCS_MACRO "src/macro_test.cpp")
+list(SORT SRCS_MACRO)
+
+add_executable(${TARGET_BIN_MACRO} ${SRCS_MACRO} )
