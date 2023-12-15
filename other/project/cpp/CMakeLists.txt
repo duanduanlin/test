@@ -30,6 +30,7 @@ set( TARGET_BIN_OFFSETOF cpp_offsetof )
 set( TARGET_BIN_MACRO cpp_macro )
 set( TARGET_BIN_VAXX cpp_vaxx )
 set( TARGET_BIN_FILE cpp_file )
+set( TARGET_BIN_BITS cpp_bits )
 
 include_directories(
 	include
@@ -139,3 +140,8 @@ file(GLOB SRCS_FILE "src/file_test.cpp")
 list(SORT SRCS_FILE)
 
 add_executable(${TARGET_BIN_FILE} ${SRCS_FILE} )
+
+file(GLOB SRCS_BITS "src/bits_test.cpp")
+list(SORT SRCS_BITS)
+
+add_executable(${TARGET_BIN_BITS} ${SRCS_BITS} )
