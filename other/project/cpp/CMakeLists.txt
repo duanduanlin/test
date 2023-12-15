@@ -26,6 +26,7 @@ set( TARGET_BIN_ATTRIBUTE cpp_attribute )
 set( TARGET_BIN_TIME cpp_time )
 set( TARGET_BIN_STRINGSTREAM cpp_stringstream )
 set( TARGET_BIN_COND cpp_cond )
+set( TARGET_BIN_OFFSETOF cpp_offsetof )
 
 include_directories(
 	include
@@ -115,3 +116,8 @@ file(GLOB SRCS_COND "src/cond_test.cpp")
 list(SORT SRCS_COND)
 
 add_executable(${TARGET_BIN_COND} ${SRCS_COND} )
+
+file(GLOB SRCS_OFFSETOF "src/offsetof_test.cpp")
+list(SORT SRCS_OFFSETOF)
+
+add_executable(${TARGET_BIN_OFFSETOF} ${SRCS_OFFSETOF} )
