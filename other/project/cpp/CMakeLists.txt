@@ -25,6 +25,7 @@ set( TARGET_BIN_TYPEXX cpp_typeXX )
 set( TARGET_BIN_ATTRIBUTE cpp_attribute )
 set( TARGET_BIN_TIME cpp_time )
 set( TARGET_BIN_STRINGSTREAM cpp_stringstream )
+set( TARGET_BIN_COND cpp_cond )
 
 include_directories(
 	include
@@ -109,3 +110,8 @@ file(GLOB SRCS_STRINGSTREAM "src/stringstream_test.cpp")
 list(SORT SRCS_STRINGSTREAM)
 
 add_executable(${TARGET_BIN_STRINGSTREAM} ${SRCS_STRINGSTREAM} )
+
+file(GLOB SRCS_COND "src/cond_test.cpp")
+list(SORT SRCS_COND)
+
+add_executable(${TARGET_BIN_COND} ${SRCS_COND} )
