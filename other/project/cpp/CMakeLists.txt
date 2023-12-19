@@ -19,6 +19,7 @@ set( TARGET_BIN_ATOMIC cpp_atomic )
 set( TARGET_BIN_LIST cpp_list )
 set( TARGET_BIN_OPERATOR cpp_operator )
 set( TARGET_BIN_HEXSTR cpp_hexStr )
+set( TARGET_BIN_SELECT cpp_select )
 set( TARGET_BIN_POLL cpp_poll )
 set( TARGET_BIN_EPOLL cpp_epoll )
 set( TARGET_BIN_TYPEXX cpp_typeXX )
@@ -151,3 +152,8 @@ file(GLOB SRCS_THREAD "src/thread_test.cpp")
 list(SORT SRCS_THREAD)
 
 add_executable(${TARGET_BIN_THREAD} ${SRCS_THREAD} )
+
+file(GLOB SRCS_SELECT "src/select_test.cpp")
+list(SORT SRCS_SELECT)
+
+add_executable(${TARGET_BIN_SELECT} ${SRCS_SELECT} )
