@@ -33,6 +33,7 @@ set( TARGET_BIN_VAXX cpp_vaxx )
 set( TARGET_BIN_FILE cpp_file )
 set( TARGET_BIN_BITS cpp_bits )
 set( TARGET_BIN_THREAD cpp_thread )
+set( TARGET_BIN_MMAP cpp_mmap )
 
 include_directories(
 	include
@@ -157,3 +158,8 @@ file(GLOB SRCS_SELECT "src/select_test.cpp")
 list(SORT SRCS_SELECT)
 
 add_executable(${TARGET_BIN_SELECT} ${SRCS_SELECT} )
+
+file(GLOB SRCS_MMAP "src/mmap_test.cpp")
+list(SORT SRCS_MMAP)
+
+add_executable(${TARGET_BIN_MMAP} ${SRCS_MMAP} )
