@@ -42,3 +42,5 @@ echo 3 > /proc/sys/vm/drop_caches
 split -d -l 100000 -a 8 ConEmu-2023-06-21-p9656.log
 ## 软链接
 ln -s libCommonAPI-DBus.so.3.1.12 libCommonAPI-DBus.so.3
+## 查看库依赖
+objdump -x test| grep NEED
