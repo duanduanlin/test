@@ -137,3 +137,21 @@ unix:path=/tmp/dbus-test
 消息总线接受来自一个或多个应用程序的连接。 连接后，应用程序可以与其他应用程序交换消息 也连接到总线的应用程序。
 
 为了在连接之间路由消息，消息总线保留 从名称到连接的映射。每个连接都有一个 自动分配总线生命周期内唯一的名称。
+
+### socat协议抓包
+sudo mv /var/run/dbus/system_bus_socket /var/run/dbus/system_bus_socket.original
+
+sudo socat -t100 -x -v UNIX-LISTEN:/var/run/dbus/system_bus_socket,mode=777,reuseaddr,fork UNIX-CONNECT:/var/run/dbus/system_bus_socket.original
+
+大概步骤是这样的：
+
+客户端连接上dbus-daemon
+客户端发送AUTH
+dbus-daemon回复REJECTED+认证方式列表
+客户端发AUTH+认证方式
+服务器回复OK+密匙
+客户端发送NEGOTIATE_UNIX_FD
+服务器回复AGREE_UNIX_FD
+客户端发送BEGIN，认证结束。
+客户端发hello
+服务器回复私有名
