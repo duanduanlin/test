@@ -2,7 +2,7 @@
  * @Author: dding3
  * @Date: 2022-12-06 14:42:30
  * @LastEditors: dding3
- * @LastEditTime: 2024-01-17 00:38:55
+ * @LastEditTime: 2024-01-17 19:07:44
  * @Description:
  * @FilePath: /test/test/other/project/uart/src/uart.cpp
  */
@@ -106,7 +106,7 @@ int UartDev::sendData(uint8_t *data, int len)
         }
     }
     _mtxSend.unlock();
-    printf("uart write %d Bytes,ret:%d\r\n", len, count);
+    // printf("uart write %d Bytes,ret:%d\r\n", len, count);
 
     return ret;
 }
