@@ -1,0 +1,1 @@
+/usr/bin/c++   -O2 -pthread -std=c++0x  -rdynamic CMakeFiles/HelloWorldService.dir/src/HelloWorldService.cpp.o CMakeFiles/HelloWorldService.dir/src/HelloWorldStubImpl.cpp.o  -o /home/dding3/work/test/test/someIP/output/apps/bin/HelloWorldService -lCommonAPI -lCommonAPI-SomeIP -lvsomeip3 

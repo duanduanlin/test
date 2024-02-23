@@ -44,3 +44,8 @@ split -d -l 100000 -a 8 ConEmu-2023-06-21-p9656.log
 ln -s libCommonAPI-DBus.so.3.1.12 libCommonAPI-DBus.so.3
 ## 查看库依赖
 objdump -x test| grep NEED
+## 查看串口引脚配置
+cat sys/kernel/debug/pinctrl/1000000.pinctrl/pinmux-pins
+ls /sys/devices/78b3000.serial/tty/
+## 查看linux版本
+uname -a

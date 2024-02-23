@@ -1,0 +1,18 @@
+import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-4-SOMEIP_deployment_spec.fdepl"
+import "IWeatherService.fidl"
+
+define org.genivi.commonapi.someip.deployment for interface com.commapi.test.IWeatherService {
+    SomeIpServiceID = 4097 //0x1001
+
+    method getTemp {
+        SomeIpMethodID = 1 //0x0001
+        SomeIpReliable = true
+    }
+}
+
+define org.genivi.commonapi.someip.deployment for provider as Service {
+    instance com.commapi.test.IWeatherService {
+        InstanceId = "com.commapi.test.IWeatherService"
+        SomeIpInstanceID = 1 //0x0001
+    }
+}

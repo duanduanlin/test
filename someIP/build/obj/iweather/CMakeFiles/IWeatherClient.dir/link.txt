@@ -1,0 +1,1 @@
+/usr/bin/c++   -O2 -pthread -std=c++0x  -rdynamic CMakeFiles/IWeatherClient.dir/src/someip_client.cpp.o  -o /home/dding3/work/test/test/someIP/output/apps/bin/IWeatherClient -lCommonAPI -lCommonAPI-SomeIP -lvsomeip3 

@@ -1,0 +1,20 @@
+{
+	"unicast":"127.0.0.1",
+	"logging":
+	{
+		"level":"debug",
+		"console":"true"
+	},
+	"applications":
+	[
+		{
+			"name":"someip_server",
+			"id":"0x1000"
+		}
+	],
+	"routing":"someip_server",
+	"service-discovery":
+	{
+		"enable":"false"
+	}
+}
