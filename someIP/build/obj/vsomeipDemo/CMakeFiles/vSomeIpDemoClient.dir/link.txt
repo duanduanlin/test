@@ -1,1 +1,0 @@
-/usr/bin/c++   -O2 -pthread -std=c++0x  -rdynamic CMakeFiles/vSomeIpDemoClient.dir/src/someip_client.cpp.o  -o /home/dding3/work/test/test/someIP/output/apps/bin/vSomeIpDemoClient -Wl,-rpath,/usr/local/lib /usr/local/lib/libvsomeip3.so.3.3.8 -lvsomeip3-sd 

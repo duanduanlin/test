@@ -1,4 +1,0 @@
-/home/dding3/work/test/test/someIP/build/obj/helloworld/CMakeFiles/edit_cache.dir
-/home/dding3/work/test/test/someIP/build/obj/helloworld/CMakeFiles/rebuild_cache.dir
-/home/dding3/work/test/test/someIP/build/obj/helloworld/CMakeFiles/HelloWorldService.dir
-/home/dding3/work/test/test/someIP/build/obj/helloworld/CMakeFiles/HelloWorldClient.dir

@@ -1,4 +1,0 @@
-/home/dding3/work/test/test/someIP/build/obj/vsomeipDemo/CMakeFiles/rebuild_cache.dir
-/home/dding3/work/test/test/someIP/build/obj/vsomeipDemo/CMakeFiles/vSomeIpDemoServer.dir
-/home/dding3/work/test/test/someIP/build/obj/vsomeipDemo/CMakeFiles/edit_cache.dir
-/home/dding3/work/test/test/someIP/build/obj/vsomeipDemo/CMakeFiles/vSomeIpDemoClient.dir

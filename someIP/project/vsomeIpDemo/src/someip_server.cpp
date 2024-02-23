@@ -2,7 +2,7 @@
  * @Author: dding3
  * @Date: 2024-02-22 18:47:46
  * @LastEditors: dding3
- * @LastEditTime: 2024-02-22 18:48:56
+ * @LastEditTime: 2024-02-23 01:07:59
  * @Description:
  * @FilePath: /test/test/someIP/project/vsomeIpDemo/src/someip_server.cpp
  */
@@ -40,7 +40,7 @@ static void on_state_callback(vsomeip::state_type_e state){
 
 int main(int args, char** argc){
     //设置配置文件路径
-    setenv("VSOMEIP_CONFIGURATION", "/etc/local_server.json", 1);
+    //setenv("VSOMEIP_CONFIGURATION", "/etc/local_server.json", 1);
     //获取vsomeip运行环境
     auto rtm_ = vsomeip::runtime::get();
     //创建一个vsomeip app

@@ -2,7 +2,7 @@
  * @Author: dding3
  * @Date: 2024-02-22 18:49:10
  * @LastEditors: dding3
- * @LastEditTime: 2024-02-22 18:50:06
+ * @LastEditTime: 2024-02-23 01:07:49
  * @Description:
  * @FilePath: /test/test/someIP/project/vsomeIpDemo/src/someip_client.cpp
  */
@@ -17,7 +17,7 @@ static vsomeip::instance_t weather_service_instance_id = 0x0001;
 static vsomeip::method_t   weather_get_temp_method_id = 0x0001;
 
 int main(int args, char** argc){
-    setenv("VSOMEIP_CONFIGURATION", "/etc/local_client.json", 1);
+    //setenv("VSOMEIP_CONFIGURATION", "/etc/local_client.json", 1);
     auto rtm_ = vsomeip::runtime::get();
     auto app_ = rtm_->create_application("someip_client");
     if(!app_->init()){

@@ -1,4 +1,0 @@
-/home/dding3/work/test/test/someIP/build/obj/iweather/CMakeFiles/rebuild_cache.dir
-/home/dding3/work/test/test/someIP/build/obj/iweather/CMakeFiles/edit_cache.dir
-/home/dding3/work/test/test/someIP/build/obj/iweather/CMakeFiles/IWeatherService.dir
-/home/dding3/work/test/test/someIP/build/obj/iweather/CMakeFiles/IWeatherClient.dir
