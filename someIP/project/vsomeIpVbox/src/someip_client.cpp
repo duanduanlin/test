@@ -2,9 +2,9 @@
  * @Author: dding3
  * @Date: 2024-02-22 18:49:10
  * @LastEditors: dding3
- * @LastEditTime: 2024-02-23 01:07:49
+ * @LastEditTime: 2024-02-26 23:09:02
  * @Description:
- * @FilePath: /test/test/someIP/project/vsomeIpDemo/src/someip_client.cpp
+ * @FilePath: /test/test/someIP/project/vsomeIpVbox/src/someip_client.cpp
  */
 #include <string>
 #include <vsomeip/vsomeip.hpp>
@@ -15,6 +15,7 @@
 static vsomeip::service_t  weather_service_id = 0x1001;
 static vsomeip::instance_t weather_service_instance_id = 0x0001;
 static vsomeip::method_t   weather_get_temp_method_id = 0x0001;
+static vsomeip::method_t weather_get_mois_method_id = 0x0002;
 
 int main(int args, char** argc){
     //setenv("VSOMEIP_CONFIGURATION", "/etc/local_client.json", 1);
@@ -48,6 +49,19 @@ int main(int args, char** argc){
                                                         msg->set_service(weather_service_id);
                                                         msg->set_instance(weather_service_instance_id);
                                                         msg->set_method(weather_get_temp_method_id);
+                                                        std::vector<vsomeip::byte_t> payload_raw = {0x0, 0x0 , static_cast<unsigned char>(count)};
+                                                        auto payload = rtm_->create_payload(payload_raw);
+                                                        msg->set_payload(payload);
+                                                        app_->send(msg);
+                                                        usleep(1000 * 1000);
+                                                    }
+                                                    while(count++ <10)
+                                                    {
+                                                        printf("send::\n");
+                                                        auto msg = rtm_->create_request(true);
+                                                        msg->set_service(weather_service_id);
+                                                        msg->set_instance(weather_service_instance_id);
+                                                        msg->set_method(weather_get_mois_method_id);
                                                         std::vector<vsomeip::byte_t> payload_raw = {0x0, 0x0 , static_cast<unsigned char>(count)};
                                                         auto payload = rtm_->create_payload(payload_raw);
                                                         msg->set_payload(payload);

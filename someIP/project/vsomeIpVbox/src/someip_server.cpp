@@ -2,9 +2,9 @@
  * @Author: dding3
  * @Date: 2024-02-22 18:47:46
  * @LastEditors: dding3
- * @LastEditTime: 2024-02-23 01:07:59
+ * @LastEditTime: 2024-02-26 23:06:35
  * @Description:
- * @FilePath: /test/test/someIP/project/vsomeIpDemo/src/someip_server.cpp
+ * @FilePath: /test/test/someIP/project/vsomeIpVbox/src/someip_server.cpp
  */
 #include <string>
 #include <vsomeip/vsomeip.hpp>
@@ -16,7 +16,8 @@ static vsomeip::service_t  weather_service_id = 0x1001;
 //服务实例ID
 static vsomeip::instance_t weather_service_instance_id = 0x0001;
 //方法ID
-static vsomeip::method_t   weather_get_temp_method_id = 0x0001;
+static vsomeip::method_t weather_get_temp_method_id = 0x0001;
+static vsomeip::method_t weather_get_mois_method_id = 0x0002;
 
 static std::shared_ptr<vsomeip::application> app_;
 
@@ -54,6 +55,11 @@ int main(int args, char** argc){
     app_->register_message_handler(weather_service_id,
                                    weather_service_instance_id,
                                    weather_get_temp_method_id,
+                                   &on_message_callback);
+
+    app_->register_message_handler(weather_service_id,
+                                   weather_service_instance_id,
+                                   weather_get_mois_method_id,
                                    &on_message_callback);
 
     //注册app状态回调
