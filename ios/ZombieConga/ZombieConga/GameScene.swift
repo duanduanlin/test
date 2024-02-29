@@ -12,6 +12,8 @@ class GameScene:SKScene{
     let zombieMovePointPerSec: CGFloat = 480.0
     //速度向量
     var velocity = CGPoint.zero
+    //游戏区域
+    let playableRect: CGRect
     
     func moveSprite(sprite: SKSpriteNode, velocity: CGPoint){
         let amountToMove = CGPoint(x: velocity.x*CGFloat(dt), y: velocity.y*CGFloat(dt))
@@ -33,22 +35,22 @@ class GameScene:SKScene{
     }
     
     func boundsCheckZombie(){
-        let viewSize = viewSizeInLocalCoordinates()
-        let bottmLeft = CGPoint.zero
-        let topRight = CGPoint(x: viewSize.width, y: viewSize.height)
+//        let viewSize = viewSizeInLocalCoordinates()
+        let bottmLeft = CGPoint(x: 0, y: CGRectGetMinY(playableRect))
+        let topRight = CGPoint(x: size.width, y: CGRectGetMaxY(playableRect))
         
-        if zombie.position.x <= bottmLeft.x + zombie.size.width/2{
-            zombie.position.x = bottmLeft.x + zombie.size.width/2
+        if zombie.position.x <= bottmLeft.x{
+            zombie.position.x = bottmLeft.x
             velocity.x = -velocity.x
         }
         
-        if zombie.position.x >= topRight.x - zombie.size.width/2{
-            zombie.position.x = topRight.x - zombie.size.width/2
+        if zombie.position.x >= topRight.x{
+            zombie.position.x = topRight.x
             velocity.x = -velocity.x
         }
         
-        if zombie.position.y <= bottmLeft.y + zombie.size.height/2{
-            zombie.position.y = bottmLeft.y + zombie.size.height/2
+        if zombie.position.y <= bottmLeft.y{
+            zombie.position.y = bottmLeft.y
             velocity.y = -velocity.y
         }
         
@@ -56,6 +58,29 @@ class GameScene:SKScene{
             zombie.position.y = topRight.y
             velocity.y = -velocity.y
         }
+    }
+    
+    func debugDrawPlayableArea(){
+        let shape = SKShapeNode()
+        let path = CGMutablePath()
+        path.addRect(playableRect)
+      
+        shape.path = path
+        shape.strokeColor = SKColor.red
+        shape.lineWidth = 4.0
+        addChild(shape)
+    }
+    
+    override init(size: CGSize){
+        let maxAspectRatio:CGFloat = 16.0/9.0
+        let playableHeight = size.width / maxAspectRatio
+        let playableMargin = (size.height - playableHeight) / 2.0
+        playableRect = CGRect(x: 0, y: playableMargin, width: size.width, height: playableHeight)
+        super.init(size: size)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func didMove(to view: SKView) {
@@ -81,6 +106,7 @@ class GameScene:SKScene{
         addChild(zombie)
         //        let mysize = background.size
         //        print("size:\(mysize)")
+        debugDrawPlayableArea()
     }
     
     override func update(_ currentTime: TimeInterval) {
