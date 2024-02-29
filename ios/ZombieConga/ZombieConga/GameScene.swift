@@ -14,23 +14,25 @@ class GameScene:SKScene{
     var velocity = CGPoint.zero
     //游戏区域
     let playableRect: CGRect
+    //上次触摸位置
+    var lastTouchLocation: CGPoint?
+    //旋转速度
+    let zombieRotateRadiansPerSec:CGFloat = 4.0 * π
     
     func moveSprite(sprite: SKSpriteNode, velocity: CGPoint){
-        let amountToMove = CGPoint(x: velocity.x*CGFloat(dt), y: velocity.y*CGFloat(dt))
-        
+        let amountToMove = velocity * CGFloat(dt)
         print("Amount to move: \(amountToMove)")
-        
-        sprite.position = CGPoint(x: sprite.position.x + amountToMove.x, y: sprite.position.y + amountToMove.y)
+        sprite.position += amountToMove
     }
     
     func moveZombieToward(location: CGPoint){
-        let offset = CGPoint(x: location.x - zombie.position.x, y: location.y - zombie.position.y)
-        let length = sqrt(Double(offset.x * offset.x + offset.y * offset.y))
-        let direction = CGPoint(x: offset.x / CGFloat(length), y: offset.y / CGFloat(length))
-        velocity = CGPoint(x: direction.x * zombieMovePointPerSec, y: direction.y * zombieMovePointPerSec)
+        let offset = location - zombie.position
+        let direction = offset.normalized()
+        velocity = direction * zombieMovePointPerSec
     }
     
     func sceneTouched(touchLocation: CGPoint){
+        lastTouchLocation = touchLocation
         moveZombieToward(location: touchLocation)
     }
     
@@ -69,6 +71,15 @@ class GameScene:SKScene{
         shape.strokeColor = SKColor.red
         shape.lineWidth = 4.0
         addChild(shape)
+    }
+    
+    func rotateSprite(sprite: SKSpriteNode, direction: CGPoint, rotateRadiansPerSec: CGFloat){
+        let shortest:CGFloat = shortestAngleBetween(angle1: direction.angle, angle2: sprite.zRotation)
+        var amtToRotate:CGFloat = rotateRadiansPerSec * dt
+        if abs(shortest) < amtToRotate{
+            amtToRotate = shortest
+        }
+        sprite.zRotation += amtToRotate*amtToRotate.sign()
     }
     
     override init(size: CGSize){
@@ -110,7 +121,7 @@ class GameScene:SKScene{
     }
     
     override func update(_ currentTime: TimeInterval) {
-        moveSprite(sprite: zombie, velocity: velocity)
+        
         //        zombie.position = CGPoint(x: zombie.position.x + 8, y: zombie.position.y + 8)
         if lastUpdateTime > 0{
             dt = currentTime - lastUpdateTime
@@ -120,6 +131,16 @@ class GameScene:SKScene{
         lastUpdateTime = currentTime
         print("\(dt*1000) ms since last update")
         boundsCheckZombie()
+        
+        if let stopPoint = lastTouchLocation{
+            if (stopPoint - zombie.position).length() < zombieMovePointPerSec * dt{
+                zombie.position = stopPoint
+                velocity = CGPoint.zero
+            }else{
+                moveSprite(sprite: zombie, velocity: velocity)
+                rotateSprite(sprite: zombie, direction: velocity, rotateRadiansPerSec: zombieRotateRadiansPerSec)
+            }
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -138,21 +159,21 @@ class GameScene:SKScene{
         sceneTouched(touchLocation: touchLocation)
     }
 }
-extension CGPoint {
-    static func +(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
-        return CGPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
-    }
-    static func -(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
-        return CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
-    }
-}
-
-extension SKScene {
-    func viewSizeInLocalCoordinates() -> CGSize {
-        let reference = CGPoint(x: view!.bounds.maxX, y: view!.bounds.maxY)
-        let bottomLeft = convertPoint(fromView: .zero)
-        let topRight = convertPoint(fromView: reference)
-        let d = topRight - bottomLeft
-        return CGSize(width: abs(d.x), height: abs(d.y))
-    }
-}
+//extension CGPoint {
+//    static func +(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+//        return CGPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
+//    }
+//    static func -(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+//        return CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
+//    }
+//}
+//
+//extension SKScene {
+//    func viewSizeInLocalCoordinates() -> CGSize {
+//        let reference = CGPoint(x: view!.bounds.maxX, y: view!.bounds.maxY)
+//        let bottomLeft = convertPoint(fromView: .zero)
+//        let topRight = convertPoint(fromView: reference)
+//        let d = topRight - bottomLeft
+//        return CGSize(width: abs(d.x), height: abs(d.y))
+//    }
+//}
