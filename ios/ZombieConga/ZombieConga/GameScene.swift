@@ -33,23 +33,22 @@ class GameScene:SKScene{
     }
     
     func boundsCheckZombie(){
-        let bounds:CGRect = view?.bounds ?? CGRect(x: 0, y: 0, width: size.width, height: size.height)
-//        print("bounds: \(bounds)")
+        let viewSize = viewSizeInLocalCoordinates()
         let bottmLeft = CGPoint.zero
-        let topRight = CGPoint(x: bounds.width, y: bounds.height)
+        let topRight = CGPoint(x: viewSize.width, y: viewSize.height)
         
-        if zombie.position.x <= bottmLeft.x{
-            zombie.position.x = bottmLeft.x
+        if zombie.position.x <= bottmLeft.x + zombie.size.width/2{
+            zombie.position.x = bottmLeft.x + zombie.size.width/2
             velocity.x = -velocity.x
         }
         
-        if zombie.position.x >= topRight.x{
-            zombie.position.x = topRight.x
+        if zombie.position.x >= topRight.x - zombie.size.width/2{
+            zombie.position.x = topRight.x - zombie.size.width/2
             velocity.x = -velocity.x
         }
         
-        if zombie.position.y <= bottmLeft.y{
-            zombie.position.y = bottmLeft.y
+        if zombie.position.y <= bottmLeft.y + zombie.size.height/2{
+            zombie.position.y = bottmLeft.y + zombie.size.height/2
             velocity.y = -velocity.y
         }
         
@@ -111,5 +110,23 @@ class GameScene:SKScene{
         }
         let touchLocation = touch.location(in: self)
         sceneTouched(touchLocation: touchLocation)
+    }
+}
+extension CGPoint {
+    static func +(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+        return CGPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
+    }
+    static func -(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
+        return CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
+    }
+}
+
+extension SKScene {
+    func viewSizeInLocalCoordinates() -> CGSize {
+        let reference = CGPoint(x: view!.bounds.maxX, y: view!.bounds.maxY)
+        let bottomLeft = convertPoint(fromView: .zero)
+        let topRight = convertPoint(fromView: reference)
+        let d = topRight - bottomLeft
+        return CGSize(width: abs(d.x), height: abs(d.y))
     }
 }
