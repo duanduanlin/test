@@ -16,6 +16,7 @@
 		4D1CC7632B8E2A980065A50C /* ZombieCongaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1CC7622B8E2A980065A50C /* ZombieCongaTests.swift */; };
 		4D1CC76D2B8E2A980065A50C /* ZombieCongaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1CC76C2B8E2A980065A50C /* ZombieCongaUITests.swift */; };
 		4D1CC76F2B8E2A980065A50C /* ZombieCongaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1CC76E2B8E2A980065A50C /* ZombieCongaUITestsLaunchTests.swift */; };
+		4D1CC77C2B90CDB60065A50C /* MyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1CC77B2B90CDB60065A50C /* MyUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		4D1CC7682B8E2A980065A50C /* ZombieCongaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ZombieCongaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4D1CC76C2B8E2A980065A50C /* ZombieCongaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieCongaUITests.swift; sourceTree = "<group>"; };
 		4D1CC76E2B8E2A980065A50C /* ZombieCongaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieCongaUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		4D1CC77B2B90CDB60065A50C /* MyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				4D1CC7522B8E2A970065A50C /* Main.storyboard */,
 				4D1CC7552B8E2A980065A50C /* Assets.xcassets */,
 				4D1CC7572B8E2A980065A50C /* LaunchScreen.storyboard */,
+				4D1CC77B2B90CDB60065A50C /* MyUtils.swift */,
 			);
 			path = ZombieConga;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				4D1CC74F2B8E2A970065A50C /* GameScene.swift in Sources */,
 				4D1CC7512B8E2A970065A50C /* GameViewController.swift in Sources */,
 				4D1CC7492B8E2A970065A50C /* AppDelegate.swift in Sources */,
+				4D1CC77C2B90CDB60065A50C /* MyUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
