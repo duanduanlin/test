@@ -18,26 +18,41 @@ class GameScene:SKScene{
     var lastTouchLocation: CGPoint?
     //旋转速度
     let zombieRotateRadiansPerSec:CGFloat = 4.0 * π
+    //动画
+    let zombieAnimation: SKAction
     
+    /// 以指定的速度移动精灵
+    /// - Parameters:
+    ///   - sprite: 要移动的精灵
+    ///   - velocity: 速度
     func moveSprite(sprite: SKSpriteNode, velocity: CGPoint){
+        //速度*刷新时间=单帧移动距离
         let amountToMove = velocity * CGFloat(dt)
-        print("Amount to move: \(amountToMove)")
+        //print("Amount to move: \(amountToMove)")
         sprite.position += amountToMove
     }
     
+    
+    /// 移动精灵到某处
+    /// - Parameter location: 目的地
     func moveZombieToward(location: CGPoint){
         let offset = location - zombie.position
         let direction = offset.normalized()
         velocity = direction * zombieMovePointPerSec
+        startZombieAnimation()
     }
     
+    
+    /// 处理触摸
+    /// - Parameter touchLocation: 触摸点
     func sceneTouched(touchLocation: CGPoint){
         lastTouchLocation = touchLocation
         moveZombieToward(location: touchLocation)
     }
     
+    
+    /// 边界检查
     func boundsCheckZombie(){
-//        let viewSize = viewSizeInLocalCoordinates()
         let bottmLeft = CGPoint(x: 0, y: CGRectGetMinY(playableRect))
         let topRight = CGPoint(x: size.width, y: CGRectGetMaxY(playableRect))
         
@@ -62,17 +77,25 @@ class GameScene:SKScene{
         }
     }
     
+    
+    /// 绘出安全边界（调试）
     func debugDrawPlayableArea(){
         let shape = SKShapeNode()
         let path = CGMutablePath()
         path.addRect(playableRect)
-      
+        
         shape.path = path
         shape.strokeColor = SKColor.red
         shape.lineWidth = 4.0
         addChild(shape)
     }
     
+    
+    /// 以指定的方向和速度旋转精灵
+    /// - Parameters:
+    ///   - sprite: 要旋转的精灵
+    ///   - direction: 方向
+    ///   - rotateRadiansPerSec: 速度
     func rotateSprite(sprite: SKSpriteNode, direction: CGPoint, rotateRadiansPerSec: CGFloat){
         let shortest:CGFloat = shortestAngleBetween(angle1: direction.angle, angle2: sprite.zRotation)
         var amtToRotate:CGFloat = rotateRadiansPerSec * dt
@@ -82,11 +105,45 @@ class GameScene:SKScene{
         sprite.zRotation += amtToRotate*amtToRotate.sign()
     }
     
+    
+    /// 生成敌人
+    func spawnEnemy(){
+        let enemy = SKSpriteNode(imageNamed: "enemy")
+        enemy.position = CGPoint(x: (size.width + enemy.size.width) / 2, y: CGFloat.random(min: CGRectGetMinY(playableRect) + enemy.size.height / 2, max: CGRectGetMaxY(playableRect) - enemy.size.height / 2))
+        addChild(enemy)
+        
+        let actionMove =  SKAction.moveTo(x: -enemy.size.width / 2, duration: 4.0)
+        let actionRemove = SKAction.removeFromParent()
+        
+        enemy.run(SKAction.sequence([actionMove,actionRemove]))
+    }
+    
+    /// 开启动画
+    func startZombieAnimation(){
+        if zombie.action(forKey: "animation") == nil{
+            zombie.run(SKAction.repeatForever(zombieAnimation),withKey: "animation")
+        }
+    }
+    
+    /// 停止动画
+    func stopZombieAnimation(){
+        zombie.removeAction(forKey: "animation")
+    }
+    
     override init(size: CGSize){
         let maxAspectRatio:CGFloat = 16.0/9.0
         let playableHeight = size.width / maxAspectRatio
         let playableMargin = (size.height - playableHeight) / 2.0
         playableRect = CGRect(x: 0, y: playableMargin, width: size.width, height: playableHeight)
+        
+        var textures:[SKTexture] = []
+        for i in 1...4{
+            textures.append(SKTexture(imageNamed: "zombie\(i)"))
+        }
+        
+        textures.append(textures[2])
+        textures.append(textures[1])
+        zombieAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
         super.init(size: size)
     }
     
@@ -105,37 +162,35 @@ class GameScene:SKScene{
         
         //放置僵尸
         zombie.position = CGPoint(x: 400, y: 400)
-        //放大两倍
-        //        zombie.setScale(2)
-        //或者设置精灵的锚点
-        //        background.anchorPoint = CGPoint.zero
-        //        background.position = CGPoint.zero
-        //尝试旋转精灵
-        //        background.zRotation = CGFloat(Double.pi) / 8
         //添加精灵
         addChild(background)
         addChild(zombie)
-        //        let mysize = background.size
-        //        print("size:\(mysize)")
+//        zombie.run(SKAction.repeatForever(zombieAnimation))
+        //绘制边框
         debugDrawPlayableArea()
+        //生成敌人
+        run(SKAction.repeatForever(SKAction.sequence([SKAction.run(spawnEnemy),SKAction.wait(forDuration: 4.0)])))
     }
     
     override func update(_ currentTime: TimeInterval) {
-        
-        //        zombie.position = CGPoint(x: zombie.position.x + 8, y: zombie.position.y + 8)
+        //计算刷新时间
         if lastUpdateTime > 0{
             dt = currentTime - lastUpdateTime
         }else{
             dt = 0
         }
         lastUpdateTime = currentTime
-        print("\(dt*1000) ms since last update")
+        //print("\(dt*1000) ms since last update")
+        
+        //边界检查
         boundsCheckZombie()
         
+        //移动僵尸到触摸点
         if let stopPoint = lastTouchLocation{
             if (stopPoint - zombie.position).length() < zombieMovePointPerSec * dt{
                 zombie.position = stopPoint
                 velocity = CGPoint.zero
+                stopZombieAnimation()
             }else{
                 moveSprite(sprite: zombie, velocity: velocity)
                 rotateSprite(sprite: zombie, direction: velocity, rotateRadiansPerSec: zombieRotateRadiansPerSec)
@@ -159,21 +214,3 @@ class GameScene:SKScene{
         sceneTouched(touchLocation: touchLocation)
     }
 }
-//extension CGPoint {
-//    static func +(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
-//        return CGPoint(x: lhs.x + rhs.x, y: lhs.y + rhs.y)
-//    }
-//    static func -(lhs: CGPoint, rhs: CGPoint) -> CGPoint {
-//        return CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
-//    }
-//}
-//
-//extension SKScene {
-//    func viewSizeInLocalCoordinates() -> CGSize {
-//        let reference = CGPoint(x: view!.bounds.maxX, y: view!.bounds.maxY)
-//        let bottomLeft = convertPoint(fromView: .zero)
-//        let topRight = convertPoint(fromView: reference)
-//        let d = topRight - bottomLeft
-//        return CGSize(width: abs(d.x), height: abs(d.y))
-//    }
-//}
