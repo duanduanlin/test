@@ -252,7 +252,7 @@ class GameScene:SKScene{
         //print("\(dt*1000) ms since last update")
         
         //边界检查
-        boundsCheckZombie()
+        //boundsCheckZombie()
         
         //移动僵尸到触摸点
         if let stopPoint = lastTouchLocation{
@@ -266,6 +266,11 @@ class GameScene:SKScene{
             }
         }
         //碰撞检查
+//        checkCollisions()
+    }
+    
+    override func didEvaluateActions() {
+        boundsCheckZombie()
         checkCollisions()
     }
     
