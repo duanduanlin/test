@@ -163,18 +163,18 @@ class GameScene:SKScene{
     }
     
     func zombieHitCat(cat: SKSpriteNode){
-//        print("zombieHitCat")
+        //        print("zombieHitCat")
         cat.removeFromParent()
         run(catCollisionSound)
-//        run(SKAction.playSoundFileNamed("hitCat", waitForCompletion: true))
-//        run(SKAction.playSoundFileNamed("hitCatLady", waitForCompletion: false))
+        //        run(SKAction.playSoundFileNamed("hitCat", waitForCompletion: true))
+        //        run(SKAction.playSoundFileNamed("hitCatLady", waitForCompletion: false))
     }
     
     func zombieHitEnemy(enemy: SKSpriteNode){
-//        print("zombieHitEnemy")
+        //        print("zombieHitEnemy")
         enemy.removeFromParent()
         run(enemyCollisionSound)
-//        run(SKAction.playSoundFileNamed("hitCatLady", waitForCompletion: false))
+        //        run(SKAction.playSoundFileNamed("hitCatLady", waitForCompletion: false))
     }
     
     func checkCollisions(){
@@ -204,6 +204,196 @@ class GameScene:SKScene{
             zombieHitEnemy(enemy: enemy)
         }
     }
+    
+    func actionTestByTurtle(){
+        //乌龟测试
+        let turtle = SKSpriteNode(imageNamed: "turtle")
+        turtle.position = CGPoint(x: size.width * 5/6, y: size.height / 2)
+        addChild(turtle)
+        //平移
+        //        turtle.run(SKAction.repeatForever(
+        //              SKAction.sequence([
+        //                SKAction.group([
+        //                    SKAction.moveTo(x:CGRectGetMaxX(playableRect), duration: 1.0),
+        //                    SKAction.moveTo(y:CGRectGetMinY(playableRect), duration: 1.0),
+        //                ]),
+        //                SKAction.group([
+        //                    SKAction.moveTo(x:turtle.position.x, duration: 1.0),
+        //                    SKAction.moveTo(y:turtle.position.y, duration: 1.0),
+        //                ])
+        //              ])
+        //            ))
+        //旋转
+        //        turtle.run(SKAction.repeatForever(
+        //              SKAction.sequence([
+        //                SKAction.rotate(toAngle: π/2, duration: 1.0, shortestUnitArc:true),
+        //                SKAction.rotate(toAngle: π, duration: 1.0, shortestUnitArc:true),
+        //                SKAction.rotate(toAngle: -π/2, duration: 1.0, shortestUnitArc:true),
+        //                SKAction.rotate(toAngle: π, duration: 1.0, shortestUnitArc:true),
+        //              ])
+        //            ))
+        //横行伸缩
+        //        turtle.run(SKAction.repeatForever(
+        //              SKAction.sequence([
+        //                SKAction.group([
+        //                    SKAction.resize(toWidth: turtle.size.width*2, duration: 1.0),
+        //                    SKAction.resize(toHeight: turtle.size.height/2, duration: 1.0)
+        //                ]),
+        //                SKAction.group([
+        //                    SKAction.resize(toWidth: turtle.size.width, duration: 1.0),
+        //                    SKAction.resize(toHeight: turtle.size.height, duration: 1.0)
+        //                ])
+        //              ])
+        //            ))
+        //横行伸缩
+        //        turtle.run(SKAction.repeatForever(
+        //              SKAction.sequence([
+        //                SKAction.group([
+        //                    SKAction.scaleX(to: 3.0, duration:1.0),
+        //                    SKAction.scaleY(to: 0.5, duration:1.0)
+        //                ]),
+        //                SKAction.group([
+        //                    SKAction.scaleX(to: 1.0, duration:1.0),
+        //                    SKAction.scaleY(to: 1.0, duration:1.0)
+        //                ])
+        //              ])
+        //            ))
+        //纵向弹跳
+        //        turtle.run(SKAction.repeatForever(
+        //              SKAction.sequence([
+        //                SKAction.moveBy(x: 0, y: CGRectGetHeight(playableRect) * 1/6, duration: 0.2),
+        //                SKAction.moveBy(x: 0, y: -CGRectGetHeight(playableRect) * 1/6, duration: 0.2)
+        //              ])
+        //            ))
+        //闪烁
+        //        turtle.run(SKAction.repeatForever(
+        //              SKAction.sequence([
+        //                SKAction.fadeAlpha(to: 0.25, duration: 0.5),
+        //                SKAction.fadeAlpha(to: 1.0, duration: 0.5),
+        //              ])
+        //            ))
+        
+        //变色
+        //        turtle.run(SKAction.repeatForever(
+        //              SKAction.sequence([
+        //                SKAction.colorize(with: SKColor.red, colorBlendFactor: 1.0, duration: 1.0),
+        //                SKAction.colorize(withColorBlendFactor: 0.0, duration: 1.0),
+        //                SKAction.colorize(with: SKColor.green, colorBlendFactor: 1.0, duration: 1.0),
+        //                SKAction.colorize(withColorBlendFactor: 0.0, duration: 1.0),
+        //                SKAction.colorize(with: SKColor.blue, colorBlendFactor: 1.0, duration: 1.0),
+        //                SKAction.colorize(withColorBlendFactor: 0.0, duration: 1.0),
+        //              ])
+        //            ))
+        
+        //沿轨迹移动
+        //        let circle = CGPath(roundedRect: CGRect(x: CGRectGetMinX(playableRect), y: CGRectGetMinY(playableRect), width: 400, height: 400), cornerWidth: 200, cornerHeight: 200, transform: nil)
+        //        turtle.run(SKAction.repeatForever(
+        //              SKAction.sequence([
+        //                SKAction.follow(circle, asOffset: false, orientToPath: false, duration: 5.0)
+        //              ])
+        //            ))
+        
+        //跳动
+        //        turtle.run(SKAction.repeatForever(
+        //              SKAction.sequence([
+        //                SKAction.moveBy(x: 0, y: CGRectGetHeight(self.playableRect) * 1/6, duration: 1.0),
+        //                SKAction.wait(forDuration: 2.0, withRange:2.0),
+        //                SKAction.moveBy(x: 0, y: CGRectGetHeight(self.playableRect) * -1/6, duration: 1.0),
+        //              ])
+        //            ))
+        
+        //        let queue = DispatchQueue(__label: "com.razeware.actionscatalog.bgqueue", attr: nil)
+        //            var workDone = true
+        //        turtle.run(SKAction.repeatForever(
+        //              SKAction.sequence([
+        //                SKAction.run({
+        //                  if (workDone) {
+        //                    workDone = false
+        //                      turtle.run(SKAction.rotate(byAngle: π*2, duration:1.0))
+        //                      turtle.run(SKAction.run({
+        //                      sleep(1)
+        //                      workDone = true
+        //                    }, queue: queue))
+        //                  }
+        //                }, queue: queue),
+        //                SKAction.wait(forDuration: 1.0)
+        //              ])
+        //            ))
+        
+        // "Blink" action
+//        let blinkTimes = 6.0
+//        let duration = 2.0
+//        turtle.run(SKAction.repeatForever(
+//            SKAction.customAction(withDuration: duration) { node, elapsedTime in
+//                let slice = duration / blinkTimes
+//                let remainder = Double(elapsedTime).truncatingRemainder(dividingBy: slice)
+//                node.isHidden = remainder > slice / 2
+//            }
+//        ))
+        
+        // "Jump" action
+//        let dogStart = turtle.position
+//        let jumpHeight = 100.0
+//        let dogDuration = 2.0
+//        turtle.run(SKAction.repeatForever(
+//            SKAction.customAction(withDuration: dogDuration) { node, elapsedTime in
+//                let fraction = Double(elapsedTime) / dogDuration
+//                let yOff = jumpHeight * 4 * fraction * (1 - fraction)
+//                node.position = CGPoint(x: node.position.x, y: dogStart.y + CGFloat(yOff))
+//            }
+//        ))
+
+//        // "Sin wave"
+//        let turtleStart = turtle.position
+//        let amplitude = 25.0
+//        let turtleDuration = 1.0
+//        let duration = 2.0
+//        turtle.run(SKAction.repeatForever(
+//            SKAction.customAction(withDuration: duration) { node, elapsedTime in
+//                let fraction = Double(elapsedTime) / turtleDuration
+//                let yOff = sin(π * 2 * fraction) * amplitude
+//                node.position = CGPoint(x: node.position.x, y: turtleStart.y + CGFloat(yOff))
+//            }
+//        ))
+        
+        // SKActionTimingMode.EaseIn
+//        let MoveUp = SKAction.moveBy(x: 0, y: CGRectGetHeight(self.playableRect) * 1/6, duration: 1.0)
+//        MoveUp.timingMode = .easeIn
+//        let MoveDown = MoveUp.reversed()
+//        turtle.run(SKAction.repeatForever(
+//              SKAction.sequence([MoveUp, MoveDown])
+//            ))
+        
+        // SKActionTimingMode.EaseIOut
+//        let MoveUpEO = SKAction.moveBy(x: 0, y: CGRectGetHeight(self.playableRect) * 1/6, duration: 1.0)
+//        let MoveUpEI = SKAction.moveBy(x: 0, y: CGRectGetHeight(self.playableRect) * 1/6, duration: 1.0)
+//        MoveUpEI.timingMode = .easeIn
+//        MoveUpEO.timingMode = .easeOut
+//        let MoveDownEI = MoveUpEI.reversed()
+//        turtle.run(SKAction.repeatForever(
+//            SKAction.sequence([MoveUpEO, MoveDownEI])
+//        ))
+        
+        // SKActionTimingMode.EaseInEaseOut
+//        let turtleMoveUp = SKAction.moveBy(x: 0, y: CGRectGetHeight(self.playableRect) * 1/6, duration: 1.0)
+//        let MoveUpEI = SKAction.moveBy(x: 0, y: CGRectGetHeight(self.playableRect) * 1/6, duration: 1.0)
+//        MoveUpEI.timingMode = .easeIn
+//        turtleMoveUp.timingMode = .easeInEaseOut
+//        let turtleMoveDown = MoveUpEI.reversed()
+//        turtle.run(SKAction.repeatForever(
+//            SKAction.sequence([turtleMoveUp, turtleMoveDown])
+//        ))
+
+//        turtle.run(SKAction.repeatForever(
+//            SKAction.sequence([
+//                SKAction.hide(),
+//                SKAction.wait(forDuration: 0.1),
+//                SKAction.unhide(),
+//                SKAction.wait(forDuration: 0.1),
+//            ])
+//        ))
+    }
+    
     
     override init(size: CGSize){
         let maxAspectRatio:CGFloat = 16.0/9.0
@@ -247,6 +437,8 @@ class GameScene:SKScene{
         run(SKAction.repeatForever(SKAction.sequence([SKAction.run(spawnEnemy),SKAction.wait(forDuration: 4.0)])))
         //生成小猫
         run(SKAction.repeatForever(SKAction.sequence([SKAction.run(spawnCat),SKAction.wait(forDuration: 1.0)])))
+        
+//        actionTestByTurtle()
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -274,7 +466,7 @@ class GameScene:SKScene{
             }
         }
         //碰撞检查
-//        checkCollisions()
+        //        checkCollisions()
     }
     
     override func didEvaluateActions() {
