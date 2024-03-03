@@ -118,6 +118,24 @@ class GameScene:SKScene{
         enemy.run(SKAction.sequence([actionMove,actionRemove]))
     }
     
+    func spawnCat(){
+        let cat = SKSpriteNode(imageNamed: "cat")
+        cat.position = CGPoint(x: CGFloat.random(min: CGRectGetMinX(playableRect), max: CGRectGetMaxX(playableRect)), y: CGFloat.random(min: CGRectGetMinY(playableRect), max: CGRectGetMaxY(playableRect)))
+        cat.setScale(0)
+        addChild(cat)
+        
+        cat.zRotation = -π / 16.0
+        let leftWiggle = SKAction.rotate(byAngle: π / 8.0, duration: 0.5)
+        let rightWiggle = leftWiggle.reversed()
+        let fullWiggle = SKAction.sequence([leftWiggle,rightWiggle])
+        let wiggleWait = SKAction.repeat(fullWiggle, count: 10)
+        
+        let actionAppear = SKAction.scale(to: 1.0, duration: 0.5)
+        let actionWait = SKAction.wait(forDuration: 10.0)
+        let actionDisappear = SKAction.scale(to: 0, duration: 0.5)
+        let actionRemove = SKAction.removeFromParent()
+        cat.run(SKAction.sequence([actionAppear,wiggleWait,actionDisappear,actionRemove]))
+    }
     /// 开启动画
     func startZombieAnimation(){
         if zombie.action(forKey: "animation") == nil{
@@ -170,6 +188,8 @@ class GameScene:SKScene{
         debugDrawPlayableArea()
         //生成敌人
         run(SKAction.repeatForever(SKAction.sequence([SKAction.run(spawnEnemy),SKAction.wait(forDuration: 4.0)])))
+        //生成小猫
+        run(SKAction.repeatForever(SKAction.sequence([SKAction.run(spawnCat),SKAction.wait(forDuration: 1.0)])))
     }
     
     override func update(_ currentTime: TimeInterval) {
