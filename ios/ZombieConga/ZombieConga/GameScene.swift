@@ -124,17 +124,26 @@ class GameScene:SKScene{
         cat.setScale(0)
         addChild(cat)
         
+        //左右摆动
         cat.zRotation = -π / 16.0
         let leftWiggle = SKAction.rotate(byAngle: π / 8.0, duration: 0.5)
         let rightWiggle = leftWiggle.reversed()
         let fullWiggle = SKAction.sequence([leftWiggle,rightWiggle])
         let wiggleWait = SKAction.repeat(fullWiggle, count: 10)
         
+        //缩放
+        let scaleUp = SKAction.scale(by: 1.2, duration: 0.25)
+        let scaleDown = scaleUp.reversed()
+        let fullScale = SKAction.sequence([scaleUp,scaleDown,scaleUp,scaleDown])
+        
+        let scaleAndWiggleWait = SKAction.repeat(SKAction.group([fullScale,fullWiggle]), count: 10)
+        
+        
         let actionAppear = SKAction.scale(to: 1.0, duration: 0.5)
         let actionWait = SKAction.wait(forDuration: 10.0)
         let actionDisappear = SKAction.scale(to: 0, duration: 0.5)
         let actionRemove = SKAction.removeFromParent()
-        cat.run(SKAction.sequence([actionAppear,wiggleWait,actionDisappear,actionRemove]))
+        cat.run(SKAction.sequence([actionAppear,scaleAndWiggleWait,actionDisappear,actionRemove]))
     }
     /// 开启动画
     func startZombieAnimation(){
