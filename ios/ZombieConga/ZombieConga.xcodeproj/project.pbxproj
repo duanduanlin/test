@@ -17,6 +17,10 @@
 		4D1CC76D2B8E2A980065A50C /* ZombieCongaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1CC76C2B8E2A980065A50C /* ZombieCongaUITests.swift */; };
 		4D1CC76F2B8E2A980065A50C /* ZombieCongaUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1CC76E2B8E2A980065A50C /* ZombieCongaUITestsLaunchTests.swift */; };
 		4D1CC77C2B90CDB60065A50C /* MyUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1CC77B2B90CDB60065A50C /* MyUtils.swift */; };
+		4D1CC7832B94B9010065A50C /* win.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4D1CC77E2B94B9010065A50C /* win.wav */; };
+		4D1CC7842B94B9010065A50C /* lose.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4D1CC77F2B94B9010065A50C /* lose.wav */; };
+		4D1CC7862B94B9010065A50C /* hitCatLady.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4D1CC7812B94B9010065A50C /* hitCatLady.wav */; };
+		4D1CC7872B94B9010065A50C /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D1CC7822B94B9010065A50C /* backgroundMusic.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +54,10 @@
 		4D1CC76C2B8E2A980065A50C /* ZombieCongaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieCongaUITests.swift; sourceTree = "<group>"; };
 		4D1CC76E2B8E2A980065A50C /* ZombieCongaUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZombieCongaUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		4D1CC77B2B90CDB60065A50C /* MyUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUtils.swift; sourceTree = "<group>"; };
+		4D1CC77E2B94B9010065A50C /* win.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = win.wav; sourceTree = "<group>"; };
+		4D1CC77F2B94B9010065A50C /* lose.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lose.wav; sourceTree = "<group>"; };
+		4D1CC7812B94B9010065A50C /* hitCatLady.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hitCatLady.wav; sourceTree = "<group>"; };
+		4D1CC7822B94B9010065A50C /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +113,7 @@
 				4D1CC7502B8E2A970065A50C /* GameViewController.swift */,
 				4D1CC7522B8E2A970065A50C /* Main.storyboard */,
 				4D1CC7552B8E2A980065A50C /* Assets.xcassets */,
+				4D1CC77D2B94B9010065A50C /* Sounds */,
 				4D1CC7572B8E2A980065A50C /* LaunchScreen.storyboard */,
 				4D1CC77B2B90CDB60065A50C /* MyUtils.swift */,
 			);
@@ -126,6 +135,17 @@
 				4D1CC76E2B8E2A980065A50C /* ZombieCongaUITestsLaunchTests.swift */,
 			);
 			path = ZombieCongaUITests;
+			sourceTree = "<group>";
+		};
+		4D1CC77D2B94B9010065A50C /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				4D1CC77E2B94B9010065A50C /* win.wav */,
+				4D1CC77F2B94B9010065A50C /* lose.wav */,
+				4D1CC7812B94B9010065A50C /* hitCatLady.wav */,
+				4D1CC7822B94B9010065A50C /* backgroundMusic.mp3 */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,8 +252,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D1CC7842B94B9010065A50C /* lose.wav in Resources */,
 				4D1CC7542B8E2A970065A50C /* Main.storyboard in Resources */,
+				4D1CC7872B94B9010065A50C /* backgroundMusic.mp3 in Resources */,
+				4D1CC7832B94B9010065A50C /* win.wav in Resources */,
 				4D1CC7562B8E2A980065A50C /* Assets.xcassets in Resources */,
+				4D1CC7862B94B9010065A50C /* hitCatLady.wav in Resources */,
 				4D1CC7592B8E2A980065A50C /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
