@@ -20,6 +20,9 @@ class GameScene:SKScene{
     let zombieRotateRadiansPerSec:CGFloat = 4.0 * π
     //动画
     let zombieAnimation: SKAction
+    //声音
+    let catCollisionSound: SKAction = SKAction.playSoundFileNamed("hitCat", waitForCompletion: false)
+    let enemyCollisionSound: SKAction = SKAction.playSoundFileNamed("hitCatLady", waitForCompletion: false)
     
     /// 以指定的速度移动精灵
     /// - Parameters:
@@ -162,14 +165,16 @@ class GameScene:SKScene{
     func zombieHitCat(cat: SKSpriteNode){
 //        print("zombieHitCat")
         cat.removeFromParent()
-        run(SKAction.playSoundFileNamed("hitCatLady", waitForCompletion: true))
+        run(catCollisionSound)
+//        run(SKAction.playSoundFileNamed("hitCat", waitForCompletion: true))
 //        run(SKAction.playSoundFileNamed("hitCatLady", waitForCompletion: false))
     }
     
     func zombieHitEnemy(enemy: SKSpriteNode){
 //        print("zombieHitEnemy")
         enemy.removeFromParent()
-        run(SKAction.playSoundFileNamed("hitCatLady", waitForCompletion: false))
+        run(enemyCollisionSound)
+//        run(SKAction.playSoundFileNamed("hitCatLady", waitForCompletion: false))
     }
     
     func checkCollisions(){

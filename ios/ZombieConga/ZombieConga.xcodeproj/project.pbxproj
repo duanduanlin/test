@@ -21,6 +21,7 @@
 		4D1CC7842B94B9010065A50C /* lose.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4D1CC77F2B94B9010065A50C /* lose.wav */; };
 		4D1CC7862B94B9010065A50C /* hitCatLady.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4D1CC7812B94B9010065A50C /* hitCatLady.wav */; };
 		4D1CC7872B94B9010065A50C /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D1CC7822B94B9010065A50C /* backgroundMusic.mp3 */; };
+		4D1CC78F2B94C2870065A50C /* hitCat.WAV in Resources */ = {isa = PBXBuildFile; fileRef = 4D1CC78E2B94C2870065A50C /* hitCat.WAV */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		4D1CC77F2B94B9010065A50C /* lose.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = lose.wav; sourceTree = "<group>"; };
 		4D1CC7812B94B9010065A50C /* hitCatLady.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hitCatLady.wav; sourceTree = "<group>"; };
 		4D1CC7822B94B9010065A50C /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
+		4D1CC78E2B94C2870065A50C /* hitCat.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hitCat.WAV; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 			children = (
 				4D1CC77E2B94B9010065A50C /* win.wav */,
 				4D1CC77F2B94B9010065A50C /* lose.wav */,
+				4D1CC78E2B94C2870065A50C /* hitCat.WAV */,
 				4D1CC7812B94B9010065A50C /* hitCatLady.wav */,
 				4D1CC7822B94B9010065A50C /* backgroundMusic.mp3 */,
 			);
@@ -255,6 +258,7 @@
 				4D1CC7842B94B9010065A50C /* lose.wav in Resources */,
 				4D1CC7542B8E2A970065A50C /* Main.storyboard in Resources */,
 				4D1CC7872B94B9010065A50C /* backgroundMusic.mp3 in Resources */,
+				4D1CC78F2B94C2870065A50C /* hitCat.WAV in Resources */,
 				4D1CC7832B94B9010065A50C /* win.wav in Resources */,
 				4D1CC7562B8E2A980065A50C /* Assets.xcassets in Resources */,
 				4D1CC7862B94B9010065A50C /* hitCatLady.wav in Resources */,
