@@ -109,6 +109,7 @@ class GameScene:SKScene{
     /// 生成敌人
     func spawnEnemy(){
         let enemy = SKSpriteNode(imageNamed: "enemy")
+        enemy.name = "enemy"
         enemy.position = CGPoint(x: (size.width + enemy.size.width) / 2, y: CGFloat.random(min: CGRectGetMinY(playableRect) + enemy.size.height / 2, max: CGRectGetMaxY(playableRect) - enemy.size.height / 2))
         addChild(enemy)
         
@@ -120,6 +121,7 @@ class GameScene:SKScene{
     
     func spawnCat(){
         let cat = SKSpriteNode(imageNamed: "cat")
+        cat.name = "cat"
         cat.position = CGPoint(x: CGFloat.random(min: CGRectGetMinX(playableRect), max: CGRectGetMaxX(playableRect)), y: CGFloat.random(min: CGRectGetMinY(playableRect), max: CGRectGetMaxY(playableRect)))
         cat.setScale(0)
         addChild(cat)
@@ -157,6 +159,44 @@ class GameScene:SKScene{
         zombie.removeAction(forKey: "animation")
     }
     
+    func zombieHitCat(cat: SKSpriteNode){
+        print("zombieHitCat")
+        cat.removeFromParent()
+    }
+    
+    func zombieHitEnemy(enemy: SKSpriteNode){
+        print("zombieHitEnemy")
+        enemy.removeFromParent()
+    }
+    
+    func checkCollisions(){
+        var hitCats: [SKSpriteNode] = []
+        enumerateChildNodes(withName: "cat"){ node,_ in
+            if let cat = node as? SKSpriteNode{
+                if cat.frame.intersects(self.zombie.frame){
+                    hitCats.append(cat)
+                }
+            }
+        }
+        
+        for cat in hitCats{
+            zombieHitCat(cat: cat)
+        }
+        
+        var hitEnemys: [SKSpriteNode] = []
+        enumerateChildNodes(withName: "enemy"){node,_ in
+            if let enemy = node as? SKSpriteNode{
+                if enemy.frame.intersects(self.zombie.frame){
+                    hitEnemys.append(enemy)
+                }
+            }
+        }
+        
+        for enemy in hitEnemys {
+            zombieHitEnemy(enemy: enemy)
+        }
+    }
+    
     override init(size: CGSize){
         let maxAspectRatio:CGFloat = 16.0/9.0
         let playableHeight = size.width / maxAspectRatio
@@ -192,7 +232,7 @@ class GameScene:SKScene{
         //添加精灵
         addChild(background)
         addChild(zombie)
-//        zombie.run(SKAction.repeatForever(zombieAnimation))
+        //        zombie.run(SKAction.repeatForever(zombieAnimation))
         //绘制边框
         debugDrawPlayableArea()
         //生成敌人
@@ -225,6 +265,8 @@ class GameScene:SKScene{
                 rotateSprite(sprite: zombie, direction: velocity, rotateRadiansPerSec: zombieRotateRadiansPerSec)
             }
         }
+        //碰撞检查
+        checkCollisions()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
