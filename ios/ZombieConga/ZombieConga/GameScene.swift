@@ -10,6 +10,7 @@ class GameScene:SKScene{
     var dt: TimeInterval = 0
     //移动速度
     let zombieMovePointPerSec: CGFloat = 480.0
+    let catMovePointPerSec: CGFloat = 480.0
     //速度向量
     var velocity = CGPoint.zero
     //游戏区域
@@ -178,9 +179,31 @@ class GameScene:SKScene{
         }
     }
     
+    func moveTrain(){
+        var targetPosition = zombie.position
+        
+        enumerateChildNodes(withName: "train"){node,_ in
+            if !node.hasActions(){
+                let duration = 0.3
+                let offset = targetPosition - node.position
+                let direction = offset.normalized()
+                let amountToMovePerSec = direction * self.catMovePointPerSec
+                let amountToMove = amountToMovePerSec * duration
+                let actionMove = SKAction.moveBy(x: amountToMove.x, y: amountToMove.y, duration: duration)
+                node.run(actionMove)
+            }
+            targetPosition = node.position
+        }
+    }
     func zombieHitCat(cat: SKSpriteNode){
         //        print("zombieHitCat")
-        cat.removeFromParent()
+        //        cat.removeFromParent()
+        cat.removeAllActions()
+        cat.setScale(1.0)
+        cat.zRotation = 0.0
+        cat.name = "train"
+        let turnGreen = SKAction.colorize(with: SKColor.green, colorBlendFactor: 1.0, duration: 0.2)
+        cat.run(turnGreen)
         run(catCollisionSound)
         //        run(SKAction.playSoundFileNamed("hitCat", waitForCompletion: true))
         //        run(SKAction.playSoundFileNamed("hitCatLady", waitForCompletion: false))
@@ -188,7 +211,7 @@ class GameScene:SKScene{
     
     func zombieHitEnemy(enemy: SKSpriteNode){
         //        print("zombieHitEnemy")
-//        enemy.removeFromParent()
+        //        enemy.removeFromParent()
         zombieBlink()
         run(enemyCollisionSound)
         //        run(SKAction.playSoundFileNamed("hitCatLady", waitForCompletion: false))
@@ -340,77 +363,77 @@ class GameScene:SKScene{
         //            ))
         
         // "Blink" action
-//        let blinkTimes = 6.0
-//        let duration = 2.0
-//        turtle.run(SKAction.repeatForever(
-//            SKAction.customAction(withDuration: duration) { node, elapsedTime in
-//                let slice = duration / blinkTimes
-//                let remainder = Double(elapsedTime).truncatingRemainder(dividingBy: slice)
-//                node.isHidden = remainder > slice / 2
-//            }
-//        ))
+        //        let blinkTimes = 6.0
+        //        let duration = 2.0
+        //        turtle.run(SKAction.repeatForever(
+        //            SKAction.customAction(withDuration: duration) { node, elapsedTime in
+        //                let slice = duration / blinkTimes
+        //                let remainder = Double(elapsedTime).truncatingRemainder(dividingBy: slice)
+        //                node.isHidden = remainder > slice / 2
+        //            }
+        //        ))
         
         // "Jump" action
-//        let dogStart = turtle.position
-//        let jumpHeight = 100.0
-//        let dogDuration = 2.0
-//        turtle.run(SKAction.repeatForever(
-//            SKAction.customAction(withDuration: dogDuration) { node, elapsedTime in
-//                let fraction = Double(elapsedTime) / dogDuration
-//                let yOff = jumpHeight * 4 * fraction * (1 - fraction)
-//                node.position = CGPoint(x: node.position.x, y: dogStart.y + CGFloat(yOff))
-//            }
-//        ))
-
-//        // "Sin wave"
-//        let turtleStart = turtle.position
-//        let amplitude = 25.0
-//        let turtleDuration = 1.0
-//        let duration = 2.0
-//        turtle.run(SKAction.repeatForever(
-//            SKAction.customAction(withDuration: duration) { node, elapsedTime in
-//                let fraction = Double(elapsedTime) / turtleDuration
-//                let yOff = sin(π * 2 * fraction) * amplitude
-//                node.position = CGPoint(x: node.position.x, y: turtleStart.y + CGFloat(yOff))
-//            }
-//        ))
+        //        let dogStart = turtle.position
+        //        let jumpHeight = 100.0
+        //        let dogDuration = 2.0
+        //        turtle.run(SKAction.repeatForever(
+        //            SKAction.customAction(withDuration: dogDuration) { node, elapsedTime in
+        //                let fraction = Double(elapsedTime) / dogDuration
+        //                let yOff = jumpHeight * 4 * fraction * (1 - fraction)
+        //                node.position = CGPoint(x: node.position.x, y: dogStart.y + CGFloat(yOff))
+        //            }
+        //        ))
+        
+        //        // "Sin wave"
+        //        let turtleStart = turtle.position
+        //        let amplitude = 25.0
+        //        let turtleDuration = 1.0
+        //        let duration = 2.0
+        //        turtle.run(SKAction.repeatForever(
+        //            SKAction.customAction(withDuration: duration) { node, elapsedTime in
+        //                let fraction = Double(elapsedTime) / turtleDuration
+        //                let yOff = sin(π * 2 * fraction) * amplitude
+        //                node.position = CGPoint(x: node.position.x, y: turtleStart.y + CGFloat(yOff))
+        //            }
+        //        ))
         
         // SKActionTimingMode.EaseIn
-//        let MoveUp = SKAction.moveBy(x: 0, y: CGRectGetHeight(self.playableRect) * 1/6, duration: 1.0)
-//        MoveUp.timingMode = .easeIn
-//        let MoveDown = MoveUp.reversed()
-//        turtle.run(SKAction.repeatForever(
-//              SKAction.sequence([MoveUp, MoveDown])
-//            ))
+        //        let MoveUp = SKAction.moveBy(x: 0, y: CGRectGetHeight(self.playableRect) * 1/6, duration: 1.0)
+        //        MoveUp.timingMode = .easeIn
+        //        let MoveDown = MoveUp.reversed()
+        //        turtle.run(SKAction.repeatForever(
+        //              SKAction.sequence([MoveUp, MoveDown])
+        //            ))
         
         // SKActionTimingMode.EaseIOut
-//        let MoveUpEO = SKAction.moveBy(x: 0, y: CGRectGetHeight(self.playableRect) * 1/6, duration: 1.0)
-//        let MoveUpEI = SKAction.moveBy(x: 0, y: CGRectGetHeight(self.playableRect) * 1/6, duration: 1.0)
-//        MoveUpEI.timingMode = .easeIn
-//        MoveUpEO.timingMode = .easeOut
-//        let MoveDownEI = MoveUpEI.reversed()
-//        turtle.run(SKAction.repeatForever(
-//            SKAction.sequence([MoveUpEO, MoveDownEI])
-//        ))
+        //        let MoveUpEO = SKAction.moveBy(x: 0, y: CGRectGetHeight(self.playableRect) * 1/6, duration: 1.0)
+        //        let MoveUpEI = SKAction.moveBy(x: 0, y: CGRectGetHeight(self.playableRect) * 1/6, duration: 1.0)
+        //        MoveUpEI.timingMode = .easeIn
+        //        MoveUpEO.timingMode = .easeOut
+        //        let MoveDownEI = MoveUpEI.reversed()
+        //        turtle.run(SKAction.repeatForever(
+        //            SKAction.sequence([MoveUpEO, MoveDownEI])
+        //        ))
         
         // SKActionTimingMode.EaseInEaseOut
-//        let turtleMoveUp = SKAction.moveBy(x: 0, y: CGRectGetHeight(self.playableRect) * 1/6, duration: 1.0)
-//        let MoveUpEI = SKAction.moveBy(x: 0, y: CGRectGetHeight(self.playableRect) * 1/6, duration: 1.0)
-//        MoveUpEI.timingMode = .easeIn
-//        turtleMoveUp.timingMode = .easeInEaseOut
-//        let turtleMoveDown = MoveUpEI.reversed()
-//        turtle.run(SKAction.repeatForever(
-//            SKAction.sequence([turtleMoveUp, turtleMoveDown])
-//        ))
-
-//        turtle.run(SKAction.repeatForever(
-//            SKAction.sequence([
-//                SKAction.hide(),
-//                SKAction.wait(forDuration: 0.1),
-//                SKAction.unhide(),
-//                SKAction.wait(forDuration: 0.1),
-//            ])
-//        ))
+        //        let turtleMoveUp = SKAction.moveBy(x: 0, y: CGRectGetHeight(self.playableRect) * 1/6, duration: 1.0)
+        //        let MoveUpEI = SKAction.moveBy(x: 0, y: CGRectGetHeight(self.playableRect) * 1/6, duration: 1.0)
+        //        MoveUpEI.timingMode = .easeIn
+        //        turtleMoveUp.timingMode = .easeInEaseOut
+        //        let turtleMoveDown = MoveUpEI.reversed()
+        //        turtle.run(SKAction.repeatForever(
+        //            SKAction.sequence([turtleMoveUp, turtleMoveDown])
+        //        ))
+        
+        //        turtle.run(SKAction.repeatForever(
+        //            SKAction.sequence([
+        //                SKAction.hide(),
+        //                SKAction.wait(forDuration: 0.1),
+        //                SKAction.unhide(),
+        //                SKAction.wait(forDuration: 0.1),
+        //            ])
+        //        ))
     }
     
     
@@ -446,6 +469,7 @@ class GameScene:SKScene{
         
         //放置僵尸
         zombie.position = CGPoint(x: 400, y: 400)
+        zombie.zPosition = 100
         //添加精灵
         addChild(background)
         addChild(zombie)
@@ -457,7 +481,7 @@ class GameScene:SKScene{
         //生成小猫
         run(SKAction.repeatForever(SKAction.sequence([SKAction.run(spawnCat),SKAction.wait(forDuration: 1.0)])))
         
-//        actionTestByTurtle()
+        //        actionTestByTurtle()
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -486,6 +510,7 @@ class GameScene:SKScene{
         }
         //碰撞检查
         //        checkCollisions()
+        moveTrain()
     }
     
     override func didEvaluateActions() {
