@@ -26,6 +26,9 @@ class GameScene:SKScene{
     let enemyCollisionSound: SKAction = SKAction.playSoundFileNamed("hitCatLady", waitForCompletion: false)
     //受保护状态
     var zombieWasProtected: Bool = false
+    //运行状态
+    var lives: Int = 5
+    var gameOver: Bool = false
     
     /// 以指定的速度移动精灵
     /// - Parameters:
@@ -180,9 +183,11 @@ class GameScene:SKScene{
     }
     
     func moveTrain(){
+        var trainCount = 0
         var targetPosition = zombie.position
         
         enumerateChildNodes(withName: "train"){node,_ in
+            trainCount += 1
             if !node.hasActions(){
                 let duration = 0.3
                 let offset = targetPosition - node.position
@@ -194,7 +199,37 @@ class GameScene:SKScene{
             }
             targetPosition = node.position
         }
+        if trainCount >= 15 && !gameOver{
+            gameOver = true
+            print("you win")
+        }
     }
+    
+    func loseCats(){
+        var loseCount = 0
+        
+        enumerateChildNodes(withName: "train"){node, stop in
+            var randomSpot: CGPoint = node.position
+            randomSpot.x += CGFloat.random(min: -100, max: 100)
+            randomSpot.y += CGFloat.random(min: -100, max: 100)
+            node.name = ""
+            node.run(SKAction.sequence(
+                [SKAction.group(
+                    [SKAction.rotate(byAngle: π*4, duration: 1.0),
+                     SKAction.move(to: randomSpot, duration: 1.0),
+                     SKAction.scale(to: 0, duration: 1.0)]
+                ),
+                 SKAction.removeFromParent()]
+            ))
+            
+            loseCount += 1
+            if loseCount >= 2{
+                stop.initialize(to: true)
+            }
+        }
+    }
+    
+    
     func zombieHitCat(cat: SKSpriteNode){
         //        print("zombieHitCat")
         //        cat.removeFromParent()
@@ -213,6 +248,8 @@ class GameScene:SKScene{
         //        print("zombieHitEnemy")
         //        enemy.removeFromParent()
         zombieBlink()
+        loseCats()
+        lives -= 1
         run(enemyCollisionSound)
         //        run(SKAction.playSoundFileNamed("hitCatLady", waitForCompletion: false))
     }
@@ -511,6 +548,11 @@ class GameScene:SKScene{
         //碰撞检查
         //        checkCollisions()
         moveTrain()
+        //判断结果
+        if lives <= 0 && !gameOver{
+            gameOver = true
+            print("you lose!")
+        }
     }
     
     override func didEvaluateActions() {
