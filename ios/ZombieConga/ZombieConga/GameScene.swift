@@ -200,6 +200,7 @@ class GameScene:SKScene{
             targetPosition = node.position
         }
         if trainCount >= 5 && !gameOver{
+            backgroundMusicPlayer.stop()
             gameOver = true
             print("you win")
             let gameOverScene = GameOverScene(size: size, won: true)
@@ -500,6 +501,8 @@ class GameScene:SKScene{
     }
     
     override func didMove(to view: SKView) {
+        //设置背景音乐
+        playBackgroundMusic(filename: "backgroundMusic.mp3")
         //设置背景颜色
         backgroundColor = SKColor.black
         
@@ -516,7 +519,7 @@ class GameScene:SKScene{
         addChild(zombie)
         //        zombie.run(SKAction.repeatForever(zombieAnimation))
         //绘制边框
-        debugDrawPlayableArea()
+        //        debugDrawPlayableArea()
         //生成敌人
         run(SKAction.repeatForever(SKAction.sequence([SKAction.run(spawnEnemy),SKAction.wait(forDuration: 4.0)])))
         //生成小猫
@@ -554,6 +557,7 @@ class GameScene:SKScene{
         moveTrain()
         //判断结果
         if lives <= 0 && !gameOver{
+            backgroundMusicPlayer.stop()
             gameOver = true
             print("you lose!")
             let gameOverScene = GameOverScene(size: size, won: false)
