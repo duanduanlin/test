@@ -23,6 +23,8 @@ class GameScene:SKScene{
     //声音
     let catCollisionSound: SKAction = SKAction.playSoundFileNamed("hitCat", waitForCompletion: false)
     let enemyCollisionSound: SKAction = SKAction.playSoundFileNamed("hitCatLady", waitForCompletion: false)
+    //受保护状态
+    var zombieWasProtected: Bool = false
     
     /// 以指定的速度移动精灵
     /// - Parameters:
@@ -162,6 +164,20 @@ class GameScene:SKScene{
         zombie.removeAction(forKey: "animation")
     }
     
+    func zombieBlink(){
+        zombieWasProtected = true
+        let blinkTimes = 10.0
+        let duration = 3.0
+        let blinkAction = SKAction.customAction(withDuration: duration){node,elapsedTime in
+            let slice = duration / blinkTimes
+            let reminder = Double(elapsedTime.truncatingRemainder(dividingBy: slice))
+            node.isHidden = reminder > slice / 2
+        }
+        zombie.run(blinkAction){
+            self.zombieWasProtected = false
+        }
+    }
+    
     func zombieHitCat(cat: SKSpriteNode){
         //        print("zombieHitCat")
         cat.removeFromParent()
@@ -172,7 +188,8 @@ class GameScene:SKScene{
     
     func zombieHitEnemy(enemy: SKSpriteNode){
         //        print("zombieHitEnemy")
-        enemy.removeFromParent()
+//        enemy.removeFromParent()
+        zombieBlink()
         run(enemyCollisionSound)
         //        run(SKAction.playSoundFileNamed("hitCatLady", waitForCompletion: false))
     }
@@ -191,17 +208,19 @@ class GameScene:SKScene{
             zombieHitCat(cat: cat)
         }
         
-        var hitEnemys: [SKSpriteNode] = []
-        enumerateChildNodes(withName: "enemy"){node,_ in
-            if let enemy = node as? SKSpriteNode{
-                if enemy.frame.intersects(self.zombie.frame){
-                    hitEnemys.append(enemy)
+        if !zombieWasProtected{
+            var hitEnemys: [SKSpriteNode] = []
+            enumerateChildNodes(withName: "enemy"){node,_ in
+                if let enemy = node as? SKSpriteNode{
+                    if enemy.frame.intersects(self.zombie.frame){
+                        hitEnemys.append(enemy)
+                    }
                 }
             }
-        }
-        
-        for enemy in hitEnemys {
-            zombieHitEnemy(enemy: enemy)
+            
+            for enemy in hitEnemys {
+                zombieHitEnemy(enemy: enemy)
+            }
         }
     }
     
