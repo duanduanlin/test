@@ -199,9 +199,13 @@ class GameScene:SKScene{
             }
             targetPosition = node.position
         }
-        if trainCount >= 15 && !gameOver{
+        if trainCount >= 5 && !gameOver{
             gameOver = true
             print("you win")
+            let gameOverScene = GameOverScene(size: size, won: true)
+            gameOverScene.scaleMode = scaleMode
+            let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+            view?.presentScene(gameOverScene, transition: reveal)
         }
     }
     
@@ -552,6 +556,10 @@ class GameScene:SKScene{
         if lives <= 0 && !gameOver{
             gameOver = true
             print("you lose!")
+            let gameOverScene = GameOverScene(size: size, won: false)
+            gameOverScene.scaleMode = scaleMode
+            let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+            view?.presentScene(gameOverScene, transition: reveal)
         }
     }
     

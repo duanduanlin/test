@@ -22,6 +22,7 @@
 		4D1CC7862B94B9010065A50C /* hitCatLady.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4D1CC7812B94B9010065A50C /* hitCatLady.wav */; };
 		4D1CC7872B94B9010065A50C /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D1CC7822B94B9010065A50C /* backgroundMusic.mp3 */; };
 		4D1CC78F2B94C2870065A50C /* hitCat.WAV in Resources */ = {isa = PBXBuildFile; fileRef = 4D1CC78E2B94C2870065A50C /* hitCat.WAV */; };
+		4D1CC7932B9617560065A50C /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1CC7922B9617560065A50C /* GameOverScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		4D1CC7812B94B9010065A50C /* hitCatLady.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hitCatLady.wav; sourceTree = "<group>"; };
 		4D1CC7822B94B9010065A50C /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
 		4D1CC78E2B94C2870065A50C /* hitCat.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hitCat.WAV; sourceTree = "<group>"; };
+		4D1CC7922B9617560065A50C /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 		4D1CC73C2B8E2A970065A50C = {
 			isa = PBXGroup;
 			children = (
+				4D1CC7922B9617560065A50C /* GameOverScene.swift */,
 				4D1CC7472B8E2A970065A50C /* ZombieConga */,
 				4D1CC7612B8E2A980065A50C /* ZombieCongaTests */,
 				4D1CC76B2B8E2A980065A50C /* ZombieCongaUITests */,
@@ -287,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D1CC7932B9617560065A50C /* GameOverScene.swift in Sources */,
 				4D1CC74F2B8E2A970065A50C /* GameScene.swift in Sources */,
 				4D1CC7512B8E2A970065A50C /* GameViewController.swift in Sources */,
 				4D1CC7492B8E2A970065A50C /* AppDelegate.swift in Sources */,
