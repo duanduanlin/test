@@ -2,7 +2,7 @@ import SpriteKit
 
 class GameScene:SKScene{
     //添加背景1作为精灵
-    let background = SKSpriteNode(imageNamed: "background1")
+    //    let background = SKSpriteNode(imageNamed: "background1")
     //添加一个僵尸
     let zombie = SKSpriteNode(imageNamed: "zombie1")
     //添加时间统计变量
@@ -29,7 +29,187 @@ class GameScene:SKScene{
     //运行状态
     var lives: Int = 5
     var gameOver: Bool = false
+    //相机
+    let cameraNode = SKCameraNode()
+    let cameraMovePointsPerSec: CGFloat = 200.0
     
+    override init(size: CGSize){
+        let maxAspectRatio:CGFloat = 16.0/9.0
+        let playableHeight = size.width / maxAspectRatio
+        let playableMargin = (size.height - playableHeight) / 2.0
+        playableRect = CGRect(x: 0, y: playableMargin, width: size.width, height: playableHeight)
+        
+        var textures:[SKTexture] = []
+        for i in 1...4{
+            textures.append(SKTexture(imageNamed: "zombie\(i)"))
+        }
+        
+        textures.append(textures[2])
+        textures.append(textures[1])
+        zombieAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
+        super.init(size: size)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func didMove(to view: SKView) {
+        
+        //设置背景音乐
+        playBackgroundMusic(filename: "backgroundMusic.mp3")
+        //设置背景颜色
+        backgroundColor = SKColor.black
+        
+        for i in 0...1{
+            let background = backgroundNode()
+            background.anchorPoint = CGPoint.zero
+            //设置图片位置为居中显示
+            background.position = CGPoint(x: CGFloat(i) * background.size.width, y: 0)
+            //将背景图片置于最后
+            background.zPosition = -1
+            background.name = "background"
+            addChild(background)
+        }
+        
+        
+        //放置僵尸
+        zombie.position = CGPoint(x: 400, y: 400)
+        zombie.zPosition = 100
+        //添加精灵
+        addChild(zombie)
+        //        zombie.run(SKAction.repeatForever(zombieAnimation))
+        //绘制边框
+        //        debugDrawPlayableArea()
+        //生成敌人
+        run(SKAction.repeatForever(SKAction.sequence([SKAction.run(spawnEnemy),SKAction.wait(forDuration: 4.0)])))
+        //生成小猫
+        run(SKAction.repeatForever(SKAction.sequence([SKAction.run(spawnCat),SKAction.wait(forDuration: 1.0)])))
+        
+        //        actionTestByTurtle()
+        addChild(cameraNode)
+        camera = cameraNode
+        setCameraPosition(position: CGPoint(x: size.width/2, y: size.height/2))
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        //计算刷新时间
+        if lastUpdateTime > 0{
+            dt = currentTime - lastUpdateTime
+        }else{
+            dt = 0
+        }
+        lastUpdateTime = currentTime
+        //print("\(dt*1000) ms since last update")
+        
+        //边界检查
+        //boundsCheckZombie()
+        
+        //移动僵尸到触摸点
+//        if let stopPoint = lastTouchLocation{
+//            if (stopPoint - zombie.position).length() < zombieMovePointPerSec * dt{
+//                zombie.position = stopPoint
+//                velocity = CGPoint.zero
+//                stopZombieAnimation()
+//            }else{
+//                moveSprite(sprite: zombie, velocity: velocity)
+//                rotateSprite(sprite: zombie, direction: velocity, rotateRadiansPerSec: zombieRotateRadiansPerSec)
+//            }
+//        }
+        //碰撞检查
+        //        checkCollisions()
+        moveTrain()
+        //判断结果
+        if lives <= 0 && !gameOver{
+            backgroundMusicPlayer.stop()
+            gameOver = true
+            print("you lose!")
+            let gameOverScene = GameOverScene(size: size, won: false)
+            gameOverScene.scaleMode = scaleMode
+            let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
+            view?.presentScene(gameOverScene, transition: reveal)
+        }
+        moveCamera()
+        //        cameraNode.position = zombie.position
+    }
+    
+    override func didEvaluateActions() {
+        boundsCheckZombie()
+        checkCollisions()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else {
+            return
+        }
+        let touchLocation = touch.location(in: self)
+        sceneTouched(touchLocation: touchLocation)
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else {
+            return
+        }
+        let touchLocation = touch.location(in: self)
+        sceneTouched(touchLocation: touchLocation)
+    }
+    
+    func moveCamera(){
+        let backgroundVelocity = CGPoint(x: cameraMovePointsPerSec, y: 0)
+        let amountToMove = backgroundVelocity * CGFloat(dt)
+        cameraNode.position+=amountToMove
+        
+        enumerateChildNodes(withName: "background"){node,_ in
+            let background = node as! SKSpriteNode
+            if background.position.x + background.size.width < self.cameraRect.origin.x{
+                background.position = CGPoint(x: background.position.x + background.size.width * 2, y: background.position.y)
+            }
+        }
+    }
+    
+    var cameraRect: CGRect {
+        return CGRect(x: getCameraPosition().x - size.width / 2 + (size.width - playableRect.width) / 2, y: getCameraPosition().y - size.height / 2 + (size.height - playableRect.height) / 2, width: playableRect.width, height: playableRect.height)
+    }
+    
+    func backgroundNode() -> SKSpriteNode {
+        let backgroundNode = SKSpriteNode()
+        backgroundNode.anchorPoint = CGPoint.zero
+        backgroundNode.name = "background"
+        
+        let background1 = SKSpriteNode(imageNamed: "background1")
+        background1.anchorPoint = CGPoint.zero
+        background1.position = CGPoint(x: 0, y: 0)
+        
+        let background2 = SKSpriteNode(imageNamed: "background2")
+        background2.anchorPoint = CGPoint.zero
+        background2.position = CGPoint(x: background1.size.width, y: 0)
+        
+        backgroundNode.addChild(background1)
+        backgroundNode.addChild(background2)
+        backgroundNode.size = CGSize(width: background1.size.width + background2.size.width, height: background1.size.height)
+        
+        return backgroundNode
+    }
+    
+    func overlapAmount() -> CGFloat{
+        guard let view = self.view else {
+            return 0
+        }
+        
+        let scale = view.bounds.size.width / self.size.width
+        let scaledHeight = self.size.height * scale
+        let scaledOverlap = scaledHeight - view.bounds.size.height
+        
+        return scaledOverlap / scale
+    }
+    
+    func getCameraPosition() -> CGPoint {
+        return CGPoint(x: cameraNode.position.x, y: cameraNode.position.y + overlapAmount()/2)
+    }
+    
+    func setCameraPosition(position: CGPoint) {
+        cameraNode.position = CGPoint(x: position.x, y: position.y - overlapAmount()/2)
+    }
     /// 以指定的速度移动精灵
     /// - Parameters:
     ///   - sprite: 要移动的精灵
@@ -62,8 +242,8 @@ class GameScene:SKScene{
     
     /// 边界检查
     func boundsCheckZombie(){
-        let bottmLeft = CGPoint(x: 0, y: CGRectGetMinY(playableRect))
-        let topRight = CGPoint(x: size.width, y: CGRectGetMaxY(playableRect))
+        let bottmLeft = CGPoint(x: CGRectGetMinX(cameraRect), y: CGRectGetMinY(cameraRect))
+        let topRight = CGPoint(x: CGRectGetMaxX(cameraRect), y: CGRectGetMaxY(cameraRect))
         
         if zombie.position.x <= bottmLeft.x{
             zombie.position.x = bottmLeft.x
@@ -119,10 +299,11 @@ class GameScene:SKScene{
     func spawnEnemy(){
         let enemy = SKSpriteNode(imageNamed: "enemy")
         enemy.name = "enemy"
-        enemy.position = CGPoint(x: (size.width + enemy.size.width) / 2, y: CGFloat.random(min: CGRectGetMinY(playableRect) + enemy.size.height / 2, max: CGRectGetMaxY(playableRect) - enemy.size.height / 2))
+        enemy.position = CGPoint(x: CGRectGetMinX(cameraRect) + (size.width + enemy.size.width) / 2, y: CGFloat.random(min: CGRectGetMinY(cameraRect) + enemy.size.height / 2, max: CGRectGetMaxY(cameraRect) - enemy.size.height / 2))
+        enemy.zPosition = 50
         addChild(enemy)
         
-        let actionMove =  SKAction.moveTo(x: -enemy.size.width / 2, duration: 4.0)
+        let actionMove =  SKAction.moveBy(x: -size.width-enemy.size.width*2, y: 0, duration: 4.0)
         let actionRemove = SKAction.removeFromParent()
         
         enemy.run(SKAction.sequence([actionMove,actionRemove]))
@@ -131,8 +312,9 @@ class GameScene:SKScene{
     func spawnCat(){
         let cat = SKSpriteNode(imageNamed: "cat")
         cat.name = "cat"
-        cat.position = CGPoint(x: CGFloat.random(min: CGRectGetMinX(playableRect), max: CGRectGetMaxX(playableRect)), y: CGFloat.random(min: CGRectGetMinY(playableRect), max: CGRectGetMaxY(playableRect)))
+        cat.position = CGPoint(x: CGFloat.random(min: CGRectGetMinX(cameraRect), max: CGRectGetMaxX(cameraRect)), y: CGFloat.random(min: CGRectGetMinY(cameraRect), max: CGRectGetMaxY(cameraRect)))
         cat.setScale(0)
+        cat.zPosition = 50
         addChild(cat)
         
         //左右摆动
@@ -199,7 +381,7 @@ class GameScene:SKScene{
             }
             targetPosition = node.position
         }
-        if trainCount >= 5 && !gameOver{
+        if trainCount >= 15 && !gameOver{
             backgroundMusicPlayer.stop()
             gameOver = true
             print("you win")
@@ -478,113 +660,4 @@ class GameScene:SKScene{
         //        ))
     }
     
-    
-    override init(size: CGSize){
-        let maxAspectRatio:CGFloat = 16.0/9.0
-        let playableHeight = size.width / maxAspectRatio
-        let playableMargin = (size.height - playableHeight) / 2.0
-        playableRect = CGRect(x: 0, y: playableMargin, width: size.width, height: playableHeight)
-        
-        var textures:[SKTexture] = []
-        for i in 1...4{
-            textures.append(SKTexture(imageNamed: "zombie\(i)"))
-        }
-        
-        textures.append(textures[2])
-        textures.append(textures[1])
-        zombieAnimation = SKAction.animate(with: textures, timePerFrame: 0.1)
-        super.init(size: size)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func didMove(to view: SKView) {
-        //设置背景音乐
-        playBackgroundMusic(filename: "backgroundMusic.mp3")
-        //设置背景颜色
-        backgroundColor = SKColor.black
-        
-        //设置图片位置为居中显示
-        background.position = CGPoint(x: size.width/2, y: size.height/2)
-        //将背景图片置于最后
-        background.zPosition = -1
-        
-        //放置僵尸
-        zombie.position = CGPoint(x: 400, y: 400)
-        zombie.zPosition = 100
-        //添加精灵
-        addChild(background)
-        addChild(zombie)
-        //        zombie.run(SKAction.repeatForever(zombieAnimation))
-        //绘制边框
-        //        debugDrawPlayableArea()
-        //生成敌人
-        run(SKAction.repeatForever(SKAction.sequence([SKAction.run(spawnEnemy),SKAction.wait(forDuration: 4.0)])))
-        //生成小猫
-        run(SKAction.repeatForever(SKAction.sequence([SKAction.run(spawnCat),SKAction.wait(forDuration: 1.0)])))
-        
-        //        actionTestByTurtle()
-    }
-    
-    override func update(_ currentTime: TimeInterval) {
-        //计算刷新时间
-        if lastUpdateTime > 0{
-            dt = currentTime - lastUpdateTime
-        }else{
-            dt = 0
-        }
-        lastUpdateTime = currentTime
-        //print("\(dt*1000) ms since last update")
-        
-        //边界检查
-        //boundsCheckZombie()
-        
-        //移动僵尸到触摸点
-        if let stopPoint = lastTouchLocation{
-            if (stopPoint - zombie.position).length() < zombieMovePointPerSec * dt{
-                zombie.position = stopPoint
-                velocity = CGPoint.zero
-                stopZombieAnimation()
-            }else{
-                moveSprite(sprite: zombie, velocity: velocity)
-                rotateSprite(sprite: zombie, direction: velocity, rotateRadiansPerSec: zombieRotateRadiansPerSec)
-            }
-        }
-        //碰撞检查
-        //        checkCollisions()
-        moveTrain()
-        //判断结果
-        if lives <= 0 && !gameOver{
-            backgroundMusicPlayer.stop()
-            gameOver = true
-            print("you lose!")
-            let gameOverScene = GameOverScene(size: size, won: false)
-            gameOverScene.scaleMode = scaleMode
-            let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
-            view?.presentScene(gameOverScene, transition: reveal)
-        }
-    }
-    
-    override func didEvaluateActions() {
-        boundsCheckZombie()
-        checkCollisions()
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else {
-            return
-        }
-        let touchLocation = touch.location(in: self)
-        sceneTouched(touchLocation: touchLocation)
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else {
-            return
-        }
-        let touchLocation = touch.location(in: self)
-        sceneTouched(touchLocation: touchLocation)
-    }
 }
