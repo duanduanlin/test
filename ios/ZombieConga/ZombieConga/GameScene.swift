@@ -125,8 +125,8 @@ class GameScene:SKScene{
 //                velocity = CGPoint.zero
 //                stopZombieAnimation()
 //            }else{
-//                moveSprite(sprite: zombie, velocity: velocity)
-//                rotateSprite(sprite: zombie, direction: velocity, rotateRadiansPerSec: zombieRotateRadiansPerSec)
+                moveSprite(sprite: zombie, velocity: velocity)
+                rotateSprite(sprite: zombie, direction: velocity, rotateRadiansPerSec: zombieRotateRadiansPerSec)
 //            }
 //        }
         //碰撞检查
