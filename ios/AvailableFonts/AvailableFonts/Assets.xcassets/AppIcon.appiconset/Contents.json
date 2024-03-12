@@ -1,0 +1,14 @@
+{
+  "images" : [
+    {
+      "filename" : "a-logo-of-a-super-mario-style-font-software--with- (1).png",
+      "idiom" : "universal",
+      "platform" : "ios",
+      "size" : "1024x1024"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
