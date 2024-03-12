@@ -33,7 +33,7 @@ class GameScene:SKScene{
     let cameraNode = SKCameraNode()
     let cameraMovePointsPerSec: CGFloat = 200.0
     //标签
-    let livesLabel = SKLabelNode(fontNamed: "Chalkduster")
+    let livesLabel = SKLabelNode(fontNamed: "Glimstick")
     
     override init(size: CGSize){
         let maxAspectRatio:CGFloat = 16.0/9.0

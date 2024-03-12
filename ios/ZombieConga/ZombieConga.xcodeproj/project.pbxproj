@@ -24,6 +24,7 @@
 		4D1CC78F2B94C2870065A50C /* hitCat.WAV in Resources */ = {isa = PBXBuildFile; fileRef = 4D1CC78E2B94C2870065A50C /* hitCat.WAV */; };
 		4D1CC7932B9617560065A50C /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1CC7922B9617560065A50C /* GameOverScene.swift */; };
 		4D1CC7952B97593C0065A50C /* MainMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D1CC7942B97593C0065A50C /* MainMenuScene.swift */; };
+		4D8B37ED2BA09ED80040FBB3 /* GLIMSTIC.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 4D8B37EC2BA09ED80040FBB3 /* GLIMSTIC.TTF */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,8 @@
 		4D1CC78E2B94C2870065A50C /* hitCat.WAV */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hitCat.WAV; sourceTree = "<group>"; };
 		4D1CC7922B9617560065A50C /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		4D1CC7942B97593C0065A50C /* MainMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuScene.swift; sourceTree = "<group>"; };
+		4D8B37EC2BA09ED80040FBB3 /* GLIMSTIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; name = GLIMSTIC.TTF; path = ../../../../../.Trash/GLIMSTIC.TTF; sourceTree = "<group>"; };
+		4D8B37EE2BA09FBF0040FBB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +117,8 @@
 		4D1CC7472B8E2A970065A50C /* ZombieConga */ = {
 			isa = PBXGroup;
 			children = (
+				4D8B37EE2BA09FBF0040FBB3 /* Info.plist */,
+				4D8B37EC2BA09ED80040FBB3 /* GLIMSTIC.TTF */,
 				4D1CC7922B9617560065A50C /* GameOverScene.swift */,
 				4D1CC7482B8E2A970065A50C /* AppDelegate.swift */,
 				4D1CC74E2B8E2A970065A50C /* GameScene.swift */,
@@ -261,6 +266,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4D8B37ED2BA09ED80040FBB3 /* GLIMSTIC.TTF in Resources */,
 				4D1CC7842B94B9010065A50C /* lose.wav in Resources */,
 				4D1CC7542B8E2A970065A50C /* Main.storyboard in Resources */,
 				4D1CC7872B94B9010065A50C /* backgroundMusic.mp3 in Resources */,
@@ -482,11 +488,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9RQBF48SH4;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ZombieConga/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -509,11 +515,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9RQBF48SH4;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ZombieConga/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
