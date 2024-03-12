@@ -32,6 +32,8 @@ class GameScene:SKScene{
     //相机
     let cameraNode = SKCameraNode()
     let cameraMovePointsPerSec: CGFloat = 200.0
+    //标签
+    let livesLabel = SKLabelNode(fontNamed: "Chalkduster")
     
     override init(size: CGSize){
         let maxAspectRatio:CGFloat = 16.0/9.0
@@ -90,6 +92,17 @@ class GameScene:SKScene{
         addChild(cameraNode)
         camera = cameraNode
         setCameraPosition(position: CGPoint(x: size.width/2, y: size.height/2))
+        //放置标签
+        livesLabel.text = "Lives: \(lives)"
+        livesLabel.fontColor = SKColor.black
+        livesLabel.fontSize = 100
+        livesLabel.zPosition = 100
+        livesLabel.position = CGPoint(x: -cameraRect.size.width / 2 + CGFloat(20), y: -cameraRect.size.height / 2 - CGFloat(20) - overlapAmount() / 2)
+        livesLabel.horizontalAlignmentMode = .left
+        livesLabel.verticalAlignmentMode = .bottom
+        cameraNode.addChild(livesLabel)
+//        livesLabel.position = CGPoint(x: size.width / 2, y: size.height / 2)
+//        addChild(livesLabel)
     }
     
     override func update(_ currentTime: TimeInterval) {
