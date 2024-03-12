@@ -34,6 +34,7 @@ class GameScene:SKScene{
     let cameraMovePointsPerSec: CGFloat = 200.0
     //标签
     let livesLabel = SKLabelNode(fontNamed: "Glimstick")
+    let catsLabel = SKLabelNode(fontNamed: "Glimstick")
     
     override init(size: CGSize){
         let maxAspectRatio:CGFloat = 16.0/9.0
@@ -101,6 +102,15 @@ class GameScene:SKScene{
         livesLabel.horizontalAlignmentMode = .left
         livesLabel.verticalAlignmentMode = .bottom
         cameraNode.addChild(livesLabel)
+        
+        catsLabel.text = "Cats: 0"
+        catsLabel.fontColor = SKColor.black
+        catsLabel.fontSize = 100
+        catsLabel.zPosition = 100
+        catsLabel.position = CGPoint(x: cameraRect.size.width / 2 - CGFloat(20), y: -cameraRect.size.height / 2 - CGFloat(20) - overlapAmount() / 2)
+        catsLabel.horizontalAlignmentMode = .right
+        catsLabel.verticalAlignmentMode = .bottom
+        cameraNode.addChild(catsLabel)
 //        livesLabel.position = CGPoint(x: size.width / 2, y: size.height / 2)
 //        addChild(livesLabel)
     }
@@ -403,6 +413,9 @@ class GameScene:SKScene{
             let reveal = SKTransition.flipHorizontal(withDuration: 0.5)
             view?.presentScene(gameOverScene, transition: reveal)
         }
+        //更新标签
+        livesLabel.text = "Lives: \(lives)"
+        catsLabel.text = "Cats: \(trainCount)"
     }
     
     func loseCats(){
