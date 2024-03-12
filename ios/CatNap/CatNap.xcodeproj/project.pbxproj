@@ -23,6 +23,7 @@
 		4D8B383A2BA0A73B0040FBB3 /* win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8B38352BA0A73B0040FBB3 /* win.mp3 */; };
 		4D8B383B2BA0A73B0040FBB3 /* lose.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8B38362BA0A73B0040FBB3 /* lose.mp3 */; };
 		4D8B383C2BA0A73B0040FBB3 /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4D8B38372BA0A73B0040FBB3 /* backgroundMusic.mp3 */; };
+		4D8B383F2BA0ACD40040FBB3 /* Cat.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4D8B383E2BA0ACD40040FBB3 /* Cat.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		4D8B38352BA0A73B0040FBB3 /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = win.mp3; sourceTree = "<group>"; };
 		4D8B38362BA0A73B0040FBB3 /* lose.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = lose.mp3; sourceTree = "<group>"; };
 		4D8B38372BA0A73B0040FBB3 /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
+		4D8B383E2BA0ACD40040FBB3 /* Cat.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Cat.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,9 +114,9 @@
 		4D8B37FE2BA0A4E10040FBB3 /* CatNap */ = {
 			isa = PBXGroup;
 			children = (
+				4D8B383D2BA0AC630040FBB3 /* Scenes */,
 				4D8B38322BA0A73B0040FBB3 /* Sounds */,
 				4D8B37FF2BA0A4E10040FBB3 /* AppDelegate.swift */,
-				4D8B38012BA0A4E10040FBB3 /* GameScene.sks */,
 				4D8B38032BA0A4E10040FBB3 /* Actions.sks */,
 				4D8B38052BA0A4E10040FBB3 /* GameScene.swift */,
 				4D8B38072BA0A4E10040FBB3 /* GameViewController.swift */,
@@ -152,6 +154,15 @@
 				4D8B38372BA0A73B0040FBB3 /* backgroundMusic.mp3 */,
 			);
 			path = Sounds;
+			sourceTree = "<group>";
+		};
+		4D8B383D2BA0AC630040FBB3 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				4D8B38012BA0A4E10040FBB3 /* GameScene.sks */,
+				4D8B383E2BA0ACD40040FBB3 /* Cat.sks */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,6 +279,7 @@
 				4D8B38392BA0A73B0040FBB3 /* pop.mp3 in Resources */,
 				4D8B383C2BA0A73B0040FBB3 /* backgroundMusic.mp3 in Resources */,
 				4D8B38042BA0A4E10040FBB3 /* Actions.sks in Resources */,
+				4D8B383F2BA0ACD40040FBB3 /* Cat.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
