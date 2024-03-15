@@ -9,6 +9,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -mcpu=cortex-a53 -march=armv8-a
 #设置输出路径
 SET( WORKSPACE "${CMAKE_CURRENT_SOURCE_DIR}/../../")
 SET( CMAKE_RUNTIME_OUTPUT_DIRECTORY "${WORKSPACE}/output/apps/bin")
+SET( LIBRARY_OUTPUT_PATH "${WORKSPACE}/output/apps/lib")
 SET( CMAKE_CXX_COMPILER /opt/ql_crosstools/ql-ag550qcn-le20-gcc820-v1-toolchain/gcc/usr/bin/arm-oe-linux-gnueabi/arm-oe-linux-gnueabi-g++ )
 
 include_directories(
@@ -27,9 +28,17 @@ link_directories(
   ${VBOXWORKSPACE}/external/sdk/ql_ag570/a11/ql-ol-extsdk/lib
   ${VBOXWORKSPACE}/platforms/ql_ag570/sdk/a11/prebuild/lib
  ${WORKSPACE}/3rdlibs/lib_v01
+ ${WORKSPACE}/output/apps/lib
 )
 
 add_executable(otards_test_v01
 	src/main.cpp
 	)
 target_link_libraries(otards_test_v01 CommonAPI CommonAPI-DBus dbus-1 ota ipc middleware)
+
+add_library(foo SHARED src/foo.cpp )
+
+add_executable(fooTest
+	src/fooTest.cpp
+	)
+target_link_libraries(fooTest foo)
