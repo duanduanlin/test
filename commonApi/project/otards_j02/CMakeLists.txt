@@ -9,6 +9,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -O2 -Wall -fno-exceptions -Wu
 #设置输出路径
 SET( WORKSPACE "${CMAKE_CURRENT_SOURCE_DIR}/../../")
 SET( CMAKE_RUNTIME_OUTPUT_DIRECTORY "${WORKSPACE}/output/apps/bin")
+SET( LIBRARY_OUTPUT_PATH "${WORKSPACE}/output/apps/lib")
 SET( CMAKE_CXX_COMPILER ${J02WORKSPACE}/external/sdk/ql_ec20/a07/ql-ol-crosstool/sysroots/x86_64-oesdk-linux/usr/bin/arm-oe-linux-gnueabi/arm-oe-linux-gnueabi-g++ )
 
 include_directories(
@@ -26,9 +27,13 @@ link_directories(
   ${J02WORKSPACE}/external/sdk/ql_ec20/a07/ql-ol-extsdk/lib
   ${J02WORKSPACE}/platforms/ql_ec20/sdk/a07/prebuild/lib
  ${WORKSPACE}/3rdlibs/lib_j02
+ ${WORKSPACE}/output/apps/lib
 )
 
-add_executable(otards_test
-	src/main.cpp
+add_library(foo_proxy SHARED src/foo_proxy.cpp src/libota.cpp src/foo.cpp)
+target_link_libraries(foo_proxy)
+
+add_executable(fooTest
+	src/fooTest.cpp
 	)
-target_link_libraries(otards_test CommonAPI CommonAPI-DBus dbus-1 ota ipc middleware)
+target_link_libraries(fooTest foo_proxy)

@@ -31,14 +31,12 @@ link_directories(
  ${WORKSPACE}/output/apps/lib
 )
 
-add_executable(otards_test_v01
-	src/main.cpp
-	)
-target_link_libraries(otards_test_v01 CommonAPI CommonAPI-DBus dbus-1 ota ipc middleware)
 
-add_library(foo SHARED src/foo.cpp )
+
+add_library(foo_proxy SHARED src/foo_proxy.cpp src/libota.cpp src/foo.cpp)
+target_link_libraries(foo_proxy)
 
 add_executable(fooTest
 	src/fooTest.cpp
 	)
-target_link_libraries(fooTest foo)
+target_link_libraries(fooTest foo_proxy)

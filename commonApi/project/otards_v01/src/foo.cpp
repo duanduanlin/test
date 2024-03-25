@@ -2,7 +2,7 @@
  * @Author: dding3
  * @Date: 2024-03-14 01:35:05
  * @LastEditors: dding3
- * @LastEditTime: 2024-03-14 01:46:13
+ * @LastEditTime: 2024-03-24 22:50:43
  * @Description:
  * @FilePath: /test/test/commonApi/project/otards_v01/src/foo.cpp
  */
@@ -11,4 +11,4 @@
 
 void Foo::foo() { printf("Foo::foo\n"); }
 void Foo::bar() { printf("Foo::bar\n"); }
-void Foo::another_func_in_new_version() { printf("Foo::another_func_in_new_version\n"); }
+// void Foo::another_func_in_new_version() { printf("Foo::another_func_in_new_version\n"); }
