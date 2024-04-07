@@ -48,10 +48,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
+        let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+        if collision == PhysicsCategory.Label | PhysicsCategory.Edge{
+//            print("label ccollision with edge")
+            let labelNode = (contact.bodyA.categoryBitMask == PhysicsCategory.Label) ? contact.bodyA.node : contact.bodyB.node
+            
+            if let messageNode = labelNode as? MessageNode{
+                messageNode.didBounce()
+            }
+        }
+        
         if !playable {
             return
         }
-        let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         if collision == PhysicsCategory.Cat | PhysicsCategory.Bed{
             print("success")
