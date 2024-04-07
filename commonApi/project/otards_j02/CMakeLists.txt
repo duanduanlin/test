@@ -37,3 +37,8 @@ add_executable(fooTest
 	src/fooTest.cpp
 	)
 target_link_libraries(fooTest foo_proxy)
+
+add_executable(otards_test
+	src/main.cpp
+	)
+target_link_libraries(otards_test ota ipc)
