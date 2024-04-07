@@ -41,6 +41,7 @@
 		4D94B2992BC177C700EE86BF /* SKTTimingFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94B28C2BC177C700EE86BF /* SKTTimingFunctions.swift */; };
 		4D94B29A2BC177C700EE86BF /* Vector3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94B28D2BC177C700EE86BF /* Vector3.swift */; };
 		4D94B29C2BC17F6400EE86BF /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94B29B2BC17F6400EE86BF /* BlockNode.swift */; };
+		4D94B29E2BC2D99C00EE86BF /* MessageNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D94B29D2BC2D99C00EE86BF /* MessageNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		4D94B28C2BC177C700EE86BF /* SKTTimingFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTTimingFunctions.swift; sourceTree = "<group>"; };
 		4D94B28D2BC177C700EE86BF /* Vector3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector3.swift; sourceTree = "<group>"; };
 		4D94B29B2BC17F6400EE86BF /* BlockNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
+		4D94B29D2BC2D99C00EE86BF /* MessageNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 				4D94B27E2BC1667E00EE86BF /* BedNode.swift */,
 				4D94B2802BC1691200EE86BF /* CatNode.swift */,
 				4D94B29B2BC17F6400EE86BF /* BlockNode.swift */,
+				4D94B29D2BC2D99C00EE86BF /* MessageNode.swift */,
 			);
 			path = CatNap;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4D94B2902BC177C700EE86BF /* CGPoint+Extensions.swift in Sources */,
+				4D94B29E2BC2D99C00EE86BF /* MessageNode.swift in Sources */,
 				4D94B2982BC177C700EE86BF /* SKTEffects.swift in Sources */,
 				4D94B2932BC177C700EE86BF /* SKAction+Extensions.swift in Sources */,
 				4D8B38062BA0A4E10040FBB3 /* GameScene.swift in Sources */,
