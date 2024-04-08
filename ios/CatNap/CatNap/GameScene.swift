@@ -15,12 +15,22 @@ struct PhysicsCategory{
     static let Bed: UInt32 = 0b100
     static let Edge: UInt32 = 0b1000
     static let Label: UInt32 = 0b10000
+    static let Spring: UInt32 = 0b100000
+    static let Hook: UInt32 = 0b1000000
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     var bedNode:BedNode!
     var catNode:CatNode!
     var playable = true
+    var curentLevel:Int = 0
+    
+    class func level(levelNum:Int)->GameScene?{
+        let scene = GameScene(fileNamed: "Level\(levelNum)")
+        scene?.curentLevel = levelNum
+        scene?.scaleMode = .aspectFill
+        return scene
+    }
     
     override func didMove(to view: SKView) {
         let maxAspectRatio:CGFloat = 16.0/9.0
@@ -86,9 +96,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     @objc func newGame(){
-        let scene = GameScene(fileNamed: "GameScene")
-        scene!.scaleMode = scaleMode
-        view!.presentScene(scene)
+        view!.presentScene(GameScene.level(levelNum: curentLevel))
     }
     
     func lose(){
