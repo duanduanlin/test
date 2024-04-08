@@ -47,6 +47,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        catNode.setScale(1.5)
     }
     
+    override func didSimulatePhysics() {
+        if playable{
+            if abs(catNode.parent!.zRotation) > CGFloat(25).degreesToRadians(){
+                lose()
+            }
+        }
+    }
+    
     func didBegin(_ contact: SKPhysicsContact) {
         let collision = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         if collision == PhysicsCategory.Label | PhysicsCategory.Edge{
