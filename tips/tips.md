@@ -1,3 +1,11 @@
+<!--
+ * @Author: dding3 dding3@jmc.com.cn
+ * @Date: 2024-03-14 19:38:12
+ * @LastEditors: dding3 dding3@jmc.com.cn
+ * @LastEditTime: 2024-04-23 01:54:11
+ * @FilePath: /test/test/tips/tips.md
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+-->
 # 常用指令
 ## 修改selinux下文件type
 chcon -t var_t /var/www/html/index.html
@@ -49,3 +57,5 @@ cat sys/kernel/debug/pinctrl/1000000.pinctrl/pinmux-pins
 ls /sys/devices/78b3000.serial/tty/
 ## 查看linux版本
 uname -a
+## 抓包
+tcpdump -i ccinet1 tcp port 9315 and host 10.15.2.58 -w ./tsp.pcap
