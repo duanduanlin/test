@@ -2,7 +2,7 @@
  * @Author: dding3 dding3@jmc.com.cn
  * @Date: 2024-03-14 19:38:12
  * @LastEditors: dding3 dding3@jmc.com.cn
- * @LastEditTime: 2024-04-23 01:54:11
+ * @LastEditTime: 2024-04-24 00:25:37
  * @FilePath: /test/test/tips/tips.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -59,3 +59,13 @@ ls /sys/devices/78b3000.serial/tty/
 uname -a
 ## 抓包
 tcpdump -i ccinet1 tcp port 9315 and host 10.15.2.58 -w ./tsp.pcap
+## 设置时间
+date -s '2023-02-08 16:31:40'
+## openssl测试
+openssl s_client -CAfile /apps/pki/acp_client/jd_ca.pem -cert /oemdata/pki/acp_client/tbox.crt -certform DER -key /oemdata/pki/acp_client/tbox_pri.pem -verify 2 -connect 10.15.2.58:9290
+## 添加路由
+/sbin/ip route add 10.15.2.58/32 via 10.207.47.129 dev rmnet_data5
+## 软链接
+ln -s libCommonAPI-DBus.so.3.1.12 libCommonAPI-DBus.so.3
+## ping
+ping uatcar.jmc.com.cn -I ccinet2
