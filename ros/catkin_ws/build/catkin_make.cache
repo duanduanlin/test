@@ -1,0 +1,2 @@
+
+-DCATKIN_DEVEL_PREFIX=/home/dding3/work/test/test/ros/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/dding3/work/test/test/ros/catkin_ws/install -G Unix Makefiles

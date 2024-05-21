@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/dding3/work/test/test/ros/catkin_ws/devel/setup.sh
