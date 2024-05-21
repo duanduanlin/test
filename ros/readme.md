@@ -2,7 +2,7 @@
  * @Author: dding3 dding3@jmc.com.cn
  * @Date: 2024-05-20 19:00:13
  * @LastEditors: dding3 dding3@jmc.com.cn
- * @LastEditTime: 2024-05-21 01:37:07
+ * @LastEditTime: 2024-05-21 02:44:35
  * @FilePath: /test/ros/readme.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -49,3 +49,27 @@ rosnode info /rosout
 rosrun turtlesim turtlesim_node
 ## 测试节点是否正常
 rosnode ping my_turtle
+## 查看主题命令
+rostopic -h
+## 显示某个话题上的数据
+rostopic echo /turtle1/command_velocity
+## 列出当前的话题
+rostopic list
+## 查看某话题的消息类型
+rostopic type rosout_agg
+## 查看消息详细类型
+rosmsg show rosgraph_msgs/Log
+## 发布一条消息
+rostopic pub -1 /turtle1/cmd_vel geometry_msgs/Twist -- '[2.0, 0.0, 0.0]' '[0.0, 0.0, 1.8]'
+## 查看发布频率
+rostopic hz rosout_agg
+## 以图表的形式统计数据
+rosrun rqt_plot rqt_plot
+## 列出活跃服务
+rosservice list
+## 查看服务类型
+rosservice type /clear
+## 查看服务详细信息
+rosservice type /spawn | rossrv show
+## 调用服务
+rosservice call /clear
