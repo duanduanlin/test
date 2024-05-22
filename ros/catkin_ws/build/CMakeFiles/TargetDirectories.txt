@@ -33,6 +33,8 @@
 /home/dding3/work/test/test/ros/catkin_ws/build/beginner_tutorials/CMakeFiles/install.dir
 /home/dding3/work/test/test/ros/catkin_ws/build/beginner_tutorials/CMakeFiles/list_install_components.dir
 /home/dding3/work/test/test/ros/catkin_ws/build/beginner_tutorials/CMakeFiles/edit_cache.dir
+/home/dding3/work/test/test/ros/catkin_ws/build/beginner_tutorials/CMakeFiles/listener.dir
+/home/dding3/work/test/test/ros/catkin_ws/build/beginner_tutorials/CMakeFiles/talker.dir
 /home/dding3/work/test/test/ros/catkin_ws/build/beginner_tutorials/CMakeFiles/beginner_tutorials_genpy.dir
 /home/dding3/work/test/test/ros/catkin_ws/build/beginner_tutorials/CMakeFiles/beginner_tutorials_gennodejs.dir
 /home/dding3/work/test/test/ros/catkin_ws/build/beginner_tutorials/CMakeFiles/beginner_tutorials_genlisp.dir

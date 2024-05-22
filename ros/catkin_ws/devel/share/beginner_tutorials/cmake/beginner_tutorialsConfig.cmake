@@ -116,7 +116,7 @@ if(NOT "/home/dding3/work/test/test/ros/catkin_ws/devel/include " STREQUAL " ")
   endforeach()
 endif()
 
-set(libraries "")
+set(libraries "beginner_tutorials")
 foreach(library ${libraries})
   # keep build configuration keywords, target names and absolute libraries as-is
   if("${library}" MATCHES "^(debug|optimized|general)$")
@@ -185,7 +185,7 @@ foreach(t ${beginner_tutorials_EXPORTED_TARGETS})
   endif()
 endforeach()
 
-set(depends "message_runtime")
+set(depends "roscpp;rospy;std_msgs;message_runtime")
 foreach(depend ${depends})
   string(REPLACE " " ";" depend_list ${depend})
   # the package name of the dependency must be kept in a unique variable so that it is not overwritten in recursive calls

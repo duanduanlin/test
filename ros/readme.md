@@ -2,7 +2,7 @@
  * @Author: dding3 dding3@jmc.com.cn
  * @Date: 2024-05-20 19:00:13
  * @LastEditors: dding3 dding3@jmc.com.cn
- * @LastEditTime: 2024-05-21 19:34:13
+ * @LastEditTime: 2024-05-21 23:05:05
  * @FilePath: /test/ros/readme.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -81,3 +81,6 @@ rosrun rqt_console rqt_console
 roslaunch beginner_tutorials turtlemimic.launch
 ## 包编辑器
 rosed roscpp Logger.msg
+## 测试服务
+rosrun beginner_tutorials talker 
+rosrun beginner_tutorials listener
