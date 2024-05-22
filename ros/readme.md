@@ -2,7 +2,7 @@
  * @Author: dding3 dding3@jmc.com.cn
  * @Date: 2024-05-20 19:00:13
  * @LastEditors: dding3 dding3@jmc.com.cn
- * @LastEditTime: 2024-05-21 02:44:35
+ * @LastEditTime: 2024-05-21 19:34:13
  * @FilePath: /test/ros/readme.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
@@ -73,3 +73,11 @@ rosservice type /clear
 rosservice type /spawn | rossrv show
 ## 调用服务
 rosservice call /clear
+## 显示参数
+rosparam list
+## 打开日志终端
+rosrun rqt_console rqt_console
+## 启动管理
+roslaunch beginner_tutorials turtlemimic.launch
+## 包编辑器
+rosed roscpp Logger.msg
