@@ -50,6 +50,10 @@ split -d -l 100000 -a 8 ConEmu-2023-06-21-p9656.log
 ln -s libCommonAPI-DBus.so.3.1.12 libCommonAPI-DBus.so.3
 ## 查看库依赖
 objdump -x test| grep NEED
+## 堆栈分析
+addr2line -e /autocity/rdcu/install/ucanbus/zephyr.elf 0x17102
+## 内存泄露
+valgrind --show-reachable=yes --show-leak-kinds=all --undef-value-errors=no --log-file=valgrind.log /autocity/rdcu/install/ucanbus/scripts/start.sh
 ## 查看串口引脚配置
 cat sys/kernel/debug/pinctrl/1000000.pinctrl/pinmux-pins
 ls /sys/devices/78b3000.serial/tty/
@@ -85,6 +89,25 @@ docker login 192.168.2.195:7443
 docker pull 192.168.2.195:7443/v2/isaac_ros_dev-cross_compiler:v1.3
 docker tag 192.168.2.195:7443/v2/isaac_ros_dev-cross_compiler:v1.3 isaac_ros_dev-cross_compiler:v1.3
 docker images
+
+## 安装
+sudo apt-get update
+
+sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+sudo apt-get update
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+sudo usermod -aG docker $USER
+
+sudo systemctl start docker
+
+newgrp docker
 
 ## python虚拟环境
 sudo apt install python3-venv
