@@ -1,4 +1,12 @@
-#/bin/bash
+#!/bin/bash
+###
+ # @Author: dding3
+ # @Date: 2024-10-25 22:44:35
+ # @LastEditors: dding3
+ # @LastEditTime: 2024-10-26 14:25:59
+ # @Description:
+ # @FilePath: \test\docker\scripts\docker_run.sh
+###
 
 function print_color {
     tput setaf $1
@@ -40,7 +48,6 @@ docker run \
 --network host \
 --name=$CONTAINER_NAME \
 -v /dev:/dev \
--v ~/work:/home/work \
+-v ~/Desktop/shares/work:/home/work \
 --workdir $WORK_DIR \
 -it $IMAGE_NAME
-
