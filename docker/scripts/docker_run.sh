@@ -48,6 +48,6 @@ docker run \
 --network host \
 --name=$CONTAINER_NAME \
 -v /dev:/dev \
--v ~/Desktop/shares/work:/home/work \
+-v ~/work:/home/work \
 --workdir $WORK_DIR \
 -it $IMAGE_NAME
