@@ -1,0 +1,47 @@
+[0.253s] Invoking command in '/home/work/test/robot/ypom_ws/src/yahboomcar_ctrl': PS1=(.venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ PYTHONPATH=/home/work/test/robot/ypom_ws/build/yahboomcar_ctrl/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(.venv) /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/yahboomcar_ctrl build --build-base /home/work/test/robot/ypom_ws/build/yahboomcar_ctrl/build install --record /home/work/test/robot/ypom_ws/build/yahboomcar_ctrl/install.log --single-version-externally-managed install_data
+[0.328s] running egg_info
+[0.328s] creating ../../build/yahboomcar_ctrl/yahboomcar_ctrl.egg-info
+[0.328s] writing ../../build/yahboomcar_ctrl/yahboomcar_ctrl.egg-info/PKG-INFO
+[0.330s] writing dependency_links to ../../build/yahboomcar_ctrl/yahboomcar_ctrl.egg-info/dependency_links.txt
+[0.330s] writing entry points to ../../build/yahboomcar_ctrl/yahboomcar_ctrl.egg-info/entry_points.txt
+[0.331s] writing requirements to ../../build/yahboomcar_ctrl/yahboomcar_ctrl.egg-info/requires.txt
+[0.331s] writing top-level names to ../../build/yahboomcar_ctrl/yahboomcar_ctrl.egg-info/top_level.txt
+[0.332s] writing manifest file '../../build/yahboomcar_ctrl/yahboomcar_ctrl.egg-info/SOURCES.txt'
+[0.334s] reading manifest file '../../build/yahboomcar_ctrl/yahboomcar_ctrl.egg-info/SOURCES.txt'
+[0.334s] writing manifest file '../../build/yahboomcar_ctrl/yahboomcar_ctrl.egg-info/SOURCES.txt'
+[0.335s] running build
+[0.335s] running build_py
+[0.335s] creating /home/work/test/robot/ypom_ws/build/yahboomcar_ctrl/build
+[0.335s] creating /home/work/test/robot/ypom_ws/build/yahboomcar_ctrl/build/lib
+[0.335s] creating /home/work/test/robot/ypom_ws/build/yahboomcar_ctrl/build/lib/yahboomcar_ctrl
+[0.336s] copying yahboomcar_ctrl/__init__.py -> /home/work/test/robot/ypom_ws/build/yahboomcar_ctrl/build/lib/yahboomcar_ctrl
+[0.336s] copying yahboomcar_ctrl/yahboom_keyboard.py -> /home/work/test/robot/ypom_ws/build/yahboomcar_ctrl/build/lib/yahboomcar_ctrl
+[0.337s] copying yahboomcar_ctrl/yahboom_joy_R2.py -> /home/work/test/robot/ypom_ws/build/yahboomcar_ctrl/build/lib/yahboomcar_ctrl
+[0.338s] copying yahboomcar_ctrl/yahboom_joy.py -> /home/work/test/robot/ypom_ws/build/yahboomcar_ctrl/build/lib/yahboomcar_ctrl
+[0.339s] running install
+[0.339s] running install_lib
+[0.340s] creating /home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/lib/python3.10/site-packages/yahboomcar_ctrl
+[0.340s] copying /home/work/test/robot/ypom_ws/build/yahboomcar_ctrl/build/lib/yahboomcar_ctrl/__init__.py -> /home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/lib/python3.10/site-packages/yahboomcar_ctrl
+[0.341s] copying /home/work/test/robot/ypom_ws/build/yahboomcar_ctrl/build/lib/yahboomcar_ctrl/yahboom_keyboard.py -> /home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/lib/python3.10/site-packages/yahboomcar_ctrl
+[0.341s] copying /home/work/test/robot/ypom_ws/build/yahboomcar_ctrl/build/lib/yahboomcar_ctrl/yahboom_joy_R2.py -> /home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/lib/python3.10/site-packages/yahboomcar_ctrl
+[0.342s] copying /home/work/test/robot/ypom_ws/build/yahboomcar_ctrl/build/lib/yahboomcar_ctrl/yahboom_joy.py -> /home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/lib/python3.10/site-packages/yahboomcar_ctrl
+[0.343s] byte-compiling /home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/lib/python3.10/site-packages/yahboomcar_ctrl/__init__.py to __init__.cpython-310.pyc
+[0.344s] byte-compiling /home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/lib/python3.10/site-packages/yahboomcar_ctrl/yahboom_keyboard.py to yahboom_keyboard.cpython-310.pyc
+[0.346s] byte-compiling /home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/lib/python3.10/site-packages/yahboomcar_ctrl/yahboom_joy_R2.py to yahboom_joy_R2.cpython-310.pyc
+[0.347s] byte-compiling /home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/lib/python3.10/site-packages/yahboomcar_ctrl/yahboom_joy.py to yahboom_joy.cpython-310.pyc
+[0.348s] running install_data
+[0.348s] creating /home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/share/ament_index
+[0.349s] creating /home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/share/ament_index/resource_index
+[0.349s] creating /home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/share/ament_index/resource_index/packages
+[0.349s] copying resource/yahboomcar_ctrl -> /home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/share/ament_index/resource_index/packages
+[0.350s] copying package.xml -> /home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/share/yahboomcar_ctrl
+[0.350s] creating /home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/share/yahboomcar_ctrl/launch
+[0.351s] copying launch/yahboomcar_joy_launch.py -> /home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/share/yahboomcar_ctrl/launch
+[0.351s] running install_egg_info
+[0.352s] Copying ../../build/yahboomcar_ctrl/yahboomcar_ctrl.egg-info to /home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/lib/python3.10/site-packages/yahboomcar_ctrl-0.0.0-py3.10.egg-info
+[0.357s] running install_scripts
+[0.367s] Installing yahboom_joy script to /home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/lib/yahboomcar_ctrl
+[0.368s] Installing yahboom_joy_R2 script to /home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/lib/yahboomcar_ctrl
+[0.368s] Installing yahboom_keyboard script to /home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/lib/yahboomcar_ctrl
+[0.369s] writing list of installed files to '/home/work/test/robot/ypom_ws/build/yahboomcar_ctrl/install.log'
+[0.380s] Invoked command in '/home/work/test/robot/ypom_ws/src/yahboomcar_ctrl' returned '0': PS1=(.venv) \[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ PYTHONPATH=/home/work/test/robot/ypom_ws/build/yahboomcar_ctrl/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/work/test/robot/ypom_ws/install/yahboomcar_ctrl/lib/python3.10/site-packages:${PYTHONPATH} VIRTUAL_ENV_PROMPT=(.venv) /usr/bin/python3 -W ignore:setup.py install is deprecated setup.py egg_info --egg-base ../../build/yahboomcar_ctrl build --build-base /home/work/test/robot/ypom_ws/build/yahboomcar_ctrl/build install --record /home/work/test/robot/ypom_ws/build/yahboomcar_ctrl/install.log --single-version-externally-managed install_data
