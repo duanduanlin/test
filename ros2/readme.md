@@ -18,3 +18,6 @@ rosdep install -i --from-path src --rosdistro humble -y
 ## 命令行调试
 - 发布主题:ros2 topic pub /topic std_msgs/msg/String "data: Hello world"
 - 检测：ros2 topic echo /topic
+## 坐标变换测试
+ros2 launch learning_tf2_py turtle_tf2_dynamic_frame_demo.launch.py
+ros2 run turtlesim turtle_teleop_key
