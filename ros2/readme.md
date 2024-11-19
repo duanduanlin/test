@@ -29,3 +29,15 @@ sudo apt install ros-humble-xacro
 git clone -b ros2 https://github.com/ros/urdf_tutorial.git src/urdf_tutorial
 git clone https://github.com/ros/urdf_launch.git src/urdf_launch
 ros2 launch urdf_tutorial display.launch.py model:=urdf/03-origins.urdf
+## webot
+https://cyberbotics.com/doc/guide/installation-procedure
+ sudo mkdir -p /etc/apt/keyrings
+cd /etc/apt/keyrings
+sudo wget -q https://cyberbotics.com/Cyberbotics.asc
+echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/Cyberbotics.asc] https://cyberbotics.com/debian binary-amd64/" | sudo tee /etc/apt/sources.list.d/Cyberbotics.list
+sudo apt install webots
+
+sudo apt-get install ros-humble-webots-ros2
+
+export WEBOTS_HOME=/usr/local/webots
+ros2 launch webots_ros2_universal_robot multirobot_launch.py

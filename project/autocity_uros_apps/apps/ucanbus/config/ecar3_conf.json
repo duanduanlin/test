@@ -1,0 +1,8 @@
+{
+    "save_can_data": true,
+    "save_publish_data": true,
+    "can_interfaces": "can1",
+    "vehicle_name": "EcarThreeWheel",
+    "dump_time_threshold_s": 10.0,
+    "control_timeout_ms": 300.0
+}
