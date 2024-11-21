@@ -1,0 +1,5 @@
+repositories:
+  autocity_uros_apps:
+    type: git
+    url: http://192.168.2.195/hanson/autocity_uros_apps.git
+    version: master
