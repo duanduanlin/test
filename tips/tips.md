@@ -1,9 +1,9 @@
 <!--
  * @Author: dding3 dding3@jmc.com.cn
  * @Date: 2024-03-14 19:38:12
- * @LastEditors: dding3 dding3@jmc.com.cn
- * @LastEditTime: 2024-04-23 01:54:11
- * @FilePath: /test/test/tips/tips.md
+ * @LastEditors: hanson
+ * @LastEditTime: 2024-12-17 13:40:08
+ * @FilePath: \test\tips\tips.md
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
 -->
 # 常用指令
@@ -62,7 +62,7 @@ uname -a
 ## 抓包
 tcpdump -i ccinet1 tcp port 9315 and host 10.15.2.58 -w ./tsp.pcap
 sudo tcpdump udp -i lo port 8888
-## git 
+## git
 git config --global user.email "hanson@citygo.com.cn"
 git config --global user.name "hanson"
 git submodule update --init --recursive
@@ -139,3 +139,8 @@ ros2 service call /spawn turtlesim/srv/Spawn "{x: 2, y: 2, theta: 0.2, name: ''}
 ros2 action info /turtle1/rotate_absolute
 ros2 action send_goal /turtle1/rotate_absolute turtlesim/action/RotateAbsolute "{theta: 1.57}"
 ros2 topic info --verbose /ucanbus/chassis
+
+## 启动时间
+last -x reboot | head -1
+last -x shutdown | head -1
+uptime -p

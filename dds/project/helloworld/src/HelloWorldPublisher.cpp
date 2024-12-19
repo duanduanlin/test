@@ -23,6 +23,7 @@
 #include <thread>
 
 #include <fastdds/dds/domain/DomainParticipant.hpp>
+#include <fastdds/dds/domain/DomainParticipantListener.hpp>
 #include <fastdds/dds/domain/DomainParticipantFactory.hpp>
 #include <fastdds/dds/publisher/DataWriter.hpp>
 #include <fastdds/dds/publisher/DataWriterListener.hpp>
@@ -45,6 +46,113 @@ private:
     DataWriter *writer_;
 
     TypeSupport type_;
+
+    class CustomDomainParticipantListener : public DomainParticipantListener
+    {
+
+    public:
+        CustomDomainParticipantListener()
+            : DomainParticipantListener()
+        {
+        }
+
+        virtual ~CustomDomainParticipantListener()
+        {
+        }
+
+        void on_participant_discovery(
+            DomainParticipant *participant,
+            eprosima::fastdds::rtps::ParticipantDiscoveryStatus status,
+            const ParticipantBuiltinTopicData &info,
+            bool &should_be_ignored) override
+        {
+            should_be_ignored = false;
+            if (status == eprosima::fastdds::rtps::ParticipantDiscoveryStatus::DISCOVERED_PARTICIPANT)
+            {
+                std::cout << "New participant discovered" << std::endl;
+                // The following line can be modified to evaluate whether the discovered participant should be ignored
+                // (usually based on fields present in the discovery information)
+                bool ignoring_condition = false;
+                if (ignoring_condition)
+                {
+                    should_be_ignored = true; // Request the ignoring of the discovered participant
+                }
+            }
+            else if (status == eprosima::fastdds::rtps::ParticipantDiscoveryStatus::REMOVED_PARTICIPANT ||
+                     status == eprosima::fastdds::rtps::ParticipantDiscoveryStatus::DROPPED_PARTICIPANT)
+            {
+                std::cout << "Participant lost" << std::endl;
+            }
+        }
+
+#if HAVE_SECURITY
+        void onParticipantAuthentication(
+            DomainParticipant *participant,
+            eprosima::fastdds::rtps::ParticipantAuthenticationInfo &&info) override
+        {
+            if (info.status == eprosima::fastdds::rtps::ParticipantAuthenticationInfo::AUTHORIZED_PARTICIPANT)
+            {
+                std::cout << "A participant was authorized" << std::endl;
+            }
+            else if (info.status == eprosima::fastdds::rtps::ParticipantAuthenticationInfo::UNAUTHORIZED_PARTICIPANT)
+            {
+                std::cout << "A participant failed authorization" << std::endl;
+            }
+        }
+
+#endif // if HAVE_SECURITY
+
+        void on_data_reader_discovery(
+            DomainParticipant *participant,
+            eprosima::fastdds::rtps::ReaderDiscoveryStatus reason,
+            const eprosima::fastdds::rtps::SubscriptionBuiltinTopicData &info,
+            bool &should_be_ignored) override
+        {
+            should_be_ignored = false;
+            if (reason == eprosima::fastdds::rtps::ReaderDiscoveryStatus::DISCOVERED_READER)
+            {
+                std::cout << "New datareader discovered" << std::endl;
+                // The following line can be modified to evaluate whether the discovered datareader should be ignored
+                // (usually based on fields present in the discovery information)
+                bool ignoring_condition = false;
+                if (ignoring_condition)
+                {
+                    should_be_ignored = true; // Request the ignoring of the discovered datareader
+                }
+            }
+            else if (reason == eprosima::fastdds::rtps::ReaderDiscoveryStatus::REMOVED_READER)
+            {
+                std::cout << "Datareader lost" << std::endl;
+            }
+        }
+
+        void on_data_writer_discovery(
+            DomainParticipant *participant,
+            eprosima::fastdds::rtps::WriterDiscoveryStatus reason,
+            const eprosima::fastdds::dds::PublicationBuiltinTopicData &info,
+            bool &should_be_ignored) override
+        {
+            static_cast<void>(participant);
+            static_cast<void>(info);
+
+            should_be_ignored = false;
+            if (reason == eprosima::fastdds::rtps::WriterDiscoveryStatus::DISCOVERED_WRITER)
+            {
+                std::cout << "New datawriter discovered" << std::endl;
+                // The following line can be modified to evaluate whether the discovered datawriter should be ignored
+                // (usually based on fields present in the discovery information)
+                bool ignoring_condition = false;
+                if (ignoring_condition)
+                {
+                    should_be_ignored = true; // Request the ignoring of the discovered datawriter
+                }
+            }
+            else if (reason == eprosima::fastdds::rtps::WriterDiscoveryStatus::REMOVED_WRITER)
+            {
+                std::cout << "Datawriter lost" << std::endl;
+            }
+        }
+    }participantListener_;
 
     class PubListener : public DataWriterListener
     {
@@ -114,7 +222,8 @@ public:
 
         DomainParticipantQos participantQos;
         participantQos.name("Participant_publisher");
-        participant_ = DomainParticipantFactory::get_instance()->create_participant(0, participantQos);
+        // participant_ = DomainParticipantFactory::get_instance()->create_participant(0, participantQos);
+        participant_ = DomainParticipantFactory::get_instance()->create_participant(0, participantQos, &participantListener_);
 
         if (participant_ == nullptr)
         {
