@@ -152,7 +152,7 @@ private:
                 std::cout << "Datawriter lost" << std::endl;
             }
         }
-    }participantListener_;
+    } participantListener_;
 
     class PubListener : public DataWriterListener
     {
@@ -185,6 +185,40 @@ private:
                 std::cout << info.current_count_change
                           << " is not a valid value for PublicationMatchedStatus current count change." << std::endl;
             }
+        }
+
+        void on_offered_deadline_missed(
+            DataWriter *writer,
+            const OfferedDeadlineMissedStatus &status) override
+        {
+            static_cast<void>(writer);
+            static_cast<void>(status);
+            std::cout << "Some data could not be delivered on time" << std::endl;
+        }
+
+        void on_offered_incompatible_qos(
+            DataWriter *writer,
+            const OfferedIncompatibleQosStatus &status) override
+        {
+            std::cout << "Found a remote Topic with incompatible QoS (QoS ID: " << status.last_policy_id << ")" << std::endl;
+        }
+
+        void on_liveliness_lost(
+            DataWriter *writer,
+            const LivelinessLostStatus &status) override
+        {
+            static_cast<void>(writer);
+            static_cast<void>(status);
+            std::cout << "Liveliness lost. Matched Subscribers will consider us offline" << std::endl;
+        }
+
+        void on_unacknowledged_sample_removed(
+            DataWriter *writer,
+            const InstanceHandle_t &instance) override
+        {
+            static_cast<void>(writer);
+            static_cast<void>(instance);
+            std::cout << "Sample removed unacknowledged" << std::endl;
         }
 
         std::atomic_int matched_;
