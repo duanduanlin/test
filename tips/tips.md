@@ -144,3 +144,5 @@ ros2 topic info --verbose /ucanbus/chassis
 last -x reboot | head -1
 last -x shutdown | head -1
 uptime -p
+systemd-analyze blame
+systemd-analyze time
