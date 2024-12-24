@@ -25,7 +25,8 @@ class SystemAnalysis(Node):
             print("analysis system cpu,mem.disk,io\r\n");
             read_rate, write_rate = self.disk_analysis.get_disk_io_rate(self.interval)
             print(f"Read rate: {read_rate:.2f} MB/s, Write rate: {write_rate:.2f} MB/s")
-            self.process_analysis.get_process_data()
+            attr = self.process_analysis.get_process_attr("system_analysis")
+            print(attr)
             time.sleep(self.interval)
 
 def main(args=None):
