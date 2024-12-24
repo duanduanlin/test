@@ -2,15 +2,13 @@
 Author: hanson
 Date: 2024-12-24 14:06:58
 LastEditors: hanson
-LastEditTime: 2024-12-24 14:37:03
+LastEditTime: 2024-12-24 15:10:35
 Description:
 FilePath: \test\ros2\src\system_analysis\system_analysis\process_analysis.py
 '''
 
-import os
 import time
 # import copy
-# import csv
 from dataclasses import dataclass, field
 import psutil
 
@@ -56,15 +54,6 @@ ProcessIter=[
     ]
 
 class PorcessAnalysis:
-
-    # def __init__(self):
-
-    # def __del__(self):
-        # try:
-        #     if self.csv_fp:
-        #         self.release_csv()
-        # except Exception:
-        #     print("not csv file")
 
     def statistic_ctx_switches(self, proc, attr, cur_time):
         # now_time = time.time()
