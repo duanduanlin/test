@@ -2,7 +2,7 @@
 Author: hanson
 Date: 2024-12-24 10:42:31
 LastEditors: hanson
-LastEditTime: 2024-12-24 15:53:03
+LastEditTime: 2024-12-24 16:11:20
 Description:
 FilePath: \test\ros2\src\system_analysis\system_analysis\system_analysis.py
 '''
@@ -13,6 +13,7 @@ from rclpy.node import Node
 from disk_analysis import DiskAnalysis
 from process_analysis import PorcessAnalysis
 from memory_analysis import MemoryAnalysis
+from cpu_analysis import CpuAnalysis
 
 class SystemAnalysis(Node):
     def __init__(self):
@@ -20,6 +21,7 @@ class SystemAnalysis(Node):
         self.disk_analysis = DiskAnalysis("sda")
         self.process_analysis = PorcessAnalysis()
         self.memory_analysis = MemoryAnalysis()
+        self.cpu_analysis = CpuAnalysis()
         self.interval=1
 
     def loop_run(self):
@@ -35,6 +37,9 @@ class SystemAnalysis(Node):
             #memory
             memory_attr = self.memory_analysis.get_mem_attr()
             print(memory_attr)
+            #cpu
+            cpu_attr = self.cpu_analysis.get_cpu_attr()
+            print(cpu_attr)
             time.sleep(self.interval)
 
 def main(args=None):
