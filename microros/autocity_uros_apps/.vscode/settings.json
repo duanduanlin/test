@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "gear_position__struct.h": "c",
+        "modbus.h": "c"
+    },
+    "cmake.ignoreCMakeListsMissing": true
+}

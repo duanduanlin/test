@@ -1,0 +1,3 @@
+[submodule "apps/ucanbus"]
+	path = apps/ucanbus
+	url = ssh://git@192.168.2.195:30966/hanson/ucanbus.git

@@ -1,0 +1,10 @@
+{
+    "save_can_data": true,
+    "save_publish_data": true,
+    "can_interfaces": "can0",
+    "vehicle_name": "WaterDepot",
+    "dump_time_threshold_s": 10.0,
+    "control_timeout_ms": 300.0,
+    "modbus_interfaces": "/dev/ttyS9",
+    "modbus_bitrate":115200
+}

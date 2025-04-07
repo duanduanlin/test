@@ -1,0 +1,32 @@
+###
+ # @Author: hanson
+ # @Date: 2024-11-25 16:24:17
+ # @LastEditors: hanson
+ # @LastEditTime: 2024-12-19 11:20:15
+ # @Description:
+ # @FilePath: \autocity_uros_apps\apps\udepot\tools\autocity_setup\rc.local
+###
+#!/bin/bash
+
+exec 1>/tmp/rc.local.log 2>&1  # send stdout and stderr from rc.local to a log file
+set -x                         # tell sh to display commands before execution
+
+#service cups stop
+rm /var/log/cups/error_log -f
+
+#4g
+/autocity/scripts/netcheck.sh&
+#echo $PASSWD | sudo -S quectel-CM &
+
+#can
+ip link set can0 down
+ip link set can0 type can bitrate 500000
+ip link set can0 up
+
+#app
+source /autocity/sweeper/setup.bash
+mkdir -p /autocity/data/logs/agent
+ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888 >> /autocity/data/logs/agent/micro_ros_agent.log&
+#/autocity/scripts/auto_start.sh&
+
+exit 0
