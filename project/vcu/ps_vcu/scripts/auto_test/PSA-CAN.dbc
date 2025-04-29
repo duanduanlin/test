@@ -1,0 +1,1933 @@
+//*******************************************************
+//  * Name    :PSA-CAN-V1.7-20250410.dbc
+//  * Author  :MatrixCreat @WangHu
+//  * Function:****
+//  * Version :V1.0.0
+//  * Data    :2025.04.10 16:07:09
+//*******************************************************
+
+VERSION "WangHu V1.0"
+
+
+NS_ :
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_: MCUL VCU MCUR RCU EPS PMU CCU ADCU
+
+BO_ 369 MCU_Status_L1: 8 MCUL
+ SG_ Ready_State : 0|1@1+ (1,0) [0|1] "" VCU
+ SG_ Gear : 1|2@1+ (1,0) [0|3] "" VCU
+ SG_ Motor_Speed : 40|16@1+ (1,0) [0|65535] "rpm" VCU
+
+BO_ 371 MCU_Status_L2: 8 MCUL
+ SG_ MCU_Stat_BatteryVol : 0|16@1+ (0.1,0) [0|6553.5] "V" VCU
+ SG_ MCU_Stat_Current : 16|16@1+ (0.1,0) [0|6553.5] "A" VCU
+ SG_ MCU_Max_Current : 32|16@1+ (0.1,0) [0|6553.5] "A" VCU
+ SG_ MotTmp : 48|8@1- (1,-40) [-40|215] "℃" VCU
+ SG_ MosTmp : 56|8@1+ (1,-40) [-40|215] "℃" VCU
+
+BO_ 373 MCU_Status_L3: 8 MCUL
+ SG_ Fault_code : 0|32@1+ (1,0) [0|65535] "" VCU
+
+BO_ 370 MCU_Status_R1: 8 MCUR
+ SG_ Ready_State : 0|1@1+ (1,0) [0|1] "" VCU
+ SG_ Gear : 1|2@1+ (1,0) [0|3] "" VCU
+ SG_ Motor_Speed : 40|16@1+ (1,0) [0|32767] "rpm" VCU
+
+BO_ 372 MCU_Status_R2: 8 MCUR
+ SG_ MCU_Stat_BatteryVol : 0|16@1+ (0.1,0) [0|6553.5] "V" VCU
+ SG_ MCU_Stat_Current : 16|16@1+ (0.1,0) [0|6553.5] "A" VCU
+ SG_ MCU_Max_Current : 32|16@1+ (0.1,0) [0|6553.5] "A" VCU
+ SG_ MotTmp : 48|8@1- (1,-40) [-40|200] "℃" VCU
+ SG_ MosTmp : 56|8@1+ (1,-40) [-40|200] "℃" VCU
+
+BO_ 374 MCU_Status_R3: 8 MCUR
+ SG_ Fault_code : 0|32@1+ (1,0) [0|65535] "" VCU
+
+BO_ 337 MCU_CMDL: 8 VCU
+ SG_ WorkingMode : 0|2@1+ (1,0) [0|3] "" MCUL
+ SG_ GearSetting : 2|2@1+ (1,0) [0|3] "" MCUL
+ SG_ Target_Torque : 16|16@1- (1,0) [-32768|32767] "N.m" MCUL
+ SG_ Target_Speed : 32|16@1+ (1,0) [0|32767] "rpm" MCUL
+ SG_ MCU_Cmd_RollCnt : 48|4@1+ (1,0) [0|15] "N/A" MCUL
+ SG_ MCU_Cmd_Checksum : 56|8@1+ (1,0) [0|255] "N/A" MCUL
+
+BO_ 338 MCU_CMDR: 8 VCU
+ SG_ WorkingMode : 0|2@1+ (1,0) [0|3] "" MCUR
+ SG_ GearSetting : 2|2@1+ (1,0) [0|3] "" MCUR
+ SG_ Target_Torque : 16|16@1- (1,0) [-32768|32767] "N.m" MCUR
+ SG_ Target_Speed : 32|16@1+ (1,0) [0|32767] "rpm" MCUR
+ SG_ MCU_Cmd_RollCnt : 48|4@1+ (1,0) [0|15] "N/A" MCUR
+ SG_ MCU_Cmd_Checksum : 56|8@1+ (1,0) [0|255] "N/A" MCUR
+
+BO_ 161 RCU_CtrlCmd: 8 RCU
+ SG_ RCU_ACCPer : 7|8@0+ (1,0) [-100|100] "%" VCU
+ SG_ RCU_SterPer : 15|8@0- (1,0) [-100|100] "%" VCU
+ SG_ RCU_GearMod : 23|2@0+ (1,0) [0|3] "" VCU
+ SG_ RCU_OneClkDumpCtrl : 21|2@0+ (1,0) [0|2] "" VCU
+ SG_ RCU_OneClkCleanCtrl : 19|2@0+ (1,0) [0|2] "" VCU
+ SG_ RCU_FenderOpenReq : 28|1@0+ (1,0) [0|1] "" VCU
+ SG_ RCU_VibrateReq : 27|1@0+ (1,0) [0|1] "" VCU
+ SG_ RCU_CtrlModReq : 26|1@0+ (1,0) [0|1] "" VCU
+ SG_ RCU_EPB_Enable : 24|1@0+ (1,0) [0|1] "" VCU
+ SG_ RCU_WaterPump : 31|2@0+ (1,0) [0|3] "" VCU
+ SG_ RCU_SpeedLimitPer : 47|8@0+ (1,0) [0|100] "%" VCU
+ SG_ RCU_ErrRecv : 48|1@0+ (1,0) [0|1] "" VCU
+ SG_ RCU_ErrLos : 49|1@0+ (1,0) [0|1] "" VCU
+ SG_ RCU_ErrProtect : 50|1@0+ (1,0) [0|1] "" VCU
+ SG_ RCU_ErrCAN : 51|1@0+ (1,0) [0|1] "" VCU
+ SG_ Rolling_counter_0xA1 : 55|4@0+ (1,0) [0|15] "" VCU
+ SG_ Checksum_0xA1 : 63|8@0+ (1,0) [0|255] "" VCU
+
+BO_ 788 EPS_CMD: 8 VCU
+ SG_ EPS_Angle_Speed : 31|16@0+ (1,0) [0|450] "deg/s" EPS
+ SG_ EPS_Target_Angle : 15|16@0- (1,0) [-560|560] "deg" EPS
+ SG_ EPS_Angle_Calibrate : 2|1@0+ (1,0) [0|1] "" EPS
+ SG_ EPS_CtrlEnable : 0|1@0+ (1,0) [0|1] "" EPS
+
+BO_ 399 EPS_Status: 8 EPS
+ SG_ EPS_Iq : 47|8@0+ (1,0) [0|255] "" VCU
+ SG_ EPS_Fault_Code : 63|8@0+ (1,0) [0|255] "" VCU
+ SG_ EPS_Temperature : 55|8@0- (1,0) [-128|127] "℃" VCU
+ SG_ EPS_Angle_Spd : 31|16@0+ (1,0) [0|450] "N/A" VCU
+ SG_ EPS_Calibration_Status : 2|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ EPS_StrAngle_Act : 15|16@0- (1,0) [-720|720] "deg" VCU
+ SG_ EPS_Fault : 1|1@0+ (1,0) [0|1] "Nm" VCU
+ SG_ EPS_Work_Mode_Status : 0|1@0+ (1,0) [0|1] "N/A" VCU
+
+BO_ 801 BMS_Fault: 8 PMU
+ SG_ BMS_Fault_HallZeroRefF : 57|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_ChargerStatus : 59|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_HeatingModuleF : 61|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_InternalFanF : 63|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_SOHLowF : 49|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_TempSensorF : 51|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_WireF : 53|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_ChargeUTF : 55|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_ErrLevelF : 41|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_ChaSysVolLowF : 43|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_DisSysVolLowF : 45|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_ExterComErrF : 47|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_InterComErrF : 33|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_PrechaFailF : 35|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_ContactorInvalid : 37|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_ContactorAdhesion : 39|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_SOCLowF : 25|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_DisPowOverLimF : 27|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_ChaPowOverLimF : 29|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_InsuFadeF : 31|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_DisCurrBigF : 17|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_ChaCurrBigF : 19|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_CVDevBigF : 21|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_CVLowF : 23|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_TemDevBigF : 11|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_TemLowF : 13|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_TemHighF : 15|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_CVHighF : 9|2@0+ (1,0) [0|3] "" VCU
+ SG_ BMS_Fault_InsuRes : 7|8@0+ (40,0) [0|10200] "kΩ" VCU
+
+BO_ 800 BMS_Status_3: 8 PMU
+ SG_ BMS_Status_SysSenMinTNum : 63|8@0+ (1,0) [0|255] "" VCU
+ SG_ BMS_Status_SysSenMaxTNum : 55|8@0+ (1,0) [0|255] "" VCU
+ SG_ BMS_Status_SysSenMinTemp : 39|16@0+ (0.1,-40) [-40|6513.5] "℃" VCU
+ SG_ BMS_Status_SysSenMaxTemp : 23|16@0+ (0.1,-40) [-40|6513.5] "℃" VCU
+ SG_ BMS_Status_SysMinCVNum : 15|8@0+ (1,0) [0|255] "" VCU
+ SG_ BMS_Status_SysMaxCVNum : 7|8@0+ (1,0) [0|255] "" VCU
+
+BO_ 793 BMS_Status_2: 8 PMU
+ SG_ BMS_Status_SysDevCV : 55|16@0+ (0.001,0) [0|65.535] "V" VCU
+ SG_ BMS_Status_SysAveCV : 39|16@0+ (0.001,0) [0|65.535] "V" VCU
+ SG_ BMS_Status_SysMinCV : 23|16@0+ (0.001,0) [0|65.535] "V" VCU
+ SG_ BMS_Status_SysMaxCV : 7|16@0+ (0.001,0) [0|65.535] "V" VCU
+
+BO_ 792 BMS_Status_1: 8 PMU
+ SG_ BMS_Status_Bus_Voltage : 63|8@0+ (2,0) [0|510] "V" VCU
+ SG_ BMS_Status_SysVoltage : 47|16@0+ (0.1,0) [0|6553.5] "V" VCU
+ SG_ BMS_Status_SysSOC : 39|8@0+ (0.5,0) [0|100] "％" VCU
+ SG_ BMS_Status_Charge : 31|8@0+ (1,0) [0|255] "" VCU
+ SG_ BMS_Status_Sys_Current : 15|16@0+ (0.1,-500) [-500|500] "A" VCU
+ SG_ BMS_Status_CANCount : 7|8@0+ (1,0) [0|255] "" VCU
+
+BO_ 561 PMU_CMD: 8 VCU
+ SG_ VCU_VehPwrup_Cmd : 7|2@0+ (1,0) [0|3] "N/A" PMU
+ SG_ VCU_ADCUPwrup_Cmd : 5|2@0+ (1,0) [0|3] "N/A" PMU
+ SG_ VCU_MCUPwrup_Cmd : 3|2@0+ (1,0) [0|3] "N/A" PMU
+ SG_ VCU_LEDPwrup_Cmd : 1|2@0+ (1,0) [0|3] "N/A" PMU
+ SG_ VCU_EPSPwrup_Cmd : 15|2@0+ (1,0) [0|3] "N/A" PMU
+ SG_ VCU_CCUPwrup_Cmd : 13|2@0+ (1,0) [0|3] "N/A" PMU
+ SG_ VCU_OBDPwrup_Cmd : 11|2@0+ (1,0) [0|3] "N/A" PMU
+ SG_ VCU_WFCPwrup_Cmd : 9|2@0+ (1,0) [0|3] "N/A" PMU
+ SG_ VCU_DchagerPwrup_Cmd : 23|2@0+ (1,0) [0|3] "N/A" PMU
+ SG_ VCU_ParkEnable_Cmd : 21|2@0+ (1,0) [0|3] "N/A" PMU
+ SG_ CU_PwrCmd_RollCnt : 51|4@0+ (1,0) [0|15] "N/A" PMU
+ SG_ CU_PwrCmd_Checksum : 63|8@0+ (1,0) [0|255] "N/A" PMU
+
+BO_ 562 PMU_Status: 8 PMU
+ SG_ PMU_VehPwrup_Sts : 7|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ PMU_ADCUPwrup_Sts : 5|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ PMU_MCUPwrup_Sts : 3|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ PMU_LEDPwrup_Sts : 1|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ PMU_EPSPwrup_Sts : 15|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ PMU_CCUPwrup_Sts : 13|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ PMU_OBDPwrup_Sts : 11|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ PMU_WFCPwrup_Sts : 9|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ PMU_DchagerPwrup_Sts : 23|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ PMU_ParkEnable_Sts : 21|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ PMU_ESTOP_Sts : 19|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ PMU_PowerOffReq : 18|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ PMU_PwrStatus_RollCnt : 51|4@0+ (1,0) [0|15] "N/A" VCU
+ SG_ PMU_PwrStatus_Checksum : 63|8@0+ (1,0) [0|255] "N/A" VCU
+
+BO_ 817 CCU_CMD: 8 VCU
+ SG_ CCU_OneClkCleanCtrl : 1|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_OneClkDumpCtrl : 3|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_WaterPumpCtrl : 5|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_FenderCtrl : 7|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_VbrCtrl : 9|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_WaterAddCtrl : 11|2@0+ (1,0) [0|1] "" CCU
+ SG_ CCU_SweepingCtrl : 15|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_SideBrushLiftCtrl : 17|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_SideBrushExtendCtrl : 19|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_MainBrushLiftCtrl : 21|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_DustBinLiftCtrl : 23|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_DustBinDumpCtrl : 25|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_DustBinOpenCtrl : 27|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_MainBrushCtrl : 29|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_SideBrushCtrl : 31|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_BlowerCtrl : 33|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_HighWaterPumpCtrl : 35|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_VacuumCtrl : 37|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_DustBinCompressCtrl : 39|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_CleanValveCtrl : 41|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_WashValveCtrl : 43|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_HighPumpAdjustCtrl : 45|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_WashProbeAdjustCtrl : 47|2@0+ (1,0) [0|3] "" CCU
+ SG_ CCU_CMD_RollCnt : 55|8@0+ (1,0) [0|255] "" CCU
+ SG_ CCU_CMD_CheckSum : 63|8@0+ (1,0) [0|255] "" CCU
+
+BO_ 819 CCU_Status2: 8 CCU
+ SG_ CCU_Remain_Water : 6|7@0+ (1,0) [0|100] "%" VCU
+ SG_ CCU_DustbinFull_St : 7|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ CCU_MainBrushPos_Act : 15|8@0+ (1,0) [0|255] "ｍｍ" VCU
+ SG_ CCU_SideBrushLiftPos_Act : 23|8@0+ (1,0) [0|255] "ｍｍ" VCU
+ SG_ CCU_SideBrushExtendPos_Act : 31|8@0+ (1,0) [0|255] "ｍｍ" VCU
+ SG_ CCU_HighPumpAngle_Act : 39|8@0+ (1,0) [0|255] "°" VCU
+ SG_ CCU_WashProbeAdjust_Act : 47|8@0+ (1,0) [0|255] "ｍｍ" VCU
+ SG_ CCU_Status1_RollCnt : 51|4@0+ (1,0) [0|15] "N/A" VCU
+ SG_ CCU_Status1_CheckSum : 63|8@0+ (1,0) [0|255] "N/A" VCU
+
+BO_ 818 CCU_Status: 8 CCU
+ SG_ CCU_OneClkClean_Sts : 1|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_OneClkDump_Sts : 3|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_WaterPump_Sts : 5|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_Fender_Sts : 7|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_Vbr_Sts : 9|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_WaterAdd_Sts : 11|2@0+ (1,0) [0|1] "" VCU
+ SG_ CCU_Sweeping_Sts : 15|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_SideBrushLift_Sts : 17|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_SideBrushExtend_Sts : 19|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_MainBrushLift_Sts : 21|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_DustBinLift_Sts : 23|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_DustBinDump_Sts : 25|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_DustBinOpen_Sts : 27|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_MainBrush_Sts : 29|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_SideBrush_Sts : 31|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_Blower_Sts : 33|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_HighWaterPump_Sts : 35|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_Vacuum_Sts : 37|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_DustBinCompress_Sts : 39|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_CleanVale_Sts : 41|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_WashVale_Sts : 43|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_HighPumpAdjust_Sts : 45|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_WashProbeAdjust_Sts : 47|2@0+ (1,0) [0|3] "" VCU
+ SG_ CCU_Status_RollCnt : 55|8@0+ (1,0) [0|255] "" VCU
+ SG_ CCU_Status_CheckSum : 63|8@0+ (1,0) [0|255] "" VCU
+
+BO_ 820 CCU_ErrorCode_Status: 8 CCU
+ SG_ CCU_ErrorCode_1 : 7|8@0+ (1,0) [0|255] "" VCU
+ SG_ CCU_ErrorCode_2 : 15|8@0+ (1,0) [0|255] "" VCU
+ SG_ CCU_ErrorCode_3 : 23|8@0+ (1,0) [0|255] "" VCU
+ SG_ CCU_ErrorCode_4 : 31|8@0+ (1,0) [0|255] "" VCU
+ SG_ CCU_ErrorCode_Status_Rollcnt : 55|8@0+ (1,0) [0|255] "" VCU
+ SG_ CCU_ErrorCode_Status_CheckSum : 63|8@0+ (1,0) [0|255] "" VCU
+
+BO_ 278 ADCU_SweepCmd: 8 ADCU
+ SG_ ADCU_OneClkCleanCtrl : 1|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_OneClkDumpCtrl : 3|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_WaterPumpCtrl : 5|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_FenderCtrl : 7|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_VbrCtrl : 9|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_WaterAddCtrl : 11|2@0+ (1,0) [0|1] "" VCU
+ SG_ ADCU_SweepingCtrl : 15|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_SideBrushLiftCtrl : 17|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_SideBrushExtendCtrl : 19|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_MainBrushLiftCtrl : 21|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_DustBinLiftCtrl : 23|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_DustBinDumpCtrl : 25|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_DustBinOpenCtrl : 27|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_MainBrushCtrl : 29|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_SideBrushCtrl : 31|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_BlowerCtrl : 33|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_HighWaterPumpCtrl : 35|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_VacuumCtrl : 37|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_DustBinCompressCtrl : 39|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_CleanValveCtrl : 43|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_WashValveCtrl : 41|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_HighPumpAdjustCtrl : 45|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_WashProbeAdjustCtrl : 47|2@0+ (1,0) [0|3] "" VCU
+ SG_ ADCU_Sweeper_RollCnt : 55|8@0+ (1,0) [0|255] "" VCU
+ SG_ ADCU_Sweeper_CheckSum : 63|8@0+ (1,0) [0|255] "" VCU
+
+BO_ 277 ADCU_LampCmd: 8 ADCU
+ SG_ ADCU_HeadLamp_Cmd : 15|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ ADCU_DblFlashLamp_Cmd : 14|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ ADCU_TurnLLamp_Cmd : 13|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ ADCU_TurnRLamp_Cmd : 12|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ ADCU_BackLamp_Cmd : 11|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ ADCU_Buzzer_Cmd : 10|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ ADCU_Horn_Cmd : 9|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ ADCU_WarningLamp_Cmd : 8|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ ADCU_BrkLamp_Cmd : 23|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ ADCU_FillLamp_Cmd : 22|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ ADCU_WidthLamp_Cmd : 21|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ ADCU_RearHeadLamp_Cmd : 20|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ ADCU_LampCmd_RollCnt : 51|4@0+ (1,0) [0|15] "N/A" VCU
+ SG_ ADCU_LampCmd_Checksum : 63|8@0+ (1,0) [0|255] "N/A" VCU
+
+BO_ 276 ADCU_DriveCmd: 8 ADCU
+ SG_ ADCU_DrvingMode : 7|3@0+ (1,0) [0|7] "N/A" VCU
+ SG_ ADCU_Drv_CtrlMode : 3|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ ADCU_Drv_TgtGear : 1|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ ADCU_Drv_TgtPedpos : 15|8@0+ (1,-100) [-100|155] "%" VCU
+ SG_ ADCU_Drv_TgtVehSpd : 23|16@0+ (0.01,-100) [-100|555.35] "Kmph" VCU
+ SG_ ADCU_Drv_TgtVehAccSpd : 39|8@0+ (0.1,-15) [-15|10.5] "mps2" VCU
+ SG_ ADCU_Drv_VehSpdLimit : 47|8@0+ (0.4,0) [0|102] "Kmph" VCU
+ SG_ ADCU_DrvCmd0_RollCnt : 51|4@0+ (1,0) [0|15] "N/A" VCU
+ SG_ ADCU_DrvCmd0_Checksum : 63|8@0+ (1,0) [0|255] "N/A" VCU
+
+BO_ 275 ADCU_SteerCmd: 8 ADCU
+ SG_ ADCU_Str_WorkMode : 7|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ ADCU_Str_TgtAngle : 15|16@0+ (0.005,-90) [-90|237.675] "deg" VCU
+ SG_ ADCU_Str_TgtAngleSpd : 31|8@0+ (0.2,0) [0|51] "degps" VCU
+ SG_ ADCU_Str_Centering : 40|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ ADCU_StrCmd_RollCnt : 51|4@0+ (1,0) [0|15] "N/A" VCU
+ SG_ ADCU_StrCmd_Checksum : 63|8@0+ (1,0) [0|255] "N/A" VCU
+
+BO_ 273 ADCU_BrakeCmd: 8 ADCU
+ SG_ ADCU_Brk_CtrlMode : 7|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ ADCU_Brk_ParkEnable : 5|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ ADCU_Brk_TgtPedpos : 15|8@0+ (0.4,0) [0|102] "%" VCU
+ SG_ ADCU_Brk_TgtPress : 23|16@0+ (0.01,0) [0|655.35] "bar" VCU
+ SG_ ADCU_Brk_TgtAccSpd : 39|16@0+ (0.01,-20) [-20|635.35] "mps2" VCU
+ SG_ ADCU_BrkCmd_RollCnt : 51|4@0+ (1,0) [0|15] "N/A" VCU
+ SG_ ADCU_BrkCmd_Checksum : 63|8@0+ (1,0) [0|255] "N/A" VCU
+
+BO_ 279 ADCU_PowerCmd: 8 ADCU
+ SG_ ADCU_VehPwrup_Cmd : 7|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ ADCU_EmgBrkReq : 5|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ ADCU_SoftEmgBrkReq : 3|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ ADCU_RmtPwrOnReq : 1|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ ADCU_CrashFree : 15|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ ADCU_ApvPwrOFF : 13|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ ADCU_EndChgReq : 11|2@0+ (1,0) [0|3] "N/A" VCU
+ SG_ ADCU_WLChgWakeUp_Cmd : 32|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ ADCU_PwrCmd_RollCnt : 51|4@0+ (1,0) [0|15] "N/A" VCU
+ SG_ ADCU_PwrCmd_Checksum : 63|8@0+ (1,0) [0|255] "N/A" VCU
+
+BO_ 536 VCU_SweepStatus1: 8 VCU
+ SG_ VCU_Remain_Water : 6|7@0+ (1,0) [0|100] "%" ADCU
+ SG_ VCU_DustbinFull_St : 7|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_MainBrushPos_St : 31|8@0+ (1,0) [0|255] "N/A" ADCU
+ SG_ VCU_SideBrushLiftPos_St : 23|8@0+ (1,0) [0|255] "N/A" ADCU
+ SG_ VCU_SideBrushExtendPos_St : 15|8@0+ (1,0) [0|255] "N/A" ADCU
+ SG_ VCU_HighPumpAngle_St : 39|8@0+ (1,0) [0|255] "°" ADCU
+ SG_ VCU_WashProbeAdjust_St : 47|8@0+ (1,0) [0|255] "ｍｍ" ADCU
+ SG_ VCU_SweepStatus2_RollCnt : 51|4@0+ (1,0) [0|15] "N/A" ADCU
+ SG_ VCU_SweepStatus2_CheckSum : 63|8@0+ (1,0) [0|255] "N/A" ADCU
+
+BO_ 534 VCU_SweepStatus: 8 VCU
+ SG_ VCU_OneClkClean_Sts : 1|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_OneClkDump_Sts : 3|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_WaterPump_Sts : 5|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_Fender_Sts : 7|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_Vbr_Sts : 9|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_WaterAdd_Sts : 11|2@0+ (1,0) [0|1] "" ADCU
+ SG_ VCU_Sweeping_Sts : 15|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_SideBrushLift_Sts : 17|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_SideBrushExtend_Sts : 19|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_MainBrushLift_Sts : 21|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_DustBinLift_Sts : 23|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_DustBinDump_Sts : 25|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_DustBinOpen_Sts : 27|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_MainBrush_Sts : 29|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_SideBrush_Sts : 31|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_Blower_Sts : 33|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_HighWaterPump_Sts : 35|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_Vacuum_Sts : 37|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_DustBinCompress_Sts : 39|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_CleanVale_Sts : 41|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_WashVale_Sts : 43|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_HighPumpAdjust_Sts : 45|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_WashProbeAdjust_Sts : 47|2@0+ (1,0) [0|3] "" ADCU
+ SG_ VCU_SweeperSts_RollCnt : 55|8@0+ (1,0) [0|255] "" ADCU
+ SG_ VCU_SweeperSts_CheckSum : 63|8@0+ (1,0) [0|255] "" ADCU
+
+BO_ 640 VCU_PowerSts: 8 VCU
+ SG_ VCU_VehPwrup_Sts : 7|2@0+ (1,0) [0|3] "N/A" ADCU
+ SG_ VCU_WLChgWakeUp_Sts : 32|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_PwrSts_RollCnt : 51|4@0+ (1,0) [0|15] "N/A" ADCU
+ SG_ VCU_PwrSts_Checksum : 63|8@0+ (1,0) [0|255] "N/A" ADCU
+
+BO_ 533 VCU_LampStatus: 8 VCU
+ SG_ VCU_HeadLamp_Sts : 15|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_DblFlashLamp_Sts : 14|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_TurnLLamp_Sts : 13|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_TurnRLamp_Sts : 12|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_ReverseLamp_Sts : 11|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_Buzzer_Sts : 10|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_Horn_Sts : 9|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_WarningLamp_Sts : 8|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_BrakeLamp_Sts : 23|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_FillLamp_Sts : 22|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_WidthLamp_Sts : 21|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_RearHeadLamp_Sts : 20|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ VCU_LampStatus_RollCnt : 51|4@0+ (1,0) [0|15] "N/A" ADCU
+ SG_ VCU_LampStatus_Checksum : 63|8@0+ (1,0) [0|255] "N/A" ADCU
+
+BO_ 532 VCU_DriveStatus: 8 VCU
+ SG_ VCU_DrvingMode : 7|3@0+ (1,0) [0|7] "N/A" ADCU
+ SG_ VCU_Drv_CtrlMode : 3|2@0+ (1,0) [0|3] "N/A" ADCU
+ SG_ VCU_Drv_Gear : 1|2@0+ (1,0) [0|3] "N/A" ADCU
+ SG_ VCU_Drv_ActPedpos : 15|8@0+ (1,-100) [-100|155] "%" ADCU
+ SG_ VCU_Drv_ActVehSpd : 23|16@0+ (0.01,-100) [-100|555.35] "Kmph" ADCU
+ SG_ VCU_Drv_ActVehAcc : 39|8@0+ (0.1,-15) [-15|10.5] "mps2" ADCU
+ SG_ VCU_Drv_VehSpdLimit : 47|8@0+ (0.4,0) [0|102] "Kmph" ADCU
+ SG_ VCU_DrvStatus_RollCnt : 51|4@0+ (1,0) [0|15] "N/A" ADCU
+ SG_ VCU_DrvStatus_Checksum : 63|8@0+ (1,0) [0|255] "N/A" ADCU
+
+BO_ 531 VCU_SteerStatus: 8 VCU
+ SG_ VCU_Str_WorkMode : 7|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_Str_Angle : 15|16@0+ (0.005,-90) [-90|237.675] "deg" ADCU
+ SG_ VCU_Str_AngleSpd : 31|8@0+ (0.2,0) [0|51] "degps" ADCU
+ SG_ VCU_Str_CenteringSts : 40|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_StrStatus_RollCnt : 51|4@0+ (1,0) [0|15] "N/A" ADCU
+ SG_ VCU_StrStatus_Checksum : 63|8@0+ (1,0) [0|255] "N/A" ADCU
+
+BO_ 529 VCU_BrakeStatus: 8 VCU
+ SG_ VCU_Brk_CtrlModeSts : 7|2@0+ (1,0) [0|3] "N/A" ADCU
+ SG_ VCU_Brk_ParkEnableSts : 5|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_Brk_ActPedpos : 15|8@0+ (0.4,0) [0|102] "%" ADCU
+ SG_ VCU_Brk_ActPress : 23|16@0+ (0.01,0) [0|655.35] "bar" ADCU
+ SG_ VCU_Brk_Acc : 39|16@0+ (0.01,-20) [-20|635.35] "mps2" ADCU
+ SG_ VCU_BrkStatus_RollCnt : 51|4@0+ (1,0) [0|15] "N/A" ADCU
+ SG_ VCU_BrkStatus_Checksum : 63|8@0+ (1,0) [0|255] "N/A" ADCU
+
+BO_ 512 VCU_Info: 8 VCU
+ SG_ VCU_SoftwareVerNum : 7|8@0+ (1,0) [0|255] "" ADCU
+ SG_ VCU_HardwareVerNum : 15|8@0+ (1,0) [0|255] "" ADCU
+ SG_ VCU_BatSoc : 23|8@0+ (1,0) [0|255] "%" ADCU
+ SG_ VCU_RemainWater : 31|8@0+ (1,0) [0|255] "%" ADCU
+ SG_ VCU_RemainTrashBin : 39|8@0+ (1,0) [0|255] "%" ADCU
+ SG_ VCU_Info_RollCnt : 51|4@0+ (1,0) [0|1] "" ADCU
+ SG_ VCU_Info_Checksum : 63|8@0+ (1,0) [0|255] "" ADCU
+
+BO_ 576 VCU_VehState: 8 VCU
+ SG_ VCU_Veh_RunMode : 7|4@0+ (1,0) [0|15] "N/A" ADCU
+ SG_ VCU_Veh_RunLockRsn : 3|2@0+ (1,0) [0|3] "N/A" ADCU
+ SG_ VCU_Veh_ErrLevel : 1|2@0+ (1,0) [0|3] "N/A" ADCU
+ SG_ VCU_FtCrash_St : 15|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_RrCrash_St : 14|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_VehEmgcySwh_St : 13|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_LvBat_LowVolt : 12|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_Bat_LowSOC : 11|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_BMS_ErrLevel : 10|2@0+ (1,0) [0|3] "N/A" ADCU
+ SG_ VCU_MCU_ErrLevel : 23|2@0+ (1,0) [0|3] "N/A" ADCU
+ SG_ VCU_EHB_ErrLevel : 21|2@0+ (1,0) [0|3] "N/A" ADCU
+ SG_ VCU_EPS_ErrLevel : 19|2@0+ (1,0) [0|3] "N/A" ADCU
+ SG_ VCU_EPB_ErrLevel : 17|2@0+ (1,0) [0|3] "N/A" ADCU
+ SG_ VCU_CCU_ErrLevel : 31|2@0+ (1,0) [0|3] "N/A" ADCU
+ SG_ VCU_DumpSysErrLvl : 29|2@0+ (1,0) [0|3] "N/A" ADCU
+ SG_ VCU_CleanSysErrLvl : 27|2@0+ (1,0) [0|3] "N/A" ADCU
+ SG_ VCU_CANBusOff_St : 25|2@0+ (1,0) [0|3] "N/A" ADCU
+ SG_ VCU_SegCodeDispOffline_Err : 39|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_LEDDispOffline_Err : 38|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_ChgInhibit_Flt : 37|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_PwrUpInhibit_Flt : 36|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_ADEmgcyStop_St : 35|1@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ VCU_VehEmgcyStop_Reason : 34|3@0+ (1,0) [0|7] "N/A" ADCU
+ SG_ VCU_PMU_ErrLevel : 53|2@0+ (1,0) [0|3] "N/A" ADCU
+ SG_ VCU_RCU_ErrLevel : 55|2@0+ (1,0) [0|3] "N/A" ADCU
+ SG_ VCU_Veh_ErrCode : 47|8@0+ (1,0) [0|255] "N/A" ADCU
+ SG_ VCU_VehSt_RollCnt : 51|4@0+ (1,0) [0|15] "N/A" ADCU
+ SG_ VCU_VehSt_Checksum : 63|8@0+ (1,0) [0|255] "N/A" ADCU
+
+BO_ 670 ADCU_DateTime: 8 ADCU
+ SG_ GPSSystAtv : 7|1@0+ (1,0) [0|1] "N/A" VCU
+ SG_ Time_second : 5|6@0+ (1,0) [0|59] "second" VCU
+ SG_ Time_Minute : 13|6@0+ (1,0) [0|59] "min" VCU
+ SG_ Time_Hour : 20|5@0+ (1,0) [0|23] "hour" VCU
+ SG_ Time_Day : 28|5@0+ (1,0) [0|31] "day" VCU
+ SG_ Time_Month : 35|4@0+ (1,0) [0|12] "month" VCU
+ SG_ Time_Year : 47|8@0+ (1,2000) [2000|2200] "year" VCU
+
+BO_ 767 VCU_Fault_Code: 8 VCU
+ SG_ Board_Ids : 7|6@0+ (1,0) [0|1] "N/A" ADCU
+ SG_ Error_Code : 1|58@0+ (1,0) [0|1] "N/A" ADCU
+
+
+CM_ BO_ 369 "MCUL反馈状态1";
+CM_ SG_ 369 Ready_State "准备状态 0：准备中 In preparation 1：READY";
+CM_ SG_ 369 Gear "挡位状态  0x0—N 0x1—P 0x2—D 0x3—R";
+CM_ SG_ 369 Motor_Speed "电机转速";
+CM_ BO_ 371 "MCUL反馈状态2";
+CM_ SG_ 371 MCU_Stat_BatteryVol "母线电压。 0.1V/bit，偏移量 0。";
+CM_ SG_ 371 MCU_Stat_Current "母线电流 0.1A/bit，偏移量 0。";
+CM_ SG_ 371 MCU_Max_Current "当前档位下最大母线电流";
+CM_ SG_ 371 MotTmp "电机温度 1℃/bit，偏移量 -40。";
+CM_ SG_ 371 MosTmp "控制器温度 1℃/bit，偏移量 -40。";
+CM_ BO_ 373 "MCUL反馈状态3";
+CM_ SG_ 373 Fault_code "故障码,各BIT代表含义见故障代码表";
+CM_ BO_ 370 "MCUR反馈状态1";
+CM_ SG_ 370 Ready_State "准备状态 0：准备中 In preparation 1：READY";
+CM_ SG_ 370 Gear "挡位状态  0x0—N 0x1—P 0x2—D 0x3—R";
+CM_ SG_ 370 Motor_Speed "电机转速";
+CM_ BO_ 372 "MCUR反馈状态2";
+CM_ SG_ 372 MCU_Stat_BatteryVol "母线电压。 0.1V/bit，偏移量 0。";
+CM_ SG_ 372 MCU_Stat_Current "母线电流 0.1A/bit，偏移量 0。";
+CM_ SG_ 372 MCU_Max_Current "当前档位下最大母线电流";
+CM_ SG_ 372 MotTmp "电机温度 1℃/bit，偏移量 -40。";
+CM_ SG_ 372 MosTmp "控制器温度 1℃/bit，偏移量 -40。";
+CM_ BO_ 374 "MCUR反馈状态3";
+CM_ SG_ 374 Fault_code "故障码,各BIT代表含义见故障代码表";
+CM_ BO_ 337 "VCU controls MCUL MCUL被控报文";
+CM_ SG_ 337 WorkingMode "控制器工作模式设置  0：转矩模式 Torque mode 1：转速模式 Speed mode 2：外部模拟信号&端口控制 Pedal I/O control 3：预留 Reserved";
+CM_ SG_ 337 GearSetting "挡位设置  0x0—N 0x1—P 0x2—D 0x3—R";
+CM_ SG_ 337 Target_Torque "目标转矩";
+CM_ SG_ 337 Target_Speed "目标转速";
+CM_ SG_ 337 MCU_Cmd_RollCnt "循环计数";
+CM_ SG_ 337 MCU_Cmd_Checksum "校验和";
+CM_ BO_ 338 "VCU controls MCUR MCUR被控报文";
+CM_ SG_ 338 WorkingMode "控制器工作模式设置  0：转矩模式 Torque mode 1：转速模式 Speed mode 2：外部模拟信号&端口控制 Pedal I/O control 3：预留 Reserved";
+CM_ SG_ 338 GearSetting "挡位设置  0x0—N 0x1—P 0x2—D 0x3—R";
+CM_ SG_ 338 Target_Torque "目标转矩";
+CM_ SG_ 338 Target_Speed "目标转速";
+CM_ SG_ 338 MCU_Cmd_RollCnt "循环计数";
+CM_ SG_ 338 MCU_Cmd_Checksum "校验和";
+CM_ BO_ 161 "RCU控制报文";
+CM_ SG_ 161 RCU_ACCPer "RCU Accelerate Percentage 遥控加速百分比";
+CM_ SG_ 161 RCU_SterPer "RCU Steering Percentage 遥控转向百分比";
+CM_ SG_ 161 RCU_GearMod "The mode of gear";
+CM_ SG_ 161 RCU_OneClkDumpCtrl "RCU One_Click Dumping Contral 遥控一键倾倒控制";
+CM_ SG_ 161 RCU_OneClkCleanCtrl "RCU One_Click Clean Contral 遥控一键清扫控制";
+CM_ SG_ 161 RCU_FenderOpenReq "RCU Fender Open Request 遥控挡板打开请求";
+CM_ SG_ 161 RCU_VibrateReq "RCU Vibration Request 遥控振尘请求";
+CM_ SG_ 161 RCU_CtrlModReq "RCU Control Mode Request 遥控控制模式请求";
+CM_ SG_ 161 RCU_EPB_Enable "RCU EPB Control 遥控EPB控制";
+CM_ SG_ 161 RCU_WaterPump "RCU WaterPump Request 遥控喷水开启请求";
+CM_ SG_ 161 RCU_SpeedLimitPer "RCU Speed Limit Percent 遥控速度限制百分比";
+CM_ SG_ 161 RCU_ErrRecv "RCU recieve datas error";
+CM_ SG_ 161 RCU_ErrLos "Signal weak，有遮挡或者遥控距离远的时候";
+CM_ SG_ 161 RCU_ErrProtect "RCU fault protection，因为有故障转换器抛的错误";
+CM_ SG_ 161 RCU_ErrCAN "CAN error，转换器CAN错误";
+CM_ SG_ 161 Rolling_counter_0xA1 "Rolling_counter_0xA1";
+CM_ SG_ 161 Checksum_0xA1 "Checksum_0xA1";
+CM_ SG_ 788 EPS_Angle_Speed "转向角速度50-450";
+CM_ SG_ 788 EPS_Target_Angle "请求角度(80°为0x0050 -80°为0xFFB0)";
+CM_ SG_ 788 EPS_Angle_Calibrate "请求对中：0x1 不请求对中：0x0";
+CM_ SG_ 788 EPS_CtrlEnable "EPS控制使能，1工作，0停止";
+CM_ BO_ 399 "前转向控制器反馈信号";
+CM_ SG_ 399 EPS_Fault_Code "BIT0=1 一级故障 BIT1=1 二级故障 BIT2=1 三级故障 BIT3=1 通讯故障";
+CM_ SG_ 399 EPS_Temperature "EPS ECU温度";
+CM_ SG_ 399 EPS_Angle_Spd "EPS角速度反馈";
+CM_ SG_ 399 EPS_Calibration_Status "1 EPS中位未标定，0 EPS中位已标定";
+CM_ SG_ 399 EPS_StrAngle_Act "EPS当前角度值";
+CM_ SG_ 399 EPS_Fault "1 ECU检测到故障，0 ECU未检测到故障";
+CM_ SG_ 399 EPS_Work_Mode_Status "EPS 1工作模式，0停止模式";
+CM_ SG_ 801 BMS_Fault_HallZeroRefF "霍尔零点故障";
+CM_ SG_ 801 BMS_Fault_ChargerStatus "充电枪状态";
+CM_ SG_ 801 BMS_Fault_HeatingModuleF "加热模块故障";
+CM_ SG_ 801 BMS_Fault_InternalFanF "内部温度故障";
+CM_ SG_ 801 BMS_Fault_SOHLowF "容量预警信息";
+CM_ SG_ 801 BMS_Fault_TempSensorF "温度检测故障";
+CM_ SG_ 801 BMS_Fault_WireF "采集线束故障";
+CM_ SG_ 801 BMS_Fault_ChargeUTF "充电温度过低";
+CM_ SG_ 801 BMS_Fault_ErrLevelF "最高故障等级";
+CM_ SG_ 801 BMS_Fault_ChaSysVolLowF "充电12V系统电压低";
+CM_ SG_ 801 BMS_Fault_DisSysVolLowF "放电12V系统电压低";
+CM_ SG_ 801 BMS_Fault_ExterComErrF "外部通信故障";
+CM_ SG_ 801 BMS_Fault_InterComErrF "内部通信故障";
+CM_ SG_ 801 BMS_Fault_PrechaFailF "预充电失败";
+CM_ SG_ 801 BMS_Fault_ContactorInvalid "主接触器失效";
+CM_ SG_ 801 BMS_Fault_ContactorAdhesion "主接触器粘连";
+CM_ SG_ 801 BMS_Fault_SOCLowF "电池容量低";
+CM_ SG_ 801 BMS_Fault_DisPowOverLimF "放电功率过大";
+CM_ SG_ 801 BMS_Fault_ChaPowOverLimF "充电功率过大";
+CM_ SG_ 801 BMS_Fault_InsuFadeF "绝缘异常";
+CM_ SG_ 801 BMS_Fault_DisCurrBigF "放电电流过大";
+CM_ SG_ 801 BMS_Fault_ChaCurrBigF "充电电流过大";
+CM_ SG_ 801 BMS_Fault_CVDevBigF "单体压差过大";
+CM_ SG_ 801 BMS_Fault_CVLowF "单体电压过低";
+CM_ SG_ 801 BMS_Fault_TemDevBigF "温度差过大";
+CM_ SG_ 801 BMS_Fault_TemLowF "温度过低";
+CM_ SG_ 801 BMS_Fault_TemHighF "温度过高";
+CM_ SG_ 801 BMS_Fault_CVHighF "单体电压过高";
+CM_ SG_ 801 BMS_Fault_InsuRes "高压绝缘电阻，FF无效";
+CM_ SG_ 800 BMS_Status_SysSenMinTNum "最小温度编号（从1开始）";
+CM_ SG_ 800 BMS_Status_SysSenMaxTNum "最大温度编号（从1开始）";
+CM_ SG_ 800 BMS_Status_SysSenMinTemp "最小温度";
+CM_ SG_ 800 BMS_Status_SysSenMaxTemp "最大温度";
+CM_ SG_ 800 BMS_Status_SysMinCVNum "最低单体电压编号（从1开始）";
+CM_ SG_ 800 BMS_Status_SysMaxCVNum "最高单体电压编号（从1开始）";
+CM_ SG_ 793 BMS_Status_SysDevCV "最高最低单体电压差";
+CM_ SG_ 793 BMS_Status_SysAveCV "平均单体电压";
+CM_ SG_ 793 BMS_Status_SysMinCV "最低单体电压";
+CM_ SG_ 793 BMS_Status_SysMaxCV "最高单体电压";
+CM_ SG_ 792 BMS_Status_Bus_Voltage "母线总电压";
+CM_ SG_ 792 BMS_Status_SysVoltage "系统电压";
+CM_ SG_ 792 BMS_Status_SysSOC "电池电量";
+CM_ SG_ 792 BMS_Status_Charge "0x40（64）主回路吸合，外部允许用电;0x61（97）充电中";
+CM_ SG_ 792 BMS_Status_Sys_Current "系统总电流，同母线电流";
+CM_ SG_ 792 BMS_Status_CANCount "0-255循环计数";
+CM_ SG_ 561 VCU_VehPwrup_Cmd "总电源上下电指令";
+CM_ SG_ 561 VCU_ADCUPwrup_Cmd "ADCU上下电指令";
+CM_ SG_ 561 VCU_MCUPwrup_Cmd "MCU上下电指令";
+CM_ SG_ 561 VCU_LEDPwrup_Cmd "LED上下电指令";
+CM_ SG_ 561 VCU_EPSPwrup_Cmd "EPS上下电指令";
+CM_ SG_ 561 VCU_CCUPwrup_Cmd "CCU上下电指令";
+CM_ SG_ 561 VCU_OBDPwrup_Cmd "OBD上下电指令";
+CM_ SG_ 561 VCU_WFCPwrup_Cmd "无线充电支路上下电指令";
+CM_ SG_ 561 VCU_DchagerPwrup_Cmd "直流充电支路上下电指令";
+CM_ SG_ 561 VCU_ParkEnable_Cmd "驻车使能指令";
+CM_ SG_ 561 CU_PwrCmd_RollCnt "循环计数";
+CM_ SG_ 561 CU_PwrCmd_Checksum "校验和";
+CM_ SG_ 562 PMU_VehPwrup_Sts "总电源上下电状态";
+CM_ SG_ 562 PMU_ADCUPwrup_Sts "ADCU上下电状态";
+CM_ SG_ 562 PMU_MCUPwrup_Sts "MCU上下电状态";
+CM_ SG_ 562 PMU_LEDPwrup_Sts "LED上下电状态";
+CM_ SG_ 562 PMU_EPSPwrup_Sts "EPS上下电状态";
+CM_ SG_ 562 PMU_CCUPwrup_Sts "CCU上下电状态";
+CM_ SG_ 562 PMU_OBDPwrup_Sts "OBD上下电状态";
+CM_ SG_ 562 PMU_WFCPwrup_Sts "无线充电支路上下电状态";
+CM_ SG_ 562 PMU_DchagerPwrup_Sts "直流充电支路上下电状态";
+CM_ SG_ 562 PMU_ParkEnable_Sts "驻车使能状态";
+CM_ SG_ 562 PMU_ESTOP_Sts "急停开关状态";
+CM_ SG_ 562 PMU_PowerOffReq "请求下电指令";
+CM_ SG_ 562 PMU_PwrStatus_RollCnt "循环计数";
+CM_ SG_ 562 PMU_PwrStatus_Checksum "校验和";
+CM_ SG_ 817 CCU_OneClkCleanCtrl "一键清扫作业请求";
+CM_ SG_ 817 CCU_OneClkDumpCtrl "一键倒垃圾作业请求";
+CM_ SG_ 817 CCU_WaterPumpCtrl "水泵开启";
+CM_ SG_ 817 CCU_FenderCtrl "前挡板控制请求";
+CM_ SG_ 817 CCU_VbrCtrl "振尘开启";
+CM_ SG_ 817 CCU_WaterAddCtrl "自动加水请求";
+CM_ SG_ 817 CCU_SweepingCtrl "清扫开启";
+CM_ SG_ 817 CCU_SideBrushLiftCtrl "边刷升降控制";
+CM_ SG_ 817 CCU_SideBrushExtendCtrl "边刷伸缩控制";
+CM_ SG_ 817 CCU_MainBrushLiftCtrl "主刷升降控制";
+CM_ SG_ 817 CCU_DustBinLiftCtrl "垃圾箱升降控制请求";
+CM_ SG_ 817 CCU_DustBinDumpCtrl "垃圾箱倾翻控制请求";
+CM_ SG_ 817 CCU_DustBinOpenCtrl "垃圾仓开启控制";
+CM_ SG_ 817 CCU_MainBrushCtrl "主刷电机控制";
+CM_ SG_ 817 CCU_SideBrushCtrl "边刷电机控制";
+CM_ SG_ 817 CCU_BlowerCtrl "风机控制";
+CM_ SG_ 817 CCU_HighWaterPumpCtrl "高压水泵控制（ＰＷ）";
+CM_ SG_ 817 CCU_VacuumCtrl "吸尘器控制（ＰＷ）";
+CM_ SG_ 817 CCU_DustBinCompressCtrl "垃圾压缩控制";
+CM_ SG_ 817 CCU_CleanValveCtrl "喷水电磁阀控制";
+CM_ SG_ 817 CCU_WashValveCtrl "清洗电磁阀控制";
+CM_ SG_ 817 CCU_HighPumpAdjustCtrl "高压水泵角度控制";
+CM_ SG_ 817 CCU_WashProbeAdjustCtrl "清洗探头控制";
+CM_ SG_ 817 CCU_CMD_RollCnt "循环计数";
+CM_ SG_ 817 CCU_CMD_CheckSum "校验和";
+CM_ SG_ 819 CCU_Remain_Water "水箱水位状态";
+CM_ SG_ 819 CCU_DustbinFull_St "垃圾满溢状态";
+CM_ SG_ 819 CCU_MainBrushPos_Act "主刷实际位置";
+CM_ SG_ 819 CCU_SideBrushLiftPos_Act "边刷升降实际位置";
+CM_ SG_ 819 CCU_SideBrushExtendPos_Act "边刷伸缩实际位置";
+CM_ SG_ 819 CCU_HighPumpAngle_Act "高压水泵实际角度";
+CM_ SG_ 819 CCU_WashProbeAdjust_Act "清洗探头实际位置";
+CM_ SG_ 819 CCU_Status1_RollCnt "循环计数";
+CM_ SG_ 819 CCU_Status1_CheckSum "校验和";
+CM_ SG_ 818 CCU_OneClkClean_Sts "一键清扫作业状态";
+CM_ SG_ 818 CCU_OneClkDump_Sts "一键倒垃圾作业状态";
+CM_ SG_ 818 CCU_WaterPump_Sts "水泵开启状态";
+CM_ SG_ 818 CCU_Fender_Sts "前挡板状态";
+CM_ SG_ 818 CCU_Vbr_Sts "振尘开启状态";
+CM_ SG_ 818 CCU_WaterAdd_Sts "自动加水状态";
+CM_ SG_ 818 CCU_Sweeping_Sts "清扫开启状态";
+CM_ SG_ 818 CCU_SideBrushLift_Sts "边刷升降状态";
+CM_ SG_ 818 CCU_SideBrushExtend_Sts "边刷伸缩状态";
+CM_ SG_ 818 CCU_MainBrushLift_Sts "主刷升降状态";
+CM_ SG_ 818 CCU_DustBinLift_Sts "垃圾箱升降状态";
+CM_ SG_ 818 CCU_DustBinDump_Sts "垃圾箱倾翻状态";
+CM_ SG_ 818 CCU_DustBinOpen_Sts "垃圾仓开启状态";
+CM_ SG_ 818 CCU_MainBrush_Sts "主刷电机状态";
+CM_ SG_ 818 CCU_SideBrush_Sts "边刷电机状态";
+CM_ SG_ 818 CCU_Blower_Sts "风机状态";
+CM_ SG_ 818 CCU_HighWaterPump_Sts "高压水泵状态（ＰＷ）";
+CM_ SG_ 818 CCU_Vacuum_Sts "吸尘器状态（ＰＷ）";
+CM_ SG_ 818 CCU_DustBinCompress_Sts "垃圾压缩状态";
+CM_ SG_ 818 CCU_CleanVale_Sts "喷水电磁阀状态";
+CM_ SG_ 818 CCU_WashVale_Sts "清洗电磁阀状态";
+CM_ SG_ 818 CCU_HighPumpAdjust_Sts "高压水泵角度状态";
+CM_ SG_ 818 CCU_WashProbeAdjust_Sts "清洗探头状态";
+CM_ SG_ 818 CCU_Status_RollCnt "循环计数";
+CM_ SG_ 818 CCU_Status_CheckSum "校验和";
+CM_ SG_ 820 CCU_ErrorCode_1 "CCU错误码bit0~bit7";
+CM_ SG_ 820 CCU_ErrorCode_2 "CCU错误码bit8~bit15";
+CM_ SG_ 820 CCU_ErrorCode_3 "CCU错误码bit16~bit23";
+CM_ SG_ 820 CCU_ErrorCode_4 "CCU错误码bit24~bit31";
+CM_ SG_ 820 CCU_ErrorCode_Status_Rollcnt "循环计数";
+CM_ SG_ 820 CCU_ErrorCode_Status_CheckSum "校验和";
+CM_ SG_ 278 ADCU_OneClkCleanCtrl "一键清扫作业请求";
+CM_ SG_ 278 ADCU_OneClkDumpCtrl "一键倒垃圾作业请求";
+CM_ SG_ 278 ADCU_WaterPumpCtrl "水泵开启";
+CM_ SG_ 278 ADCU_FenderCtrl "前挡板控制请求";
+CM_ SG_ 278 ADCU_VbrCtrl "振尘开启";
+CM_ SG_ 278 ADCU_WaterAddCtrl "自动加水请求";
+CM_ SG_ 278 ADCU_SweepingCtrl "清扫开启";
+CM_ SG_ 278 ADCU_SideBrushLiftCtrl "边刷升降控制";
+CM_ SG_ 278 ADCU_SideBrushExtendCtrl "边刷伸缩控制";
+CM_ SG_ 278 ADCU_MainBrushLiftCtrl "主刷升降控制";
+CM_ SG_ 278 ADCU_DustBinLiftCtrl "垃圾箱升降控制请求";
+CM_ SG_ 278 ADCU_DustBinDumpCtrl "垃圾箱倾翻控制请求";
+CM_ SG_ 278 ADCU_DustBinOpenCtrl "垃圾仓开启控制";
+CM_ SG_ 278 ADCU_MainBrushCtrl "主刷电机控制";
+CM_ SG_ 278 ADCU_SideBrushCtrl "边刷电机控制";
+CM_ SG_ 278 ADCU_BlowerCtrl "风机控制";
+CM_ SG_ 278 ADCU_HighWaterPumpCtrl "高压水泵控制（ＰＷ）";
+CM_ SG_ 278 ADCU_VacuumCtrl "吸尘器控制（ＰＷ）";
+CM_ SG_ 278 ADCU_DustBinCompressCtrl "垃圾压缩控制";
+CM_ SG_ 278 ADCU_CleanValveCtrl "喷水电磁阀控制";
+CM_ SG_ 278 ADCU_WashValveCtrl "清洗电磁阀控制";
+CM_ SG_ 278 ADCU_HighPumpAdjustCtrl "高压水泵角度控制";
+CM_ SG_ 278 ADCU_WashProbeAdjustCtrl "清洗探头控制";
+CM_ SG_ 278 ADCU_Sweeper_RollCnt "循环计数";
+CM_ SG_ 278 ADCU_Sweeper_CheckSum "校验和";
+CM_ SG_ 277 ADCU_HeadLamp_Cmd "前大灯开启";
+CM_ SG_ 277 ADCU_DblFlashLamp_Cmd "双闪开启";
+CM_ SG_ 277 ADCU_TurnLLamp_Cmd "左转灯开启";
+CM_ SG_ 277 ADCU_TurnRLamp_Cmd "右转灯开启";
+CM_ SG_ 277 ADCU_BackLamp_Cmd "倒车灯开启";
+CM_ SG_ 277 ADCU_Buzzer_Cmd "警示蜂鸣器开启";
+CM_ SG_ 277 ADCU_Horn_Cmd "喇叭开启";
+CM_ SG_ 277 ADCU_WarningLamp_Cmd "作业警示灯开启";
+CM_ SG_ 277 ADCU_BrkLamp_Cmd "制动灯开启";
+CM_ SG_ 277 ADCU_FillLamp_Cmd "补光灯开启";
+CM_ SG_ 277 ADCU_WidthLamp_Cmd "示廓灯开启";
+CM_ SG_ 277 ADCU_RearHeadLamp_Cmd "后大灯开启";
+CM_ SG_ 277 ADCU_LampCmd_RollCnt "循环计数";
+CM_ SG_ 277 ADCU_LampCmd_Checksum "校验和";
+CM_ SG_ 276 ADCU_DrvingMode "目标驾驶模式";
+CM_ SG_ 276 ADCU_Drv_CtrlMode "驱动控制模式选择";
+CM_ SG_ 276 ADCU_Drv_TgtGear "目标档位";
+CM_ SG_ 276 ADCU_Drv_TgtPedpos "目标油门大小 考虑电机反拖制动功能，油门支持负目标值";
+CM_ SG_ 276 ADCU_Drv_TgtVehSpd "目标车速";
+CM_ SG_ 276 ADCU_Drv_TgtVehAccSpd "当前目标加速度大小";
+CM_ SG_ 276 ADCU_Drv_VehSpdLimit "限速";
+CM_ SG_ 276 ADCU_DrvCmd0_RollCnt "循环计数";
+CM_ SG_ 276 ADCU_DrvCmd0_Checksum "校验和";
+CM_ SG_ 275 ADCU_Str_WorkMode "转向工作模式";
+CM_ SG_ 275 ADCU_Str_TgtAngle "目标前轮转角";
+CM_ SG_ 275 ADCU_Str_TgtAngleSpd "目标转向角速度";
+CM_ SG_ 275 ADCU_Str_Centering "角度对中";
+CM_ SG_ 275 ADCU_StrCmd_RollCnt "循环计数";
+CM_ SG_ 275 ADCU_StrCmd_Checksum "校验和";
+CM_ SG_ 273 ADCU_Brk_CtrlMode "制动控制模式选择";
+CM_ SG_ 273 ADCU_Brk_ParkEnable "驻车使能";
+CM_ SG_ 273 ADCU_Brk_TgtPedpos "目标制动踏板开度";
+CM_ SG_ 273 ADCU_Brk_TgtPress "目标制动压力";
+CM_ SG_ 273 ADCU_Brk_TgtAccSpd "目标制动减速度(预留)";
+CM_ SG_ 273 ADCU_BrkCmd_RollCnt "循环计数";
+CM_ SG_ 273 ADCU_BrkCmd_Checksum "校验和";
+CM_ SG_ 279 ADCU_VehPwrup_Cmd "总电源上下电指令";
+CM_ SG_ 279 ADCU_EmgBrkReq "硬急停请求";
+CM_ SG_ 279 ADCU_SoftEmgBrkReq "软急停请求";
+CM_ SG_ 279 ADCU_RmtPwrOnReq "远程上电请求";
+CM_ SG_ 279 ADCU_CrashFree "清除碰撞指令";
+CM_ SG_ 279 ADCU_ApvPwrOFF "同意下电指令";
+CM_ SG_ 279 ADCU_EndChgReq "结束充电指令";
+CM_ SG_ 279 ADCU_WLChgWakeUp_Cmd "无线充电唤醒控制指令";
+CM_ SG_ 279 ADCU_PwrCmd_RollCnt "循环计数";
+CM_ SG_ 279 ADCU_PwrCmd_Checksum "校验和";
+CM_ SG_ 536 VCU_Remain_Water "水箱水位状态";
+CM_ SG_ 536 VCU_DustbinFull_St "垃圾满溢状态";
+CM_ SG_ 536 VCU_MainBrushPos_St "主刷位置状态";
+CM_ SG_ 536 VCU_SideBrushLiftPos_St "边刷升降位置状态";
+CM_ SG_ 536 VCU_SideBrushExtendPos_St "边刷伸缩位置状态";
+CM_ SG_ 536 VCU_HighPumpAngle_St "高压水泵角度状态";
+CM_ SG_ 536 VCU_WashProbeAdjust_St "清洗探头位置状态";
+CM_ SG_ 536 VCU_SweepStatus2_RollCnt "循环计数";
+CM_ SG_ 536 VCU_SweepStatus2_CheckSum "校验和";
+CM_ SG_ 534 VCU_OneClkClean_Sts "一键清扫作业状态";
+CM_ SG_ 534 VCU_OneClkDump_Sts "一键倒垃圾作业状态";
+CM_ SG_ 534 VCU_WaterPump_Sts "水泵开启状态";
+CM_ SG_ 534 VCU_Fender_Sts "前挡板状态";
+CM_ SG_ 534 VCU_Vbr_Sts "振尘开启状态";
+CM_ SG_ 534 VCU_WaterAdd_Sts "自动加水状态";
+CM_ SG_ 534 VCU_Sweeping_Sts "清扫开启状态";
+CM_ SG_ 534 VCU_SideBrushLift_Sts "边刷升降状态";
+CM_ SG_ 534 VCU_SideBrushExtend_Sts "边刷伸缩状态";
+CM_ SG_ 534 VCU_MainBrushLift_Sts "主刷升降状态";
+CM_ SG_ 534 VCU_DustBinLift_Sts "垃圾箱升降状态";
+CM_ SG_ 534 VCU_DustBinDump_Sts "垃圾箱倾翻状态";
+CM_ SG_ 534 VCU_DustBinOpen_Sts "垃圾仓开启状态";
+CM_ SG_ 534 VCU_MainBrush_Sts "主刷电机状态";
+CM_ SG_ 534 VCU_SideBrush_Sts "边刷电机状态";
+CM_ SG_ 534 VCU_Blower_Sts "风机状态";
+CM_ SG_ 534 VCU_HighWaterPump_Sts "高压水泵状态（ＰＷ）";
+CM_ SG_ 534 VCU_Vacuum_Sts "吸尘器状态（ＰＷ）";
+CM_ SG_ 534 VCU_DustBinCompress_Sts "垃圾压缩状态";
+CM_ SG_ 534 VCU_CleanVale_Sts "喷水电磁阀状态";
+CM_ SG_ 534 VCU_WashVale_Sts "清洗电磁阀状态";
+CM_ SG_ 534 VCU_HighPumpAdjust_Sts "高压水泵角度状态";
+CM_ SG_ 534 VCU_WashProbeAdjust_Sts "清洗探头状态";
+CM_ SG_ 534 VCU_SweeperSts_RollCnt "循环计数";
+CM_ SG_ 534 VCU_SweeperSts_CheckSum "校验和";
+CM_ SG_ 640 VCU_VehPwrup_Sts "总电源上下电状态";
+CM_ SG_ 640 VCU_WLChgWakeUp_Sts "无线充电唤醒状态";
+CM_ SG_ 640 VCU_PwrSts_RollCnt "循环计数";
+CM_ SG_ 640 VCU_PwrSts_Checksum "校验和";
+CM_ SG_ 533 VCU_HeadLamp_Sts "前大灯开启状态";
+CM_ SG_ 533 VCU_DblFlashLamp_Sts "双闪开启状态";
+CM_ SG_ 533 VCU_TurnLLamp_Sts "左转灯开启状态";
+CM_ SG_ 533 VCU_TurnRLamp_Sts "右转灯开启状态";
+CM_ SG_ 533 VCU_ReverseLamp_Sts "倒车灯开启状态";
+CM_ SG_ 533 VCU_Buzzer_Sts "警示蜂鸣器开启状态";
+CM_ SG_ 533 VCU_Horn_Sts "喇叭开启状态";
+CM_ SG_ 533 VCU_WarningLamp_Sts "作业警示灯开启状态";
+CM_ SG_ 533 VCU_BrakeLamp_Sts "制动灯开启状态";
+CM_ SG_ 533 VCU_FillLamp_Sts "补光灯开启状态";
+CM_ SG_ 533 VCU_WidthLamp_Sts "示廓灯开启状态";
+CM_ SG_ 533 VCU_RearHeadLamp_Sts "后大灯开启状态";
+CM_ SG_ 533 VCU_LampStatus_RollCnt "循环计数";
+CM_ SG_ 533 VCU_LampStatus_Checksum "校验和";
+CM_ SG_ 532 VCU_DrvingMode "实际驾驶模式";
+CM_ SG_ 532 VCU_Drv_CtrlMode "驱动控制模式";
+CM_ SG_ 532 VCU_Drv_Gear "实际档位";
+CM_ SG_ 532 VCU_Drv_ActPedpos "实际油门大小 ";
+CM_ SG_ 532 VCU_Drv_ActVehSpd "实际车速";
+CM_ SG_ 532 VCU_Drv_ActVehAcc "实际加速度大小";
+CM_ SG_ 532 VCU_Drv_VehSpdLimit "限速";
+CM_ SG_ 532 VCU_DrvStatus_RollCnt "循环计数";
+CM_ SG_ 532 VCU_DrvStatus_Checksum "校验和";
+CM_ SG_ 531 VCU_Str_WorkMode "转向工作模式";
+CM_ SG_ 531 VCU_Str_Angle "实际前轮转角";
+CM_ SG_ 531 VCU_Str_AngleSpd "实际转向角速度";
+CM_ SG_ 531 VCU_Str_CenteringSts "角度对中状态";
+CM_ SG_ 531 VCU_StrStatus_RollCnt "循环计数";
+CM_ SG_ 531 VCU_StrStatus_Checksum "校验和";
+CM_ SG_ 529 VCU_Brk_CtrlModeSts "制动控制模式";
+CM_ SG_ 529 VCU_Brk_ParkEnableSts "驻车使能状态";
+CM_ SG_ 529 VCU_Brk_ActPedpos "实际制动踏板开度";
+CM_ SG_ 529 VCU_Brk_ActPress "实际制动压力";
+CM_ SG_ 529 VCU_Brk_Acc "制动减速度(预留)";
+CM_ SG_ 529 VCU_BrkStatus_RollCnt "循环计数";
+CM_ SG_ 529 VCU_BrkStatus_Checksum "校验和";
+CM_ SG_ 512 VCU_SoftwareVerNum "Software Version Number 软件版本号";
+CM_ SG_ 512 VCU_HardwareVerNum "Hardware Version Number 硬件版本号";
+CM_ SG_ 512 VCU_BatSoc "Battery Soc 电池容量";
+CM_ SG_ 512 VCU_RemainWater "Remain water 剩余水量";
+CM_ SG_ 512 VCU_RemainTrashBin "Remain trash bin 垃圾仓余量";
+CM_ SG_ 512 VCU_Info_RollCnt "RollingCounter 循环计数";
+CM_ SG_ 512 VCU_Info_Checksum "CheckSum 校验和";
+CM_ SG_ 576 VCU_Veh_RunMode "车辆工作模式";
+CM_ SG_ 576 VCU_Veh_RunLockRsn "车辆行驶控制锁定原因";
+CM_ SG_ 576 VCU_Veh_ErrLevel "整车故障等级";
+CM_ SG_ 576 VCU_FtCrash_St "前触边碰撞状态";
+CM_ SG_ 576 VCU_RrCrash_St "后触边碰撞状态";
+CM_ SG_ 576 VCU_VehEmgcySwh_St "急停开关状态";
+CM_ SG_ 576 VCU_LvBat_LowVolt "VCU供电欠压";
+CM_ SG_ 576 VCU_Bat_LowSOC "动力电池电量过低";
+CM_ SG_ 576 VCU_BMS_ErrLevel "动力电池故障等级";
+CM_ SG_ 576 VCU_MCU_ErrLevel "MCU故障等级";
+CM_ SG_ 576 VCU_EHB_ErrLevel "EHB故障等级";
+CM_ SG_ 576 VCU_EPS_ErrLevel "EPS故障等级";
+CM_ SG_ 576 VCU_EPB_ErrLevel "EPB故障等级";
+CM_ SG_ 576 VCU_CCU_ErrLevel "CCU故障等级";
+CM_ SG_ 576 VCU_DumpSysErrLvl "倾倒系统故障等级";
+CM_ SG_ 576 VCU_CleanSysErrLvl "清扫系统故障等级";
+CM_ SG_ 576 VCU_CANBusOff_St "CAN总线故障状态";
+CM_ SG_ 576 VCU_SegCodeDispOffline_Err "段码屏离线故障";
+CM_ SG_ 576 VCU_LEDDispOffline_Err "LED点阵屏离线故障";
+CM_ SG_ 576 VCU_ChgInhibit_Flt "三级故障禁止充电标志位";
+CM_ SG_ 576 VCU_PwrUpInhibit_Flt "三级故障禁止上电标志位";
+CM_ SG_ 576 VCU_ADEmgcyStop_St "远程车辆急停状态";
+CM_ SG_ 576 VCU_VehEmgcyStop_Reason "车辆急停原因";
+CM_ SG_ 576 VCU_PMU_ErrLevel "PMU故障等级";
+CM_ SG_ 576 VCU_RCU_ErrLevel "RCU故障等级";
+CM_ SG_ 576 VCU_Veh_ErrCode "整车故障码";
+CM_ SG_ 576 VCU_VehSt_RollCnt "循环计数";
+CM_ SG_ 576 VCU_VehSt_Checksum "校验和";
+CM_ SG_ 670 GPSSystAtv "Global Position System Active GPS工作状态";
+CM_ SG_ 670 Time_second "Time_second 秒";
+CM_ SG_ 670 Time_Minute "Time_Minute 分";
+CM_ SG_ 670 Time_Hour "Time_Hour 小时";
+CM_ SG_ 670 Time_Day "Time_Day 日";
+CM_ SG_ 670 Time_Month "Time_Month 月";
+CM_ SG_ 670 Time_Year "Time_Year 年";
+CM_ SG_ 767 Board_Ids "Board ids 板卡id";
+CM_ SG_ 767 Error_Code "Error code 故障码";
+
+BA_DEF_ EV_  "GenEnvIsGeneratedDsp" ENUM  "No","Yes";
+BA_DEF_ EV_  "GenEnvAutoGenCtrl" ENUM  "No","Yes";
+BA_DEF_ EV_  "GenEnvMsgOffset" INT 0 2147483647;
+BA_DEF_ EV_  "GenEnvMsgName" STRING ;
+BA_DEF_ EV_  "GenEnvIsGeneratedSnd" ENUM  "No","Yes";
+BA_DEF_ SG_  "GenSigStartValue" FLOAT 0 1215752192;
+BA_DEF_ SG_  "GenSigTimeoutValue" FLOAT 0 1215752192;
+BA_DEF_ SG_  "GenSigInactiveValue" FLOAT 0 1215752192;
+BA_DEF_ SG_  "GenSigMinValue" INT 0 2147483647;
+BA_DEF_ SG_  "GenSigMaxValue" INT 0 2147483647;
+BA_DEF_ SG_  "GenSigSendType" ENUM "Cycle", "Cyclic", "cycle"; 
+BA_DEF_ SG_  "GenSigEnvVarType" ENUM  "int","float","undef";
+BA_DEF_ BO_  "GenMsgDelayTime" INT 0 0;
+BA_DEF_ BO_  "GenMsgNrOfRepetition" INT 0 0;
+BA_DEF_ BO_  "GenMsgCycleTimeFast" INT 0 0;
+BA_DEF_ BO_  "NmMessage" ENUM "No", "Yes"; 
+BA_DEF_ BO_  "GenMsgCycleTime" INT 0 65535;
+BA_DEF_ BO_  "VFrameFormat" ENUM  "StandardCAN","ExtendedCAN","reserved","J1939PG","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","reserved","StandardCAN_FD","ExtendedCAN_FD";
+BA_DEF_ BO_  "GenMsgSendType" ENUM "Cycle", "Cyclic", "cycle"; 
+BA_DEF_ BU_  "NmStationAddress"  HEX 0 127;
+BA_DEF_ BU_  "CANoeStartDelay" INT 0 0;
+BA_DEF_ BU_  "CANoeDrift" INT 0 0;
+BA_DEF_ BU_  "CANoeJitterMin" INT 0 0;
+BA_DEF_ BU_  "CANoeJitterMax" INT 0 0;
+BA_DEF_ BU_  "ECU" STRING ;
+BA_DEF_ BU_  "NodeLayerModules" STRING ;
+BA_DEF_  "BusType" STRING ;
+BA_DEF_  "GenEnvVarPrefix" STRING ;
+BA_DEF_  "GenEnvVarEndingSnd" STRING ;
+BA_DEF_  "GenEnvVarEndingDsp" STRING ;
+BA_DEF_  "DBName" STRING ;
+BA_DEF_ BO_  "_Cdb_Sc_CTm_FAW_v3_0" INT 0 0;
+BA_DEF_ BO_  "_Cdb_Sc_CTm_FAW_v2_3" INT 0 0;
+BA_DEF_ BO_  "_Cdb_Sc_CTm_FAW_v3_1" INT 0 0;
+BA_DEF_ BO_  "_Cdb_Sc_CTm_FAW_v2_2" INT 0 0;
+BA_DEF_ BO_  "_Cdb_Sc_CTm_FAW_v2_1" INT 0 0;
+BA_DEF_DEF_  "GenMsgDelayTime" 0;
+BA_DEF_DEF_  "GenMsgNrOfRepetition" 0;
+BA_DEF_DEF_  "GenMsgCycleTimeFast" 0;
+BA_DEF_DEF_  "NmStationAddress" 0;
+BA_DEF_DEF_  "NmMessage" "No"; 
+BA_DEF_DEF_  "GenEnvIsGeneratedDsp" "No";
+BA_DEF_DEF_  "GenEnvAutoGenCtrl" "No";
+BA_DEF_DEF_  "GenEnvMsgOffset" 0;
+BA_DEF_DEF_  "GenEnvMsgName" "";
+BA_DEF_DEF_  "GenEnvIsGeneratedSnd" "No";
+BA_DEF_DEF_  "GenSigStartValue" 0;
+BA_DEF_DEF_  "GenSigTimeoutValue" 0;
+BA_DEF_DEF_  "GenSigInactiveValue" 0;
+BA_DEF_DEF_  "GenSigMinValue" 0;
+BA_DEF_DEF_  "GenSigMaxValue" 0;
+BA_DEF_DEF_  "GenSigSendType" "Cycle";
+BA_DEF_DEF_  "GenSigEnvVarType" "undef"; 
+BA_DEF_DEF_  "GenMsgCycleTime" 0;
+BA_DEF_DEF_  "GenMsgSendType" "Cycle";
+BA_DEF_DEF_  "CANoeStartDelay" 0;
+BA_DEF_DEF_  "CANoeDrift" 0;
+BA_DEF_DEF_  "CANoeJitterMin" 0;
+BA_DEF_DEF_  "CANoeJitterMax" 0;
+BA_DEF_DEF_  "ECU" "";
+BA_DEF_DEF_  "NodeLayerModules" "";
+BA_DEF_DEF_  "BusType" "CAN"; 
+BA_DEF_DEF_  "GenEnvVarPrefix" "PE"; 
+BA_DEF_DEF_  "GenEnvVarEndingSnd" "_Ps"; 
+BA_DEF_DEF_  "GenEnvVarEndingDsp" "_Pd"; 
+BA_DEF_DEF_  "DBName" "";
+BA_DEF_DEF_  "_Cdb_Sc_CTm_FAW_v3_0" 0;
+BA_DEF_DEF_  "_Cdb_Sc_CTm_FAW_v2_3" 0;
+BA_DEF_DEF_  "_Cdb_Sc_CTm_FAW_v3_1" 0;
+BA_DEF_DEF_  "_Cdb_Sc_CTm_FAW_v2_2" 0;
+BA_DEF_DEF_  "_Cdb_Sc_CTm_FAW_v2_1" 0;
+BA_DEF_DEF_  "VFrameFormat" "StandardCAN";
+
+BA_ "DBName" "CanMatrix";
+BA_ "GenMsgCycleTime" BO_ 369 50; 
+BA_ "GenSigMaxValue" SG_ 369 Ready_State 1; 
+BA_ "GenSigSendType" SG_ 369 Ready_State 1; 
+BA_ "GenSigMaxValue" SG_ 369 Gear 3; 
+BA_ "GenSigSendType" SG_ 369 Gear 1; 
+BA_ "GenSigMaxValue" SG_ 369 Motor_Speed 65535; 
+BA_ "GenSigSendType" SG_ 369 Motor_Speed 1; 
+BA_ "GenMsgCycleTime" BO_ 371 100; 
+BA_ "GenSigMaxValue" SG_ 371 MCU_Stat_BatteryVol 65535; 
+BA_ "GenSigSendType" SG_ 371 MCU_Stat_BatteryVol 1; 
+BA_ "GenSigMaxValue" SG_ 371 MCU_Stat_Current 65535; 
+BA_ "GenSigSendType" SG_ 371 MCU_Stat_Current 1; 
+BA_ "GenSigMaxValue" SG_ 371 MCU_Max_Current 65535; 
+BA_ "GenSigSendType" SG_ 371 MCU_Max_Current 1; 
+BA_ "GenSigMaxValue" SG_ 371 MotTmp 255; 
+BA_ "GenSigSendType" SG_ 371 MotTmp 1; 
+BA_ "GenSigMaxValue" SG_ 371 MosTmp 255; 
+BA_ "GenSigSendType" SG_ 371 MosTmp 1; 
+BA_ "GenMsgCycleTime" BO_ 373 500; 
+BA_ "GenSigMaxValue" SG_ 373 Fault_code 65535; 
+BA_ "GenSigSendType" SG_ 373 Fault_code 1; 
+BA_ "GenMsgCycleTime" BO_ 370 50; 
+BA_ "GenSigMaxValue" SG_ 370 Ready_State 1; 
+BA_ "GenSigSendType" SG_ 370 Ready_State 1; 
+BA_ "GenSigMaxValue" SG_ 370 Gear 3; 
+BA_ "GenSigSendType" SG_ 370 Gear 1; 
+BA_ "GenSigMaxValue" SG_ 370 Motor_Speed 32767; 
+BA_ "GenSigSendType" SG_ 370 Motor_Speed 1; 
+BA_ "GenMsgCycleTime" BO_ 372 100; 
+BA_ "GenSigMaxValue" SG_ 372 MCU_Stat_BatteryVol 65535; 
+BA_ "GenSigSendType" SG_ 372 MCU_Stat_BatteryVol 1; 
+BA_ "GenSigMaxValue" SG_ 372 MCU_Stat_Current 65535; 
+BA_ "GenSigSendType" SG_ 372 MCU_Stat_Current 1; 
+BA_ "GenSigMaxValue" SG_ 372 MCU_Max_Current 65535; 
+BA_ "GenSigSendType" SG_ 372 MCU_Max_Current 1; 
+BA_ "GenSigMaxValue" SG_ 372 MotTmp 255; 
+BA_ "GenSigSendType" SG_ 372 MotTmp 1; 
+BA_ "GenSigMaxValue" SG_ 372 MosTmp 255; 
+BA_ "GenSigSendType" SG_ 372 MosTmp 1; 
+BA_ "GenMsgCycleTime" BO_ 374 500; 
+BA_ "GenSigMaxValue" SG_ 374 Fault_code 65535; 
+BA_ "GenSigSendType" SG_ 374 Fault_code 1; 
+BA_ "GenMsgCycleTime" BO_ 337 10; 
+BA_ "GenSigMaxValue" SG_ 337 WorkingMode 3; 
+BA_ "GenSigSendType" SG_ 337 WorkingMode 1; 
+BA_ "GenSigMaxValue" SG_ 337 GearSetting 3; 
+BA_ "GenSigSendType" SG_ 337 GearSetting 1; 
+BA_ "GenSigMaxValue" SG_ 337 Target_Torque 32767; 
+BA_ "GenSigSendType" SG_ 337 Target_Torque 1; 
+BA_ "GenSigMaxValue" SG_ 337 Target_Speed 32767; 
+BA_ "GenSigSendType" SG_ 337 Target_Speed 1; 
+BA_ "GenSigMaxValue" SG_ 337 MCU_Cmd_RollCnt 15; 
+BA_ "GenSigSendType" SG_ 337 MCU_Cmd_RollCnt 1; 
+BA_ "GenSigMaxValue" SG_ 337 MCU_Cmd_Checksum 255; 
+BA_ "GenSigSendType" SG_ 337 MCU_Cmd_Checksum 1; 
+BA_ "GenMsgCycleTime" BO_ 338 10; 
+BA_ "GenSigMaxValue" SG_ 338 WorkingMode 3; 
+BA_ "GenSigSendType" SG_ 338 WorkingMode 1; 
+BA_ "GenSigMaxValue" SG_ 338 GearSetting 3; 
+BA_ "GenSigSendType" SG_ 338 GearSetting 1; 
+BA_ "GenSigMaxValue" SG_ 338 Target_Torque 32767; 
+BA_ "GenSigSendType" SG_ 338 Target_Torque 1; 
+BA_ "GenSigMaxValue" SG_ 338 Target_Speed 32767; 
+BA_ "GenSigSendType" SG_ 338 Target_Speed 1; 
+BA_ "GenSigMaxValue" SG_ 338 MCU_Cmd_RollCnt 15; 
+BA_ "GenSigSendType" SG_ 338 MCU_Cmd_RollCnt 1; 
+BA_ "GenSigMaxValue" SG_ 338 MCU_Cmd_Checksum 255; 
+BA_ "GenSigSendType" SG_ 338 MCU_Cmd_Checksum 1; 
+BA_ "GenMsgCycleTime" BO_ 161 20; 
+BA_ "GenSigMaxValue" SG_ 161 RCU_ACCPer 255; 
+BA_ "GenSigSendType" SG_ 161 RCU_ACCPer 1; 
+BA_ "GenSigMaxValue" SG_ 161 RCU_SterPer 255; 
+BA_ "GenSigSendType" SG_ 161 RCU_SterPer 1; 
+BA_ "GenSigMaxValue" SG_ 161 RCU_GearMod 3; 
+BA_ "GenSigSendType" SG_ 161 RCU_GearMod 1; 
+BA_ "GenSigMaxValue" SG_ 161 RCU_OneClkDumpCtrl 3; 
+BA_ "GenSigSendType" SG_ 161 RCU_OneClkDumpCtrl 1; 
+BA_ "GenSigMaxValue" SG_ 161 RCU_OneClkCleanCtrl 3; 
+BA_ "GenSigSendType" SG_ 161 RCU_OneClkCleanCtrl 1; 
+BA_ "GenSigMaxValue" SG_ 161 RCU_FenderOpenReq 1; 
+BA_ "GenSigSendType" SG_ 161 RCU_FenderOpenReq 1; 
+BA_ "GenSigMaxValue" SG_ 161 RCU_VibrateReq 1; 
+BA_ "GenSigSendType" SG_ 161 RCU_VibrateReq 1; 
+BA_ "GenSigMaxValue" SG_ 161 RCU_CtrlModReq 1; 
+BA_ "GenSigSendType" SG_ 161 RCU_CtrlModReq 1; 
+BA_ "GenSigMaxValue" SG_ 161 RCU_EPB_Enable 1; 
+BA_ "GenSigSendType" SG_ 161 RCU_EPB_Enable 1; 
+BA_ "GenSigMaxValue" SG_ 161 RCU_WaterPump 3; 
+BA_ "GenSigSendType" SG_ 161 RCU_WaterPump 1; 
+BA_ "GenSigMaxValue" SG_ 161 RCU_SpeedLimitPer 100; 
+BA_ "GenSigSendType" SG_ 161 RCU_SpeedLimitPer 1; 
+BA_ "GenSigMaxValue" SG_ 161 RCU_ErrRecv 1; 
+BA_ "GenSigSendType" SG_ 161 RCU_ErrRecv 1; 
+BA_ "GenSigMaxValue" SG_ 161 RCU_ErrLos 1; 
+BA_ "GenSigSendType" SG_ 161 RCU_ErrLos 1; 
+BA_ "GenSigMaxValue" SG_ 161 RCU_ErrProtect 1; 
+BA_ "GenSigSendType" SG_ 161 RCU_ErrProtect 1; 
+BA_ "GenSigMaxValue" SG_ 161 RCU_ErrCAN 1; 
+BA_ "GenSigSendType" SG_ 161 RCU_ErrCAN 1; 
+BA_ "GenSigMaxValue" SG_ 161 Rolling_counter_0xA1 15; 
+BA_ "GenSigSendType" SG_ 161 Rolling_counter_0xA1 1; 
+BA_ "GenSigMaxValue" SG_ 161 Checksum_0xA1 255; 
+BA_ "GenSigSendType" SG_ 161 Checksum_0xA1 1; 
+BA_ "GenMsgCycleTime" BO_ 788 20; 
+BA_ "GenSigMaxValue" SG_ 788 EPS_Angle_Speed 65535; 
+BA_ "GenSigSendType" SG_ 788 EPS_Angle_Speed 1; 
+BA_ "GenSigMaxValue" SG_ 788 EPS_Target_Angle 65535; 
+BA_ "GenSigSendType" SG_ 788 EPS_Target_Angle 1; 
+BA_ "GenSigMaxValue" SG_ 788 EPS_Angle_Calibrate 1; 
+BA_ "GenSigSendType" SG_ 788 EPS_Angle_Calibrate 1; 
+BA_ "GenSigMaxValue" SG_ 788 EPS_CtrlEnable 1; 
+BA_ "GenSigSendType" SG_ 788 EPS_CtrlEnable 1; 
+BA_ "GenMsgCycleTime" BO_ 399 500; 
+BA_ "GenSigMaxValue" SG_ 399 EPS_Iq 255; 
+BA_ "GenSigSendType" SG_ 399 EPS_Iq 1; 
+BA_ "GenSigMaxValue" SG_ 399 EPS_Fault_Code 255; 
+BA_ "GenSigSendType" SG_ 399 EPS_Fault_Code 1; 
+BA_ "GenSigMaxValue" SG_ 399 EPS_Temperature 255; 
+BA_ "GenSigSendType" SG_ 399 EPS_Temperature 1; 
+BA_ "GenSigMaxValue" SG_ 399 EPS_Angle_Spd 65535; 
+BA_ "GenSigSendType" SG_ 399 EPS_Angle_Spd 1; 
+BA_ "GenSigMaxValue" SG_ 399 EPS_Calibration_Status 1; 
+BA_ "GenSigSendType" SG_ 399 EPS_Calibration_Status 1; 
+BA_ "GenSigMaxValue" SG_ 399 EPS_StrAngle_Act 65535; 
+BA_ "GenSigSendType" SG_ 399 EPS_StrAngle_Act 1; 
+BA_ "GenSigMaxValue" SG_ 399 EPS_Fault 1; 
+BA_ "GenSigSendType" SG_ 399 EPS_Fault 1; 
+BA_ "GenSigMaxValue" SG_ 399 EPS_Work_Mode_Status 1; 
+BA_ "GenSigSendType" SG_ 399 EPS_Work_Mode_Status 1; 
+BA_ "GenMsgCycleTime" BO_ 801 400; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_HallZeroRefF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_HallZeroRefF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_ChargerStatus 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_ChargerStatus 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_HeatingModuleF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_HeatingModuleF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_InternalFanF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_InternalFanF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_SOHLowF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_SOHLowF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_TempSensorF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_TempSensorF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_WireF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_WireF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_ChargeUTF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_ChargeUTF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_ErrLevelF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_ErrLevelF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_ChaSysVolLowF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_ChaSysVolLowF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_DisSysVolLowF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_DisSysVolLowF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_ExterComErrF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_ExterComErrF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_InterComErrF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_InterComErrF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_PrechaFailF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_PrechaFailF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_ContactorInvalid 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_ContactorInvalid 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_ContactorAdhesion 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_ContactorAdhesion 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_SOCLowF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_SOCLowF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_DisPowOverLimF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_DisPowOverLimF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_ChaPowOverLimF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_ChaPowOverLimF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_InsuFadeF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_InsuFadeF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_DisCurrBigF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_DisCurrBigF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_ChaCurrBigF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_ChaCurrBigF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_CVDevBigF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_CVDevBigF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_CVLowF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_CVLowF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_TemDevBigF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_TemDevBigF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_TemLowF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_TemLowF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_TemHighF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_TemHighF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_CVHighF 3; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_CVHighF 1; 
+BA_ "GenSigMaxValue" SG_ 801 BMS_Fault_InsuRes 255; 
+BA_ "GenSigSendType" SG_ 801 BMS_Fault_InsuRes 1; 
+BA_ "GenMsgCycleTime" BO_ 800 400; 
+BA_ "GenSigMaxValue" SG_ 800 BMS_Status_SysSenMinTNum 255; 
+BA_ "GenSigSendType" SG_ 800 BMS_Status_SysSenMinTNum 1; 
+BA_ "GenSigMaxValue" SG_ 800 BMS_Status_SysSenMaxTNum 255; 
+BA_ "GenSigSendType" SG_ 800 BMS_Status_SysSenMaxTNum 1; 
+BA_ "GenSigMaxValue" SG_ 800 BMS_Status_SysSenMinTemp 65535; 
+BA_ "GenSigSendType" SG_ 800 BMS_Status_SysSenMinTemp 1; 
+BA_ "GenSigMaxValue" SG_ 800 BMS_Status_SysSenMaxTemp 65535; 
+BA_ "GenSigSendType" SG_ 800 BMS_Status_SysSenMaxTemp 1; 
+BA_ "GenSigMaxValue" SG_ 800 BMS_Status_SysMinCVNum 255; 
+BA_ "GenSigSendType" SG_ 800 BMS_Status_SysMinCVNum 1; 
+BA_ "GenSigMaxValue" SG_ 800 BMS_Status_SysMaxCVNum 255; 
+BA_ "GenSigSendType" SG_ 800 BMS_Status_SysMaxCVNum 1; 
+BA_ "GenMsgCycleTime" BO_ 793 400; 
+BA_ "GenSigMaxValue" SG_ 793 BMS_Status_SysDevCV 65535; 
+BA_ "GenSigSendType" SG_ 793 BMS_Status_SysDevCV 1; 
+BA_ "GenSigMaxValue" SG_ 793 BMS_Status_SysAveCV 65535; 
+BA_ "GenSigSendType" SG_ 793 BMS_Status_SysAveCV 1; 
+BA_ "GenSigMaxValue" SG_ 793 BMS_Status_SysMinCV 65535; 
+BA_ "GenSigSendType" SG_ 793 BMS_Status_SysMinCV 1; 
+BA_ "GenSigMaxValue" SG_ 793 BMS_Status_SysMaxCV 65535; 
+BA_ "GenSigSendType" SG_ 793 BMS_Status_SysMaxCV 1; 
+BA_ "GenMsgCycleTime" BO_ 792 400; 
+BA_ "GenSigMaxValue" SG_ 792 BMS_Status_Bus_Voltage 255; 
+BA_ "GenSigSendType" SG_ 792 BMS_Status_Bus_Voltage 1; 
+BA_ "GenSigMaxValue" SG_ 792 BMS_Status_SysVoltage 65535; 
+BA_ "GenSigSendType" SG_ 792 BMS_Status_SysVoltage 1; 
+BA_ "GenSigMaxValue" SG_ 792 BMS_Status_SysSOC 255; 
+BA_ "GenSigSendType" SG_ 792 BMS_Status_SysSOC 1; 
+BA_ "GenSigMaxValue" SG_ 792 BMS_Status_Charge 255; 
+BA_ "GenSigSendType" SG_ 792 BMS_Status_Charge 1; 
+BA_ "GenSigMaxValue" SG_ 792 BMS_Status_Sys_Current 65535; 
+BA_ "GenSigSendType" SG_ 792 BMS_Status_Sys_Current 1; 
+BA_ "GenSigMaxValue" SG_ 792 BMS_Status_CANCount 255; 
+BA_ "GenSigSendType" SG_ 792 BMS_Status_CANCount 1; 
+BA_ "GenMsgCycleTime" BO_ 561 100; 
+BA_ "GenSigMaxValue" SG_ 561 VCU_VehPwrup_Cmd 3; 
+BA_ "GenSigSendType" SG_ 561 VCU_VehPwrup_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 561 VCU_ADCUPwrup_Cmd 3; 
+BA_ "GenSigSendType" SG_ 561 VCU_ADCUPwrup_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 561 VCU_MCUPwrup_Cmd 3; 
+BA_ "GenSigSendType" SG_ 561 VCU_MCUPwrup_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 561 VCU_LEDPwrup_Cmd 3; 
+BA_ "GenSigSendType" SG_ 561 VCU_LEDPwrup_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 561 VCU_EPSPwrup_Cmd 3; 
+BA_ "GenSigSendType" SG_ 561 VCU_EPSPwrup_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 561 VCU_CCUPwrup_Cmd 3; 
+BA_ "GenSigSendType" SG_ 561 VCU_CCUPwrup_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 561 VCU_OBDPwrup_Cmd 3; 
+BA_ "GenSigSendType" SG_ 561 VCU_OBDPwrup_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 561 VCU_WFCPwrup_Cmd 3; 
+BA_ "GenSigSendType" SG_ 561 VCU_WFCPwrup_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 561 VCU_DchagerPwrup_Cmd 3; 
+BA_ "GenSigSendType" SG_ 561 VCU_DchagerPwrup_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 561 VCU_ParkEnable_Cmd 3; 
+BA_ "GenSigSendType" SG_ 561 VCU_ParkEnable_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 561 CU_PwrCmd_RollCnt 15; 
+BA_ "GenSigSendType" SG_ 561 CU_PwrCmd_RollCnt 1; 
+BA_ "GenSigMaxValue" SG_ 561 CU_PwrCmd_Checksum 255; 
+BA_ "GenSigSendType" SG_ 561 CU_PwrCmd_Checksum 1; 
+BA_ "GenMsgCycleTime" BO_ 562 100; 
+BA_ "GenSigMaxValue" SG_ 562 PMU_VehPwrup_Sts 3; 
+BA_ "GenSigSendType" SG_ 562 PMU_VehPwrup_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 562 PMU_ADCUPwrup_Sts 3; 
+BA_ "GenSigSendType" SG_ 562 PMU_ADCUPwrup_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 562 PMU_MCUPwrup_Sts 3; 
+BA_ "GenSigSendType" SG_ 562 PMU_MCUPwrup_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 562 PMU_LEDPwrup_Sts 3; 
+BA_ "GenSigSendType" SG_ 562 PMU_LEDPwrup_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 562 PMU_EPSPwrup_Sts 3; 
+BA_ "GenSigSendType" SG_ 562 PMU_EPSPwrup_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 562 PMU_CCUPwrup_Sts 3; 
+BA_ "GenSigSendType" SG_ 562 PMU_CCUPwrup_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 562 PMU_OBDPwrup_Sts 3; 
+BA_ "GenSigSendType" SG_ 562 PMU_OBDPwrup_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 562 PMU_WFCPwrup_Sts 3; 
+BA_ "GenSigSendType" SG_ 562 PMU_WFCPwrup_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 562 PMU_DchagerPwrup_Sts 3; 
+BA_ "GenSigSendType" SG_ 562 PMU_DchagerPwrup_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 562 PMU_ParkEnable_Sts 3; 
+BA_ "GenSigSendType" SG_ 562 PMU_ParkEnable_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 562 PMU_ESTOP_Sts 1; 
+BA_ "GenSigSendType" SG_ 562 PMU_ESTOP_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 562 PMU_PowerOffReq 3; 
+BA_ "GenSigSendType" SG_ 562 PMU_PowerOffReq 1; 
+BA_ "GenSigMaxValue" SG_ 562 PMU_PwrStatus_RollCnt 15; 
+BA_ "GenSigSendType" SG_ 562 PMU_PwrStatus_RollCnt 1; 
+BA_ "GenSigMaxValue" SG_ 562 PMU_PwrStatus_Checksum 255; 
+BA_ "GenSigSendType" SG_ 562 PMU_PwrStatus_Checksum 1; 
+BA_ "GenMsgCycleTime" BO_ 817 100; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_OneClkCleanCtrl 3; 
+BA_ "GenSigSendType" SG_ 817 CCU_OneClkCleanCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_OneClkDumpCtrl 3; 
+BA_ "GenSigSendType" SG_ 817 CCU_OneClkDumpCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_WaterPumpCtrl 3; 
+BA_ "GenSigSendType" SG_ 817 CCU_WaterPumpCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_FenderCtrl 3; 
+BA_ "GenSigSendType" SG_ 817 CCU_FenderCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_VbrCtrl 3; 
+BA_ "GenSigSendType" SG_ 817 CCU_VbrCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_WaterAddCtrl 1; 
+BA_ "GenSigSendType" SG_ 817 CCU_WaterAddCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_SweepingCtrl 3; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_SideBrushLiftCtrl 3; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_SideBrushExtendCtrl 3; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_MainBrushLiftCtrl 3; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_DustBinLiftCtrl 3; 
+BA_ "GenSigSendType" SG_ 817 CCU_DustBinLiftCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_DustBinDumpCtrl 3; 
+BA_ "GenSigSendType" SG_ 817 CCU_DustBinDumpCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_DustBinOpenCtrl 3; 
+BA_ "GenSigSendType" SG_ 817 CCU_DustBinOpenCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_MainBrushCtrl 3; 
+BA_ "GenSigSendType" SG_ 817 CCU_MainBrushCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_SideBrushCtrl 3; 
+BA_ "GenSigSendType" SG_ 817 CCU_SideBrushCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_BlowerCtrl 3; 
+BA_ "GenSigSendType" SG_ 817 CCU_BlowerCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_HighWaterPumpCtrl 3; 
+BA_ "GenSigSendType" SG_ 817 CCU_HighWaterPumpCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_VacuumCtrl 3; 
+BA_ "GenSigSendType" SG_ 817 CCU_VacuumCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_DustBinCompressCtrl 3; 
+BA_ "GenSigSendType" SG_ 817 CCU_DustBinCompressCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_CleanValveCtrl 3; 
+BA_ "GenSigSendType" SG_ 817 CCU_CleanValveCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_WashValveCtrl 3; 
+BA_ "GenSigSendType" SG_ 817 CCU_WashValveCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_HighPumpAdjustCtrl 3; 
+BA_ "GenSigSendType" SG_ 817 CCU_HighPumpAdjustCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_WashProbeAdjustCtrl 3; 
+BA_ "GenSigSendType" SG_ 817 CCU_WashProbeAdjustCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_CMD_RollCnt 255; 
+BA_ "GenSigMaxValue" SG_ 817 CCU_CMD_CheckSum 255; 
+BA_ "GenMsgCycleTime" BO_ 819 100; 
+BA_ "GenSigMaxValue" SG_ 819 CCU_Remain_Water 127; 
+BA_ "GenSigSendType" SG_ 819 CCU_Remain_Water 1; 
+BA_ "GenSigSendType" SG_ 819 CCU_DustbinFull_St 1; 
+BA_ "GenSigMaxValue" SG_ 819 CCU_MainBrushPos_Act 255; 
+BA_ "GenSigSendType" SG_ 819 CCU_MainBrushPos_Act 1; 
+BA_ "GenSigMaxValue" SG_ 819 CCU_SideBrushLiftPos_Act 255; 
+BA_ "GenSigSendType" SG_ 819 CCU_SideBrushLiftPos_Act 1; 
+BA_ "GenSigMaxValue" SG_ 819 CCU_SideBrushExtendPos_Act 255; 
+BA_ "GenSigSendType" SG_ 819 CCU_SideBrushExtendPos_Act 1; 
+BA_ "GenSigMaxValue" SG_ 819 CCU_HighPumpAngle_Act 255; 
+BA_ "GenSigSendType" SG_ 819 CCU_HighPumpAngle_Act 1; 
+BA_ "GenSigMaxValue" SG_ 819 CCU_WashProbeAdjust_Act 255; 
+BA_ "GenSigSendType" SG_ 819 CCU_WashProbeAdjust_Act 1; 
+BA_ "GenSigMaxValue" SG_ 819 CCU_Status1_RollCnt 15; 
+BA_ "GenSigSendType" SG_ 819 CCU_Status1_RollCnt 1; 
+BA_ "GenSigMaxValue" SG_ 819 CCU_Status1_CheckSum 255; 
+BA_ "GenSigSendType" SG_ 819 CCU_Status1_CheckSum 1; 
+BA_ "GenMsgCycleTime" BO_ 818 100; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_OneClkClean_Sts 3; 
+BA_ "GenSigSendType" SG_ 818 CCU_OneClkClean_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_OneClkDump_Sts 3; 
+BA_ "GenSigSendType" SG_ 818 CCU_OneClkDump_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_WaterPump_Sts 3; 
+BA_ "GenSigSendType" SG_ 818 CCU_WaterPump_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_Fender_Sts 3; 
+BA_ "GenSigSendType" SG_ 818 CCU_Fender_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_Vbr_Sts 3; 
+BA_ "GenSigSendType" SG_ 818 CCU_Vbr_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_WaterAdd_Sts 1; 
+BA_ "GenSigSendType" SG_ 818 CCU_WaterAdd_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_Sweeping_Sts 3; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_SideBrushLift_Sts 3; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_SideBrushExtend_Sts 3; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_MainBrushLift_Sts 3; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_DustBinLift_Sts 3; 
+BA_ "GenSigSendType" SG_ 818 CCU_DustBinLift_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_DustBinDump_Sts 3; 
+BA_ "GenSigSendType" SG_ 818 CCU_DustBinDump_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_DustBinOpen_Sts 3; 
+BA_ "GenSigSendType" SG_ 818 CCU_DustBinOpen_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_MainBrush_Sts 3; 
+BA_ "GenSigSendType" SG_ 818 CCU_MainBrush_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_SideBrush_Sts 3; 
+BA_ "GenSigSendType" SG_ 818 CCU_SideBrush_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_Blower_Sts 3; 
+BA_ "GenSigSendType" SG_ 818 CCU_Blower_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_HighWaterPump_Sts 3; 
+BA_ "GenSigSendType" SG_ 818 CCU_HighWaterPump_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_Vacuum_Sts 3; 
+BA_ "GenSigSendType" SG_ 818 CCU_Vacuum_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_DustBinCompress_Sts 3; 
+BA_ "GenSigSendType" SG_ 818 CCU_DustBinCompress_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_CleanVale_Sts 3; 
+BA_ "GenSigSendType" SG_ 818 CCU_CleanVale_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_WashVale_Sts 3; 
+BA_ "GenSigSendType" SG_ 818 CCU_WashVale_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_HighPumpAdjust_Sts 3; 
+BA_ "GenSigSendType" SG_ 818 CCU_HighPumpAdjust_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_WashProbeAdjust_Sts 3; 
+BA_ "GenSigSendType" SG_ 818 CCU_WashProbeAdjust_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_Status_RollCnt 255; 
+BA_ "GenSigMaxValue" SG_ 818 CCU_Status_CheckSum 255; 
+BA_ "GenMsgCycleTime" BO_ 820 100; 
+BA_ "GenSigMaxValue" SG_ 820 CCU_ErrorCode_1 255; 
+BA_ "GenSigMaxValue" SG_ 820 CCU_ErrorCode_2 255; 
+BA_ "GenSigMaxValue" SG_ 820 CCU_ErrorCode_3 255; 
+BA_ "GenSigMaxValue" SG_ 820 CCU_ErrorCode_4 255; 
+BA_ "GenSigMaxValue" SG_ 820 CCU_ErrorCode_Status_Rollcnt 255; 
+BA_ "GenSigMaxValue" SG_ 820 CCU_ErrorCode_Status_CheckSum 255; 
+BA_ "GenMsgCycleTime" BO_ 278 100; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_OneClkCleanCtrl 3; 
+BA_ "GenSigSendType" SG_ 278 ADCU_OneClkCleanCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_OneClkDumpCtrl 3; 
+BA_ "GenSigSendType" SG_ 278 ADCU_OneClkDumpCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_WaterPumpCtrl 3; 
+BA_ "GenSigSendType" SG_ 278 ADCU_WaterPumpCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_FenderCtrl 3; 
+BA_ "GenSigSendType" SG_ 278 ADCU_FenderCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_VbrCtrl 3; 
+BA_ "GenSigSendType" SG_ 278 ADCU_VbrCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_WaterAddCtrl 1; 
+BA_ "GenSigSendType" SG_ 278 ADCU_WaterAddCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_SweepingCtrl 3; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_SideBrushLiftCtrl 3; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_SideBrushExtendCtrl 3; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_MainBrushLiftCtrl 3; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_DustBinLiftCtrl 3; 
+BA_ "GenSigSendType" SG_ 278 ADCU_DustBinLiftCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_DustBinDumpCtrl 3; 
+BA_ "GenSigSendType" SG_ 278 ADCU_DustBinDumpCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_DustBinOpenCtrl 3; 
+BA_ "GenSigSendType" SG_ 278 ADCU_DustBinOpenCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_MainBrushCtrl 3; 
+BA_ "GenSigSendType" SG_ 278 ADCU_MainBrushCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_SideBrushCtrl 3; 
+BA_ "GenSigSendType" SG_ 278 ADCU_SideBrushCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_BlowerCtrl 3; 
+BA_ "GenSigSendType" SG_ 278 ADCU_BlowerCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_HighWaterPumpCtrl 3; 
+BA_ "GenSigSendType" SG_ 278 ADCU_HighWaterPumpCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_VacuumCtrl 3; 
+BA_ "GenSigSendType" SG_ 278 ADCU_VacuumCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_DustBinCompressCtrl 3; 
+BA_ "GenSigSendType" SG_ 278 ADCU_DustBinCompressCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_CleanValveCtrl 3; 
+BA_ "GenSigSendType" SG_ 278 ADCU_CleanValveCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_WashValveCtrl 3; 
+BA_ "GenSigSendType" SG_ 278 ADCU_WashValveCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_HighPumpAdjustCtrl 3; 
+BA_ "GenSigSendType" SG_ 278 ADCU_HighPumpAdjustCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_WashProbeAdjustCtrl 3; 
+BA_ "GenSigSendType" SG_ 278 ADCU_WashProbeAdjustCtrl 2; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_Sweeper_RollCnt 255; 
+BA_ "GenSigMaxValue" SG_ 278 ADCU_Sweeper_CheckSum 255; 
+BA_ "GenMsgCycleTime" BO_ 277 100; 
+BA_ "GenSigMaxValue" SG_ 277 ADCU_HeadLamp_Cmd 1; 
+BA_ "GenSigSendType" SG_ 277 ADCU_HeadLamp_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 277 ADCU_DblFlashLamp_Cmd 1; 
+BA_ "GenSigSendType" SG_ 277 ADCU_DblFlashLamp_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 277 ADCU_TurnLLamp_Cmd 1; 
+BA_ "GenSigSendType" SG_ 277 ADCU_TurnLLamp_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 277 ADCU_TurnRLamp_Cmd 1; 
+BA_ "GenSigSendType" SG_ 277 ADCU_TurnRLamp_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 277 ADCU_BackLamp_Cmd 1; 
+BA_ "GenSigSendType" SG_ 277 ADCU_BackLamp_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 277 ADCU_Buzzer_Cmd 1; 
+BA_ "GenSigSendType" SG_ 277 ADCU_Buzzer_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 277 ADCU_Horn_Cmd 1; 
+BA_ "GenSigSendType" SG_ 277 ADCU_Horn_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 277 ADCU_WarningLamp_Cmd 1; 
+BA_ "GenSigSendType" SG_ 277 ADCU_WarningLamp_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 277 ADCU_BrkLamp_Cmd 1; 
+BA_ "GenSigSendType" SG_ 277 ADCU_BrkLamp_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 277 ADCU_FillLamp_Cmd 1; 
+BA_ "GenSigSendType" SG_ 277 ADCU_FillLamp_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 277 ADCU_WidthLamp_Cmd 1; 
+BA_ "GenSigSendType" SG_ 277 ADCU_WidthLamp_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 277 ADCU_RearHeadLamp_Cmd 1; 
+BA_ "GenSigSendType" SG_ 277 ADCU_RearHeadLamp_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 277 ADCU_LampCmd_RollCnt 15; 
+BA_ "GenSigSendType" SG_ 277 ADCU_LampCmd_RollCnt 1; 
+BA_ "GenSigMaxValue" SG_ 277 ADCU_LampCmd_Checksum 255; 
+BA_ "GenSigSendType" SG_ 277 ADCU_LampCmd_Checksum 1; 
+BA_ "GenMsgCycleTime" BO_ 276 20; 
+BA_ "GenSigMaxValue" SG_ 276 ADCU_DrvingMode 7; 
+BA_ "GenSigSendType" SG_ 276 ADCU_DrvingMode 1; 
+BA_ "GenSigMaxValue" SG_ 276 ADCU_Drv_CtrlMode 3; 
+BA_ "GenSigSendType" SG_ 276 ADCU_Drv_CtrlMode 1; 
+BA_ "GenSigMaxValue" SG_ 276 ADCU_Drv_TgtGear 3; 
+BA_ "GenSigSendType" SG_ 276 ADCU_Drv_TgtGear 1; 
+BA_ "GenSigMaxValue" SG_ 276 ADCU_Drv_TgtPedpos 255; 
+BA_ "GenSigSendType" SG_ 276 ADCU_Drv_TgtPedpos 1; 
+BA_ "GenSigMaxValue" SG_ 276 ADCU_Drv_TgtVehSpd 65535; 
+BA_ "GenSigSendType" SG_ 276 ADCU_Drv_TgtVehSpd 1; 
+BA_ "GenSigMaxValue" SG_ 276 ADCU_Drv_TgtVehAccSpd 255; 
+BA_ "GenSigSendType" SG_ 276 ADCU_Drv_TgtVehAccSpd 1; 
+BA_ "GenSigMaxValue" SG_ 276 ADCU_Drv_VehSpdLimit 255; 
+BA_ "GenSigSendType" SG_ 276 ADCU_Drv_VehSpdLimit 1; 
+BA_ "GenSigMaxValue" SG_ 276 ADCU_DrvCmd0_RollCnt 15; 
+BA_ "GenSigSendType" SG_ 276 ADCU_DrvCmd0_RollCnt 1; 
+BA_ "GenSigMaxValue" SG_ 276 ADCU_DrvCmd0_Checksum 255; 
+BA_ "GenSigSendType" SG_ 276 ADCU_DrvCmd0_Checksum 1; 
+BA_ "GenMsgCycleTime" BO_ 275 20; 
+BA_ "GenSigMaxValue" SG_ 275 ADCU_Str_WorkMode 1; 
+BA_ "GenSigSendType" SG_ 275 ADCU_Str_WorkMode 1; 
+BA_ "GenSigMaxValue" SG_ 275 ADCU_Str_TgtAngle 65535; 
+BA_ "GenSigSendType" SG_ 275 ADCU_Str_TgtAngle 1; 
+BA_ "GenSigMaxValue" SG_ 275 ADCU_Str_TgtAngleSpd 255; 
+BA_ "GenSigSendType" SG_ 275 ADCU_Str_TgtAngleSpd 1; 
+BA_ "GenSigSendType" SG_ 275 ADCU_Str_Centering 1; 
+BA_ "GenSigMaxValue" SG_ 275 ADCU_StrCmd_RollCnt 15; 
+BA_ "GenSigSendType" SG_ 275 ADCU_StrCmd_RollCnt 1; 
+BA_ "GenSigMaxValue" SG_ 275 ADCU_StrCmd_Checksum 255; 
+BA_ "GenSigSendType" SG_ 275 ADCU_StrCmd_Checksum 1; 
+BA_ "GenMsgCycleTime" BO_ 273 20; 
+BA_ "GenSigMaxValue" SG_ 273 ADCU_Brk_CtrlMode 3; 
+BA_ "GenSigSendType" SG_ 273 ADCU_Brk_CtrlMode 1; 
+BA_ "GenSigMaxValue" SG_ 273 ADCU_Brk_ParkEnable 1; 
+BA_ "GenSigSendType" SG_ 273 ADCU_Brk_ParkEnable 1; 
+BA_ "GenSigMaxValue" SG_ 273 ADCU_Brk_TgtPedpos 255; 
+BA_ "GenSigSendType" SG_ 273 ADCU_Brk_TgtPedpos 1; 
+BA_ "GenSigMaxValue" SG_ 273 ADCU_Brk_TgtPress 65535; 
+BA_ "GenSigSendType" SG_ 273 ADCU_Brk_TgtPress 1; 
+BA_ "GenSigMaxValue" SG_ 273 ADCU_Brk_TgtAccSpd 65535; 
+BA_ "GenSigSendType" SG_ 273 ADCU_Brk_TgtAccSpd 1; 
+BA_ "GenSigMaxValue" SG_ 273 ADCU_BrkCmd_RollCnt 15; 
+BA_ "GenSigSendType" SG_ 273 ADCU_BrkCmd_RollCnt 1; 
+BA_ "GenSigMaxValue" SG_ 273 ADCU_BrkCmd_Checksum 255; 
+BA_ "GenSigSendType" SG_ 273 ADCU_BrkCmd_Checksum 1; 
+BA_ "GenMsgCycleTime" BO_ 279 100; 
+BA_ "GenSigMaxValue" SG_ 279 ADCU_VehPwrup_Cmd 3; 
+BA_ "GenSigSendType" SG_ 279 ADCU_VehPwrup_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 279 ADCU_EmgBrkReq 3; 
+BA_ "GenSigSendType" SG_ 279 ADCU_EmgBrkReq 1; 
+BA_ "GenSigMaxValue" SG_ 279 ADCU_SoftEmgBrkReq 3; 
+BA_ "GenSigSendType" SG_ 279 ADCU_SoftEmgBrkReq 1; 
+BA_ "GenSigMaxValue" SG_ 279 ADCU_RmtPwrOnReq 3; 
+BA_ "GenSigSendType" SG_ 279 ADCU_RmtPwrOnReq 1; 
+BA_ "GenSigMaxValue" SG_ 279 ADCU_CrashFree 3; 
+BA_ "GenSigSendType" SG_ 279 ADCU_CrashFree 1; 
+BA_ "GenSigMaxValue" SG_ 279 ADCU_ApvPwrOFF 3; 
+BA_ "GenSigSendType" SG_ 279 ADCU_ApvPwrOFF 1; 
+BA_ "GenSigMaxValue" SG_ 279 ADCU_EndChgReq 3; 
+BA_ "GenSigSendType" SG_ 279 ADCU_EndChgReq 1; 
+BA_ "GenSigMaxValue" SG_ 279 ADCU_WLChgWakeUp_Cmd 1; 
+BA_ "GenSigSendType" SG_ 279 ADCU_WLChgWakeUp_Cmd 1; 
+BA_ "GenSigMaxValue" SG_ 279 ADCU_PwrCmd_RollCnt 15; 
+BA_ "GenSigSendType" SG_ 279 ADCU_PwrCmd_RollCnt 1; 
+BA_ "GenSigMaxValue" SG_ 279 ADCU_PwrCmd_Checksum 255; 
+BA_ "GenSigSendType" SG_ 279 ADCU_PwrCmd_Checksum 1; 
+BA_ "GenMsgCycleTime" BO_ 536 100; 
+BA_ "GenSigMaxValue" SG_ 536 VCU_Remain_Water 255; 
+BA_ "GenSigSendType" SG_ 536 VCU_Remain_Water 1; 
+BA_ "GenSigSendType" SG_ 536 VCU_DustbinFull_St 1; 
+BA_ "GenSigMaxValue" SG_ 536 VCU_MainBrushPos_St 255; 
+BA_ "GenSigSendType" SG_ 536 VCU_MainBrushPos_St 1; 
+BA_ "GenSigMaxValue" SG_ 536 VCU_SideBrushLiftPos_St 255; 
+BA_ "GenSigSendType" SG_ 536 VCU_SideBrushLiftPos_St 1; 
+BA_ "GenSigMaxValue" SG_ 536 VCU_SideBrushExtendPos_St 255; 
+BA_ "GenSigSendType" SG_ 536 VCU_SideBrushExtendPos_St 1; 
+BA_ "GenSigMaxValue" SG_ 536 VCU_HighPumpAngle_St 255; 
+BA_ "GenSigSendType" SG_ 536 VCU_HighPumpAngle_St 1; 
+BA_ "GenSigMaxValue" SG_ 536 VCU_WashProbeAdjust_St 255; 
+BA_ "GenSigSendType" SG_ 536 VCU_WashProbeAdjust_St 1; 
+BA_ "GenSigMaxValue" SG_ 536 VCU_SweepStatus2_RollCnt 15; 
+BA_ "GenSigSendType" SG_ 536 VCU_SweepStatus2_RollCnt 1; 
+BA_ "GenSigMaxValue" SG_ 536 VCU_SweepStatus2_CheckSum 255; 
+BA_ "GenSigSendType" SG_ 536 VCU_SweepStatus2_CheckSum 1; 
+BA_ "GenMsgCycleTime" BO_ 534 100; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_OneClkClean_Sts 3; 
+BA_ "GenSigSendType" SG_ 534 VCU_OneClkClean_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_OneClkDump_Sts 3; 
+BA_ "GenSigSendType" SG_ 534 VCU_OneClkDump_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_WaterPump_Sts 3; 
+BA_ "GenSigSendType" SG_ 534 VCU_WaterPump_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_Fender_Sts 3; 
+BA_ "GenSigSendType" SG_ 534 VCU_Fender_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_Vbr_Sts 3; 
+BA_ "GenSigSendType" SG_ 534 VCU_Vbr_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_WaterAdd_Sts 1; 
+BA_ "GenSigSendType" SG_ 534 VCU_WaterAdd_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_Sweeping_Sts 3; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_SideBrushLift_Sts 3; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_SideBrushExtend_Sts 3; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_MainBrushLift_Sts 3; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_DustBinLift_Sts 3; 
+BA_ "GenSigSendType" SG_ 534 VCU_DustBinLift_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_DustBinDump_Sts 3; 
+BA_ "GenSigSendType" SG_ 534 VCU_DustBinDump_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_DustBinOpen_Sts 3; 
+BA_ "GenSigSendType" SG_ 534 VCU_DustBinOpen_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_MainBrush_Sts 3; 
+BA_ "GenSigSendType" SG_ 534 VCU_MainBrush_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_SideBrush_Sts 3; 
+BA_ "GenSigSendType" SG_ 534 VCU_SideBrush_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_Blower_Sts 3; 
+BA_ "GenSigSendType" SG_ 534 VCU_Blower_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_HighWaterPump_Sts 3; 
+BA_ "GenSigSendType" SG_ 534 VCU_HighWaterPump_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_Vacuum_Sts 3; 
+BA_ "GenSigSendType" SG_ 534 VCU_Vacuum_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_DustBinCompress_Sts 3; 
+BA_ "GenSigSendType" SG_ 534 VCU_DustBinCompress_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_CleanVale_Sts 3; 
+BA_ "GenSigSendType" SG_ 534 VCU_CleanVale_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_WashVale_Sts 3; 
+BA_ "GenSigSendType" SG_ 534 VCU_WashVale_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_HighPumpAdjust_Sts 3; 
+BA_ "GenSigSendType" SG_ 534 VCU_HighPumpAdjust_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_WashProbeAdjust_Sts 3; 
+BA_ "GenSigSendType" SG_ 534 VCU_WashProbeAdjust_Sts 2; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_SweeperSts_RollCnt 255; 
+BA_ "GenSigMaxValue" SG_ 534 VCU_SweeperSts_CheckSum 255; 
+BA_ "GenMsgCycleTime" BO_ 640 100; 
+BA_ "GenSigMaxValue" SG_ 640 VCU_VehPwrup_Sts 3; 
+BA_ "GenSigSendType" SG_ 640 VCU_VehPwrup_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 640 VCU_WLChgWakeUp_Sts 1; 
+BA_ "GenSigSendType" SG_ 640 VCU_WLChgWakeUp_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 640 VCU_PwrSts_RollCnt 15; 
+BA_ "GenSigSendType" SG_ 640 VCU_PwrSts_RollCnt 1; 
+BA_ "GenSigMaxValue" SG_ 640 VCU_PwrSts_Checksum 255; 
+BA_ "GenSigSendType" SG_ 640 VCU_PwrSts_Checksum 1; 
+BA_ "GenMsgCycleTime" BO_ 533 100; 
+BA_ "GenSigMaxValue" SG_ 533 VCU_HeadLamp_Sts 1; 
+BA_ "GenSigSendType" SG_ 533 VCU_HeadLamp_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 533 VCU_DblFlashLamp_Sts 1; 
+BA_ "GenSigSendType" SG_ 533 VCU_DblFlashLamp_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 533 VCU_TurnLLamp_Sts 1; 
+BA_ "GenSigSendType" SG_ 533 VCU_TurnLLamp_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 533 VCU_TurnRLamp_Sts 1; 
+BA_ "GenSigSendType" SG_ 533 VCU_TurnRLamp_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 533 VCU_ReverseLamp_Sts 1; 
+BA_ "GenSigSendType" SG_ 533 VCU_ReverseLamp_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 533 VCU_Buzzer_Sts 1; 
+BA_ "GenSigSendType" SG_ 533 VCU_Buzzer_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 533 VCU_Horn_Sts 1; 
+BA_ "GenSigSendType" SG_ 533 VCU_Horn_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 533 VCU_WarningLamp_Sts 1; 
+BA_ "GenSigSendType" SG_ 533 VCU_WarningLamp_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 533 VCU_BrakeLamp_Sts 1; 
+BA_ "GenSigSendType" SG_ 533 VCU_BrakeLamp_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 533 VCU_FillLamp_Sts 1; 
+BA_ "GenSigSendType" SG_ 533 VCU_FillLamp_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 533 VCU_WidthLamp_Sts 1; 
+BA_ "GenSigSendType" SG_ 533 VCU_WidthLamp_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 533 VCU_RearHeadLamp_Sts 1; 
+BA_ "GenSigSendType" SG_ 533 VCU_RearHeadLamp_Sts 1; 
+BA_ "GenSigMaxValue" SG_ 533 VCU_LampStatus_RollCnt 15; 
+BA_ "GenSigSendType" SG_ 533 VCU_LampStatus_RollCnt 1; 
+BA_ "GenSigMaxValue" SG_ 533 VCU_LampStatus_Checksum 255; 
+BA_ "GenSigSendType" SG_ 533 VCU_LampStatus_Checksum 1; 
+BA_ "GenMsgCycleTime" BO_ 532 20; 
+BA_ "GenSigMaxValue" SG_ 532 VCU_DrvingMode 7; 
+BA_ "GenSigSendType" SG_ 532 VCU_DrvingMode 1; 
+BA_ "GenSigMaxValue" SG_ 532 VCU_Drv_CtrlMode 3; 
+BA_ "GenSigSendType" SG_ 532 VCU_Drv_CtrlMode 1; 
+BA_ "GenSigMaxValue" SG_ 532 VCU_Drv_Gear 3; 
+BA_ "GenSigSendType" SG_ 532 VCU_Drv_Gear 1; 
+BA_ "GenSigMaxValue" SG_ 532 VCU_Drv_ActPedpos 255; 
+BA_ "GenSigSendType" SG_ 532 VCU_Drv_ActPedpos 1; 
+BA_ "GenSigMaxValue" SG_ 532 VCU_Drv_ActVehSpd 65535; 
+BA_ "GenSigSendType" SG_ 532 VCU_Drv_ActVehSpd 1; 
+BA_ "GenSigMaxValue" SG_ 532 VCU_Drv_ActVehAcc 255; 
+BA_ "GenSigSendType" SG_ 532 VCU_Drv_ActVehAcc 1; 
+BA_ "GenSigMaxValue" SG_ 532 VCU_Drv_VehSpdLimit 255; 
+BA_ "GenSigSendType" SG_ 532 VCU_Drv_VehSpdLimit 1; 
+BA_ "GenSigMaxValue" SG_ 532 VCU_DrvStatus_RollCnt 15; 
+BA_ "GenSigSendType" SG_ 532 VCU_DrvStatus_RollCnt 1; 
+BA_ "GenSigMaxValue" SG_ 532 VCU_DrvStatus_Checksum 255; 
+BA_ "GenSigSendType" SG_ 532 VCU_DrvStatus_Checksum 1; 
+BA_ "GenMsgCycleTime" BO_ 531 20; 
+BA_ "GenSigMaxValue" SG_ 531 VCU_Str_WorkMode 1; 
+BA_ "GenSigSendType" SG_ 531 VCU_Str_WorkMode 1; 
+BA_ "GenSigMaxValue" SG_ 531 VCU_Str_Angle 65535; 
+BA_ "GenSigSendType" SG_ 531 VCU_Str_Angle 1; 
+BA_ "GenSigMaxValue" SG_ 531 VCU_Str_AngleSpd 255; 
+BA_ "GenSigSendType" SG_ 531 VCU_Str_AngleSpd 1; 
+BA_ "GenSigSendType" SG_ 531 VCU_Str_CenteringSts 1; 
+BA_ "GenSigMaxValue" SG_ 531 VCU_StrStatus_RollCnt 15; 
+BA_ "GenSigSendType" SG_ 531 VCU_StrStatus_RollCnt 1; 
+BA_ "GenSigMaxValue" SG_ 531 VCU_StrStatus_Checksum 255; 
+BA_ "GenSigSendType" SG_ 531 VCU_StrStatus_Checksum 1; 
+BA_ "GenMsgCycleTime" BO_ 529 20; 
+BA_ "GenSigMaxValue" SG_ 529 VCU_Brk_CtrlModeSts 3; 
+BA_ "GenSigSendType" SG_ 529 VCU_Brk_CtrlModeSts 1; 
+BA_ "GenSigMaxValue" SG_ 529 VCU_Brk_ParkEnableSts 1; 
+BA_ "GenSigSendType" SG_ 529 VCU_Brk_ParkEnableSts 1; 
+BA_ "GenSigMaxValue" SG_ 529 VCU_Brk_ActPedpos 255; 
+BA_ "GenSigSendType" SG_ 529 VCU_Brk_ActPedpos 1; 
+BA_ "GenSigMaxValue" SG_ 529 VCU_Brk_ActPress 65535; 
+BA_ "GenSigSendType" SG_ 529 VCU_Brk_ActPress 1; 
+BA_ "GenSigMaxValue" SG_ 529 VCU_Brk_Acc 65535; 
+BA_ "GenSigSendType" SG_ 529 VCU_Brk_Acc 1; 
+BA_ "GenSigMaxValue" SG_ 529 VCU_BrkStatus_RollCnt 15; 
+BA_ "GenSigSendType" SG_ 529 VCU_BrkStatus_RollCnt 1; 
+BA_ "GenSigMaxValue" SG_ 529 VCU_BrkStatus_Checksum 255; 
+BA_ "GenSigSendType" SG_ 529 VCU_BrkStatus_Checksum 1; 
+BA_ "GenMsgCycleTime" BO_ 512 1000; 
+BA_ "GenMsgCycleTime" BO_ 576 100; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_Veh_RunMode 15; 
+BA_ "GenSigSendType" SG_ 576 VCU_Veh_RunMode 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_Veh_RunLockRsn 3; 
+BA_ "GenSigSendType" SG_ 576 VCU_Veh_RunLockRsn 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_Veh_ErrLevel 3; 
+BA_ "GenSigSendType" SG_ 576 VCU_Veh_ErrLevel 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_FtCrash_St 1; 
+BA_ "GenSigSendType" SG_ 576 VCU_FtCrash_St 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_RrCrash_St 1; 
+BA_ "GenSigSendType" SG_ 576 VCU_RrCrash_St 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_VehEmgcySwh_St 1; 
+BA_ "GenSigSendType" SG_ 576 VCU_VehEmgcySwh_St 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_LvBat_LowVolt 1; 
+BA_ "GenSigSendType" SG_ 576 VCU_LvBat_LowVolt 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_Bat_LowSOC 1; 
+BA_ "GenSigSendType" SG_ 576 VCU_Bat_LowSOC 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_BMS_ErrLevel 3; 
+BA_ "GenSigSendType" SG_ 576 VCU_BMS_ErrLevel 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_MCU_ErrLevel 3; 
+BA_ "GenSigSendType" SG_ 576 VCU_MCU_ErrLevel 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_EHB_ErrLevel 3; 
+BA_ "GenSigSendType" SG_ 576 VCU_EHB_ErrLevel 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_EPS_ErrLevel 3; 
+BA_ "GenSigSendType" SG_ 576 VCU_EPS_ErrLevel 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_EPB_ErrLevel 3; 
+BA_ "GenSigSendType" SG_ 576 VCU_EPB_ErrLevel 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_CCU_ErrLevel 3; 
+BA_ "GenSigSendType" SG_ 576 VCU_CCU_ErrLevel 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_DumpSysErrLvl 3; 
+BA_ "GenSigSendType" SG_ 576 VCU_DumpSysErrLvl 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_CleanSysErrLvl 3; 
+BA_ "GenSigSendType" SG_ 576 VCU_CleanSysErrLvl 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_CANBusOff_St 3; 
+BA_ "GenSigSendType" SG_ 576 VCU_CANBusOff_St 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_SegCodeDispOffline_Err 1; 
+BA_ "GenSigSendType" SG_ 576 VCU_SegCodeDispOffline_Err 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_LEDDispOffline_Err 1; 
+BA_ "GenSigSendType" SG_ 576 VCU_LEDDispOffline_Err 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_ChgInhibit_Flt 1; 
+BA_ "GenSigSendType" SG_ 576 VCU_ChgInhibit_Flt 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_PwrUpInhibit_Flt 1; 
+BA_ "GenSigSendType" SG_ 576 VCU_PwrUpInhibit_Flt 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_ADEmgcyStop_St 1; 
+BA_ "GenSigSendType" SG_ 576 VCU_ADEmgcyStop_St 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_VehEmgcyStop_Reason 7; 
+BA_ "GenSigSendType" SG_ 576 VCU_VehEmgcyStop_Reason 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_PMU_ErrLevel 3; 
+BA_ "GenSigSendType" SG_ 576 VCU_PMU_ErrLevel 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_RCU_ErrLevel 3; 
+BA_ "GenSigSendType" SG_ 576 VCU_RCU_ErrLevel 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_Veh_ErrCode 255; 
+BA_ "GenSigSendType" SG_ 576 VCU_Veh_ErrCode 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_VehSt_RollCnt 15; 
+BA_ "GenSigSendType" SG_ 576 VCU_VehSt_RollCnt 1; 
+BA_ "GenSigMaxValue" SG_ 576 VCU_VehSt_Checksum 255; 
+BA_ "GenSigSendType" SG_ 576 VCU_VehSt_Checksum 1; 
+BA_ "GenMsgCycleTime" BO_ 670 1000; 
+BA_ "GenSigMaxValue" SG_ 670 GPSSystAtv 1; 
+BA_ "GenSigMaxValue" SG_ 670 Time_second 59; 
+BA_ "GenSigMaxValue" SG_ 670 Time_Minute 59; 
+BA_ "GenSigMaxValue" SG_ 670 Time_Hour 23; 
+BA_ "GenSigMaxValue" SG_ 670 Time_Day 31; 
+BA_ "GenSigMaxValue" SG_ 670 Time_Month 12; 
+BA_ "GenSigMaxValue" SG_ 670 Time_Year 200; 
+BA_ "GenMsgCycleTime" BO_ 767 1000; 
+BA_ "GenSigMaxValue" SG_ 767 Board_Ids 1; 
+BA_ "GenSigMaxValue" SG_ 767 Error_Code -805306369; 
+
+VAL_ 369 Ready_State 0 "准备中 In preparation" 1 "READY";
+VAL_ 370 Ready_State 0 "准备中 In preparation" 1 "READY";
+VAL_ 337 WorkingMode 0 " Torque mode" 1 "Speed mode" 2 " Pedal I/O control" 3 "Reserved";
+VAL_ 338 WorkingMode 0 "转矩模式 Torque mode" 1 "转速模式 Speed mode" 2 "外部模拟信号&端口控制 Pedal I/O control" 3 "预留 Reserved";
+VAL_ 161 RCU_GearMod 2 "R" 1 "D" 0 "N";
+VAL_ 161 RCU_OneClkDumpCtrl 0 "Invalid" 1 "一键倾倒垃圾" 2 "一键倾倒复位" 3 "关闭请求";
+VAL_ 161 RCU_OneClkCleanCtrl 0 "Invalid" 1 "一键清扫开启" 2 "一键清扫复位" 3 "关闭请求";
+VAL_ 161 RCU_FenderOpenReq 0 "Auto" 1 "Open";
+VAL_ 161 RCU_VibrateReq 0 "Auto" 1 "Open";
+VAL_ 161 RCU_CtrlModReq 0 "Manual" 1 "Auto";
+VAL_ 161 RCU_EPB_Enable 1 "True" 0 "False";
+VAL_ 161 RCU_WaterPump 0 "Close" 1 "Auto" 2 "Open";
+VAL_ 161 RCU_ErrRecv 1 "Error" 0 "Nomal";
+VAL_ 161 RCU_ErrLos 1 "Error" 0 "Nomal";
+VAL_ 161 RCU_ErrProtect 1 "Error" 0 "Nomal";
+VAL_ 161 RCU_ErrCAN 1 "Error" 0 "Nomal";
+VAL_ 788 EPS_Angle_Calibrate 1 "请求对中" 0 "不对中";
+VAL_ 788 EPS_CtrlEnable 1 "线控模式" 0 "助力模式";
+VAL_ 561 VCU_VehPwrup_Cmd 0 "Keep" 1 "Power Up" 2 "Shutdown" 3 "Restart";
+VAL_ 561 VCU_ADCUPwrup_Cmd 0 "Keep" 1 "Power Up" 2 "Shutdown" 3 "Restart";
+VAL_ 561 VCU_MCUPwrup_Cmd 0 "Keep" 1 "Power Up" 2 "Shutdown" 3 "Restart";
+VAL_ 561 VCU_LEDPwrup_Cmd 0 "Keep" 1 "Power Up" 2 "Shutdown" 3 "Restart";
+VAL_ 561 VCU_EPSPwrup_Cmd 0 "Keep" 1 "Power Up" 2 "Shutdown" 3 "Restart";
+VAL_ 561 VCU_CCUPwrup_Cmd 0 "Keep" 1 "Power Up" 2 "Shutdown" 3 "Restart";
+VAL_ 561 VCU_OBDPwrup_Cmd 0 "Keep" 1 "Power Up" 2 "Shutdown" 3 "Restart";
+VAL_ 561 VCU_WFCPwrup_Cmd 0 "Keep" 1 "Power Up" 2 "Shutdown" 3 "Restart";
+VAL_ 561 VCU_DchagerPwrup_Cmd 0 "Keep" 1 "Power Up" 2 "Shutdown" 3 "Restart";
+VAL_ 561 VCU_ParkEnable_Cmd 0 "False" 1 "True";
+VAL_ 562 PMU_VehPwrup_Sts 0 "Keep" 1 "Power Up" 2 "Shutdown" 3 "Restart";
+VAL_ 562 PMU_ADCUPwrup_Sts 0 "Keep" 1 "Power Up" 2 "Shutdown" 3 "Restart";
+VAL_ 562 PMU_MCUPwrup_Sts 0 "Keep" 1 "Power Up" 2 "Shutdown" 3 "Restart";
+VAL_ 562 PMU_LEDPwrup_Sts 0 "Keep" 1 "Power Up" 2 "Shutdown" 3 "Restart";
+VAL_ 562 PMU_EPSPwrup_Sts 0 "Keep" 1 "Power Up" 2 "Shutdown" 3 "Restart";
+VAL_ 562 PMU_CCUPwrup_Sts 0 "Keep" 1 "Power Up" 2 "Shutdown" 3 "Restart";
+VAL_ 562 PMU_OBDPwrup_Sts 0 "Keep" 1 "Power Up" 2 "Shutdown" 3 "Restart";
+VAL_ 562 PMU_WFCPwrup_Sts 0 "Keep" 1 "Power Up" 2 "Shutdown" 3 "Restart";
+VAL_ 562 PMU_DchagerPwrup_Sts 0 "Keep" 1 "Power Up" 2 "Shutdown" 3 "Restart";
+VAL_ 562 PMU_ParkEnable_Sts 0 "False" 1 "True";
+VAL_ 562 PMU_ESTOP_Sts 0 "False" 1 "True";
+VAL_ 562 PMU_PowerOffReq 0 "无请求" 1 "请求休眠" 2 "请求关机" 3 "预留";
+VAL_ 817 CCU_OneClkCleanCtrl 0 " Invalid" 1 " 一键清扫开启" 2 " 一键清扫复位" 3 " 关闭请求";
+VAL_ 817 CCU_OneClkDumpCtrl 0 " Invalid" 1 " 一键倾倒垃圾" 2 " 一键倾倒复位" 3 " 关闭请求";
+VAL_ 817 CCU_WaterPumpCtrl 0 " Invalid" 1 " 水泵开启请求" 2 " 水泵关闭请求" 3 "  保留";
+VAL_ 817 CCU_FenderCtrl 0 " Invalid" 1 " 挡板提起" 2 "  挡板关闭" 3 " 保留（无请求则复原）";
+VAL_ 817 CCU_VbrCtrl 0 " Invalid" 1 " 开启请求" 2 " 关闭请求" 3 " 保留";
+VAL_ 817 CCU_WaterAddCtrl 0 " Invalid" 1 " 开启请求" 2 " 关闭请求" 3 " 保留";
+VAL_ 817 CCU_SweepingCtrl 0 " Invalid" 1 " 开启请求" 2 " 关闭请求" 3 " 保留";
+VAL_ 817 CCU_SideBrushLiftCtrl 0 " Invalid" 1 " 上升" 2 " 下降" 3 " 预留";
+VAL_ 817 CCU_SideBrushExtendCtrl 0 " Invalid" 1 " 伸出" 2 " 收回" 3 " 预留";
+VAL_ 817 CCU_MainBrushLiftCtrl 0 " Invalid" 1 " 上升" 2 " 下降" 3 " 预留";
+VAL_ 817 CCU_DustBinLiftCtrl 0 " Invalid" 1 " 垃圾箱举升请求" 2 " 垃圾箱下降请求" 3 " 保留";
+VAL_ 817 CCU_DustBinDumpCtrl 0 " Invalid" 1 " 垃圾箱倾翻请求" 2 " 垃圾箱复位请求" 3 " 保留";
+VAL_ 817 CCU_DustBinOpenCtrl 0 " Invalid" 1 " 垃圾仓开启请求" 2 " 垃圾仓关闭请求" 3 " 保留";
+VAL_ 817 CCU_MainBrushCtrl 0 " Invalid" 1 " 垃圾仓开启请求" 2 " 垃圾仓关闭请求" 3 " 保留";
+VAL_ 817 CCU_SideBrushCtrl 0 " Invalid" 1 " 垃圾仓开启请求" 2 " 垃圾仓关闭请求" 3 " 保留";
+VAL_ 817 CCU_BlowerCtrl 0 " Invalid" 1 " 垃圾仓开启请求" 2 " 垃圾仓关闭请求" 3 " 保留";
+VAL_ 817 CCU_HighWaterPumpCtrl 0 " Invalid" 1 " 垃圾仓开启请求" 2 " 垃圾仓关闭请求" 3 " 保留";
+VAL_ 817 CCU_VacuumCtrl 0 " Invalid" 1 " 垃圾仓开启请求" 2 " 垃圾仓关闭请求" 3 " 保留";
+VAL_ 817 CCU_DustBinCompressCtrl 0 " Invalid" 1 " 垃圾仓开启请求" 2 " 垃圾仓关闭请求" 3 " 保留";
+VAL_ 817 CCU_CleanValveCtrl 0 " Invalid" 1 " 喷水开启请求" 2 " 喷水关闭请求" 3 " 保留";
+VAL_ 817 CCU_WashValveCtrl 0 " Invalid" 1 " 清洗开启请求" 2 " 清洗关闭请求" 3 " 保留";
+VAL_ 817 CCU_HighPumpAdjustCtrl 0 " Invalid" 1 " 高压水泵角度开启请求" 2 " 高压水泵角度复位请求" 3 " 高压水泵角度停止请求";
+VAL_ 817 CCU_WashProbeAdjustCtrl 0 " Invalid" 1 " 清洗探头开启请求" 2 " 清洗探头复位请求" 3 " 清洗探头停止请求";
+VAL_ 819 CCU_DustbinFull_St 0 "False" 1 "True";
+VAL_ 818 CCU_OneClkClean_Sts 0 " Invalid" 1 " 一键清扫开启" 2 " 一键清扫复位" 3 " 关闭请求";
+VAL_ 818 CCU_OneClkDump_Sts 0 " Invalid" 1 " 一键倾倒垃圾" 2 " 一键倾倒复位" 3 " 关闭请求";
+VAL_ 818 CCU_WaterPump_Sts 0 " Invalid" 1 " 水泵开启请求" 2 " 水泵关闭请求" 3 "  保留";
+VAL_ 818 CCU_Fender_Sts 0 " Invalid" 1 " 挡板提起" 2 "  挡板关闭" 3 " 保留（无请求则复原";
+VAL_ 818 CCU_Vbr_Sts 0 " Invalid" 1 " 开启" 2 " 关闭" 3 " 保留";
+VAL_ 818 CCU_WaterAdd_Sts 0 " Invalid" 1 " 开启" 2 " 关闭" 3 " 保留";
+VAL_ 818 CCU_Sweeping_Sts 0 " Invalid" 1 " 开启" 2 " 关闭" 3 " 保留";
+VAL_ 818 CCU_SideBrushLift_Sts 0 " Invalid" 1 " 上升" 2 " 下降" 3 " 停止";
+VAL_ 818 CCU_SideBrushExtend_Sts 0 " Invalid" 1 " 伸出" 2 " 收回" 3 " 停止";
+VAL_ 818 CCU_MainBrushLift_Sts 0 " Invalid" 1 " 上升" 2 " 下降" 3 " 停止";
+VAL_ 818 CCU_DustBinLift_Sts 0 " Invalid" 1 " 垃圾箱举升" 2 " 垃圾箱下降" 3 " 保留";
+VAL_ 818 CCU_DustBinDump_Sts 0 " Invalid" 1 " 垃圾箱倾翻" 2 " 垃圾箱复位" 3 " 保留";
+VAL_ 818 CCU_DustBinOpen_Sts 0 " Invalid" 1 " 垃圾仓开启" 2 " 垃圾仓关闭" 3 " 保留";
+VAL_ 818 CCU_MainBrush_Sts 0 " Invalid" 1 " 主刷电机开启" 2 " 主刷电机关闭" 3 " 保留";
+VAL_ 818 CCU_SideBrush_Sts 0 " Invalid" 1 " 边刷电机开启" 2 " 边刷电机关闭" 3 " 保留";
+VAL_ 818 CCU_Blower_Sts 0 " Invalid" 1 "风机开启" 2 " 风机关闭" 3 " 保留";
+VAL_ 818 CCU_HighWaterPump_Sts 0 " Invalid" 1 "高压水泵开启" 2 " 高压水泵关闭" 3 " 保留";
+VAL_ 818 CCU_Vacuum_Sts 0 " Invalid" 1 "吸尘器开启" 2 " 吸尘器关闭" 3 " 保留";
+VAL_ 818 CCU_DustBinCompress_Sts 0 " Invalid" 1 "垃圾压缩开启" 2 " 垃圾压缩关闭" 3 " 保留";
+VAL_ 818 CCU_CleanVale_Sts 0 " Invalid" 1 " 喷水开启" 2 " 喷水关闭" 3 " 保留";
+VAL_ 818 CCU_WashVale_Sts 0 " Invalid" 1 " 清洗开启" 2 " 清洗关闭" 3 " 保留";
+VAL_ 818 CCU_HighPumpAdjust_Sts 0 " Invalid" 1 " 高压水泵角度控制开启" 2 " 高压水泵角度控制复位" 3 " 高压水泵角度控制停止";
+VAL_ 818 CCU_WashProbeAdjust_Sts 0 " Invalid" 1 " 清洗探头开启" 2 " 清洗探头复位" 3 " 清洗探头停止";
+VAL_ 278 ADCU_OneClkCleanCtrl 0 "Invalid" 1 "一键清扫开启" 2 "一键清扫复位" 3 "关闭请求";
+VAL_ 278 ADCU_OneClkDumpCtrl 0 "Invalid" 1 "一键倾倒垃圾" 2 "一键倾倒复位" 3 "关闭请求";
+VAL_ 278 ADCU_WaterPumpCtrl 0 "Invalid" 1 "水泵开启请求" 2 "水泵关闭请求" 3 "保留";
+VAL_ 278 ADCU_FenderCtrl 0 "Invalid" 1 "挡板提起" 2 "挡板关闭" 3 "保留（无请求则复原）";
+VAL_ 278 ADCU_VbrCtrl 0 "Invalid" 1 "开启请求" 2 "关闭请求" 3 "保留";
+VAL_ 278 ADCU_WaterAddCtrl 0 "Invalid" 1 "开启请求" 2 "关闭请求" 3 "保留";
+VAL_ 278 ADCU_SweepingCtrl 0 "Invalid" 1 "开启请求" 2 "关闭请求" 3 "保留";
+VAL_ 278 ADCU_SideBrushLiftCtrl 0 "Invalid" 1 "上升" 2 "下降" 3 "预留";
+VAL_ 278 ADCU_SideBrushExtendCtrl 0 "Invalid" 1 "伸出" 2 "收回" 3 "预留";
+VAL_ 278 ADCU_MainBrushLiftCtrl 0 "Invalid" 1 "上升" 2 "下降" 3 "预留";
+VAL_ 278 ADCU_DustBinLiftCtrl 0 "Invalid" 1 "垃圾箱举升请求" 2 "垃圾箱下降请求" 3 "保留";
+VAL_ 278 ADCU_DustBinDumpCtrl 0 "Invalid" 1 "垃圾箱倾翻请求" 2 "垃圾箱复位请求" 3 "保留";
+VAL_ 278 ADCU_DustBinOpenCtrl 0 "Invalid" 1 "垃圾仓开启请求" 2 "垃圾仓关闭请求" 3 "保留";
+VAL_ 278 ADCU_MainBrushCtrl 0 "Invalid" 1 "开启请求" 2 "关闭请求" 3 "保留";
+VAL_ 278 ADCU_SideBrushCtrl 0 "Invalid" 1 "开启" 2 "关闭" 3 "保留";
+VAL_ 278 ADCU_BlowerCtrl 0 "Invalid" 1 "开启" 2 "关闭" 3 "保留";
+VAL_ 278 ADCU_HighWaterPumpCtrl 0 "Invalid" 1 "开启请求" 2 "关闭请求" 3 "保留";
+VAL_ 278 ADCU_VacuumCtrl 0 "Invalid" 1 "开启请求" 2 "关闭请求" 3 "保留";
+VAL_ 278 ADCU_DustBinCompressCtrl 0 "Invalid" 1 "开启请求" 2 "关闭请求" 3 "保留";
+VAL_ 278 ADCU_CleanValveCtrl 0 "Invalid" 1 "开启请求" 2 "关闭请求" 3 "保留";
+VAL_ 278 ADCU_WashValveCtrl 0 "Invalid" 1 "开启请求" 2 "关闭请求" 3 "保留";
+VAL_ 278 ADCU_HighPumpAdjustCtrl 0 "Invalid" 1 "高压水泵角度开启请求" 2 "高压水泵角度复位请求" 3 "高压水泵角度停止请求";
+VAL_ 278 ADCU_WashProbeAdjustCtrl 0 "Invalid" 1 "清洗探头开启请求" 2 "清洗探头复位请求" 3 "清洗探头停止请求";
+VAL_ 277 ADCU_HeadLamp_Cmd 0 "False" 1 "True";
+VAL_ 277 ADCU_DblFlashLamp_Cmd 0 "False" 1 "True";
+VAL_ 277 ADCU_TurnLLamp_Cmd 0 "False" 1 "True";
+VAL_ 277 ADCU_TurnRLamp_Cmd 0 "False" 1 "True";
+VAL_ 277 ADCU_BackLamp_Cmd 0 "False" 1 "True";
+VAL_ 277 ADCU_Buzzer_Cmd 0 "False" 1 "True";
+VAL_ 277 ADCU_Horn_Cmd 0 "False" 1 "True";
+VAL_ 277 ADCU_WarningLamp_Cmd 0 "False" 1 "True";
+VAL_ 277 ADCU_BrkLamp_Cmd 0 "False" 1 "True";
+VAL_ 277 ADCU_FillLamp_Cmd 0 "False" 1 "True";
+VAL_ 277 ADCU_WidthLamp_Cmd 0 "False" 1 "True";
+VAL_ 277 ADCU_RearHeadLamp_Cmd 0 "False" 1 "True";
+VAL_ 276 ADCU_DrvingMode 0 "待机模式" 1 "自动驾驶模式" 2 "远程驾驶模式" 4 "软急停模式" 5 "硬急停模式" 6 "充电模式" 7 "升级模式";
+VAL_ 275 ADCU_Str_WorkMode 0 "助力模式" 1 "线控模式";
+VAL_ 275 ADCU_Str_Centering 0 "不请求对中" 1 "请求对中";
+VAL_ 273 ADCU_Brk_CtrlMode 0 "Brake Pedal Pos Mode" 1 "Brake Pressure Mode" 2 "Reserved" 3 "Reserved";
+VAL_ 273 ADCU_Brk_ParkEnable 0 "False" 1 "True";
+VAL_ 279 ADCU_VehPwrup_Cmd 0 "Keep" 1 "Power Up" 2 "Shutdown" 3 "Restart";
+VAL_ 279 ADCU_EmgBrkReq 0 "Invalid" 1 "请求" 2 "关闭" 3 "保留";
+VAL_ 279 ADCU_SoftEmgBrkReq 0 "Invalid" 1 "请求" 2 "关闭" 3 "保留";
+VAL_ 279 ADCU_RmtPwrOnReq 0 "Invalid" 1 "请求" 2 "关闭" 3 "保留";
+VAL_ 279 ADCU_CrashFree 0 "Invalid" 1 "请求" 2 "关闭" 3 "保留";
+VAL_ 279 ADCU_ApvPwrOFF 0 "Invalid" 1 "同意" 2 "不同意" 3 "保留";
+VAL_ 279 ADCU_EndChgReq 0 "Invalid" 1 "请求" 2 "关闭" 3 "保留";
+VAL_ 279 ADCU_WLChgWakeUp_Cmd 0 "False" 1 "True";
+VAL_ 536 VCU_DustbinFull_St 0 "False" 1 "True";
+VAL_ 536 VCU_MainBrushPos_St 0 "收回" 1 "放下";
+VAL_ 536 VCU_SideBrushLiftPos_St 0 "上升" 1 "下降";
+VAL_ 536 VCU_SideBrushExtendPos_St 0 "Gear1(45°)" 1 "Gear2(25°)" 2 "Reserved" 3 "Reserved";
+VAL_ 534 VCU_OneClkClean_Sts 0 "Invalid" 1 "一键清扫开启" 2 "一键清扫复位" 3 "关闭请求";
+VAL_ 534 VCU_OneClkDump_Sts 0 "Invalid" 1 "一键倾倒垃圾" 2 "一键倾倒复位" 3 "关闭请求";
+VAL_ 534 VCU_WaterPump_Sts 0 "Invalid" 1 "水泵开启请求" 2 "水泵关闭请求" 3 "保留";
+VAL_ 534 VCU_Fender_Sts 0 "Invalid" 1 "挡板提起" 2 "挡板关闭" 3 "保留（无请求则复原";
+VAL_ 534 VCU_Vbr_Sts 0 "Invalid" 1 "开启" 2 "关闭" 3 "保留";
+VAL_ 534 VCU_WaterAdd_Sts 0 "Invalid" 1 "开启" 2 "关闭" 3 "保留";
+VAL_ 534 VCU_Sweeping_Sts 0 "Invalid" 1 "开启" 2 "关闭" 3 "保留";
+VAL_ 534 VCU_SideBrushLift_Sts 0 "Invalid" 1 "上升" 2 "下降" 3 "停止";
+VAL_ 534 VCU_SideBrushExtend_Sts 0 "Invalid" 1 "伸出" 2 "收回" 3 "停止";
+VAL_ 534 VCU_MainBrushLift_Sts 0 "Invalid" 1 "上升" 2 "下降" 3 "停止";
+VAL_ 534 VCU_DustBinLift_Sts 0 "Invalid" 1 "垃圾箱举升" 2 "垃圾箱下降" 3 "保留";
+VAL_ 534 VCU_DustBinDump_Sts 0 "Invalid" 1 "垃圾箱倾翻" 2 "垃圾箱复位" 3 "保留";
+VAL_ 534 VCU_DustBinOpen_Sts 0 "Invalid" 1 "垃圾仓开启" 2 "垃圾仓关闭" 3 "保留";
+VAL_ 534 VCU_MainBrush_Sts 0 "Invalid" 1 "主刷电机开启" 2 "主刷电机关闭" 3 "保留";
+VAL_ 534 VCU_SideBrush_Sts 0 "Invalid" 1 "边刷电机开启" 2 "边刷电机关闭" 3 "保留";
+VAL_ 534 VCU_Blower_Sts 0 "Invalid" 1 "风机开启" 2 "风机关闭" 3 "保留";
+VAL_ 534 VCU_HighWaterPump_Sts 0 "Invalid" 1 "高压水泵开启" 2 "高压水泵关闭" 3 "保留";
+VAL_ 534 VCU_Vacuum_Sts 0 "Invalid" 1 "吸尘器开启" 2 "吸尘器关闭" 3 "保留";
+VAL_ 534 VCU_DustBinCompress_Sts 0 "Invalid" 1 "垃圾压缩开启" 2 "垃圾压缩关闭" 3 "保留";
+VAL_ 534 VCU_CleanVale_Sts 0 "Invalid" 1 "喷水开启" 2 "喷水关闭" 3 "保留";
+VAL_ 534 VCU_WashVale_Sts 0 "Invalid" 1 "清洗开启" 2 "清洗关闭" 3 "保留";
+VAL_ 534 VCU_HighPumpAdjust_Sts 0 "Invalid" 1 "高压水泵角度控制开启" 2 "高压水泵角度控制复位" 3 "高压水泵角度控制停止";
+VAL_ 534 VCU_WashProbeAdjust_Sts 0 "Invalid" 1 "清洗探头开启" 2 "清洗探头复位" 3 "清洗探头停止";
+VAL_ 640 VCU_VehPwrup_Sts 0 "Keep" 1 "Power Up" 2 "Shutdown" 3 "Restart";
+VAL_ 640 VCU_WLChgWakeUp_Sts 0 "False" 1 "True";
+VAL_ 533 VCU_HeadLamp_Sts 0 "False" 1 "True";
+VAL_ 533 VCU_DblFlashLamp_Sts 0 "False" 1 "True";
+VAL_ 533 VCU_TurnLLamp_Sts 0 "False" 1 "True";
+VAL_ 533 VCU_TurnRLamp_Sts 0 "False" 1 "True";
+VAL_ 533 VCU_ReverseLamp_Sts 0 "False" 1 "True";
+VAL_ 533 VCU_Buzzer_Sts 0 "False" 1 "True";
+VAL_ 533 VCU_Horn_Sts 0 "False" 1 "True";
+VAL_ 533 VCU_WarningLamp_Sts 0 "False" 1 "True";
+VAL_ 533 VCU_BrakeLamp_Sts 0 "False" 1 "True";
+VAL_ 533 VCU_FillLamp_Sts 0 "False" 1 "True";
+VAL_ 533 VCU_WidthLamp_Sts 0 "False" 1 "True";
+VAL_ 533 VCU_RearHeadLamp_Sts 0 "False" 1 "True";
+VAL_ 532 VCU_DrvingMode 0 "待机模式" 1 "自动驾驶模式" 2 "远程驾驶模式" 4 "软急停模式" 5 "硬急停模式" 6 "充电模式" 7 "升级模式";
+VAL_ 531 VCU_Str_WorkMode 0 "助力模式" 1 "线控模式";
+VAL_ 531 VCU_Str_CenteringSts 0 "不请求对中" 1 "请求对中";
+VAL_ 529 VCU_Brk_CtrlModeSts 0 "Brake Pedal Pos Mode" 1 "Brake Pressure Mode" 2 "Reserved" 3 "Reserved";
+VAL_ 529 VCU_Brk_ParkEnableSts 0 "False" 1 "True";
+VAL_ 576 VCU_Veh_RunMode 0 "待机模式" 1 "自动驾驶模式" 2 "远程驾驶模式" 3 "遥控驾驶模式" 4 "软急停模式" 5 "硬急停模式" 6 "充电模式" 7 "升级模式";
+VAL_ 576 VCU_Veh_RunLockRsn 0 "None" 1 "Charging" 2 "CrashStActive" 3 "Reserved";
+VAL_ 576 VCU_Veh_ErrLevel 0 "None" 1 "Level1" 2 "Level2" 3 "Level3";
+VAL_ 576 VCU_FtCrash_St 0 "False" 1 "True";
+VAL_ 576 VCU_RrCrash_St 0 "False" 1 "True";
+VAL_ 576 VCU_VehEmgcySwh_St 0 "False" 1 "True";
+VAL_ 576 VCU_LvBat_LowVolt 0 "False" 1 "True";
+VAL_ 576 VCU_Bat_LowSOC 0 "False" 1 "True";
+VAL_ 576 VCU_BMS_ErrLevel 0 "None" 1 "Level1" 2 "Level2" 3 "Level3";
+VAL_ 576 VCU_MCU_ErrLevel 0 "None" 1 "Level1" 2 "Level2" 3 "Level3";
+VAL_ 576 VCU_EHB_ErrLevel 0 "None" 1 "Level1" 2 "Level2" 3 "Level3";
+VAL_ 576 VCU_EPS_ErrLevel 0 "None" 1 "Level1" 2 "Level2" 3 "Level3";
+VAL_ 576 VCU_EPB_ErrLevel 0 "None" 1 "Level1" 2 "Level2" 3 "Level3";
+VAL_ 576 VCU_CCU_ErrLevel 0 "None" 1 "Level1" 2 "Level2" 3 "Level3";
+VAL_ 576 VCU_DumpSysErrLvl 0 "None" 1 "Level1" 2 "Level2" 3 "Level3";
+VAL_ 576 VCU_CleanSysErrLvl 0 "None" 1 "Level1" 2 "Level2" 3 "Level3";
+VAL_ 576 VCU_CANBusOff_St 0 "All Normal" 1 "CCAN BusOff" 2 "UCAN BusOff" 3 "All BussOff";
+VAL_ 576 VCU_SegCodeDispOffline_Err 0 "False" 1 "True";
+VAL_ 576 VCU_LEDDispOffline_Err 0 "False" 1 "True";
+VAL_ 576 VCU_ChgInhibit_Flt 0 "False" 1 "True";
+VAL_ 576 VCU_PwrUpInhibit_Flt 0 "False" 1 "True";
+VAL_ 576 VCU_ADEmgcyStop_St 0 "False" 1 "True";
+VAL_ 576 VCU_VehEmgcyStop_Reason 0 "非急停状态" 1 "急停按键触发" 2 "前触边触发" 3 "后触边触发" 4 "整车故障触发" 5 "遥控急停触发" 6 "远程急停触发" 7 "预留";
+VAL_ 576 VCU_PMU_ErrLevel 0 "None" 1 "Level1" 2 "Level2" 3 "Level3";
+VAL_ 576 VCU_RCU_ErrLevel 0 "None" 1 "Level1" 2 "Level2" 3 "Level3";
+VAL_ 670 GPSSystAtv 1 "未激活" 0 "激活";
+
+
