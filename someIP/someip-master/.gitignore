@@ -1,0 +1,8 @@
+*~
+*.o
+*.gdb
+index.html
+someip.mk
+cli
+cli.cmd
+srv
