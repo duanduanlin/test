@@ -2,7 +2,7 @@
  * @Author: dding3
  * @Date: 2025-04-01 09:50:05
  * @LastEditors: dding3
- * @LastEditTime: 2025-04-02 15:48:19
+ * @LastEditTime: 2025-05-06 18:21:44
  * @Description:
  * @FilePath: \ps_vcu\modules\diag.h
  */
@@ -31,6 +31,9 @@ void Diag_Clear_VcuFault_DC12(void);
 //时间未同步
 void Diag_Set_VcuFault_TimeNotSync(void);
 void Diag_Clear_VcuFault_TimeNotSync(void);
+//时间未同步
+void Diag_Set_VcuFault_DchargeNotDisconnect(void);
+void Diag_Clear_VcuFault_DchargeNotDisconnect(void);
 
 //节点丢失判断
 void Diag_Update_Node(Node node);

@@ -2,7 +2,7 @@
 Author: dding3
 Date: 2025-04-18 09:52:21
 LastEditors: dding3
-LastEditTime: 2025-04-29 16:04:37
+LastEditTime: 2025-04-30 10:47:02
 Description:
 FilePath: \ps_vcu\scripts\auto_test\TestCase.py
 '''
@@ -115,26 +115,82 @@ class ADCU_SweepCmdTestCase(BasicTestCase):
         self.dev = dev
         self.parse = parse
         ADCU_FenderCtrlCase = Case('ADCU_FenderCtrlCase',self.ADCU_FenderCtrlTest)
+        ADCU_OneClkCleanCtrlCase = Case('ADCU_OneClkCleanCtrlCase',self.ADCU_OneClkCleanCtrlTest)
+        ADCU_OneClkDumpCtrlCase = Case('ADCU_OneClkDumpCtrlCase',self.ADCU_OneClkDumpCtrlTest)
 
+        self.add(ADCU_OneClkDumpCtrlCase)
+        self.add(ADCU_OneClkCleanCtrlCase)
         self.add(ADCU_FenderCtrlCase)
+
+    def ADCU_OneClkDumpCtrlTest(self):
+        succ_count = 0
+
+        #1.测试开启
+        print("try open ADCU_OneClkDumpCtrlTest")
+        try_signals_open = TrySignals('ADCU_SweepCmd','VCU_SweepStatus')
+        try_signals_open.add_req(TryValues('ADCU_OneClkDumpCtrl',1))
+        try_signals_open.add_res(TryValues('VCU_OneClkDump_Sts',1))
+
+        if self.try_signal(try_signals_open) == TestResult.succeed:
+            succ_count+=1
+
+        #2.测试关闭
+        print("try close ADCU_OneClkDumpCtrlTest")
+        try_signals_close = TrySignals('ADCU_SweepCmd','VCU_SweepStatus')
+        try_signals_close.add_req(TryValues('ADCU_OneClkDumpCtrl',2))
+        try_signals_close.add_res(TryValues('VCU_OneClkDump_Sts',2))
+
+        if self.try_signal(try_signals_close) == TestResult.succeed:
+            succ_count+=1
+
+        if succ_count == 2:
+            return TestResult.succeed
+
+        return TestResult.failed
+
+    def ADCU_OneClkCleanCtrlTest(self):
+        succ_count = 0
+
+        #1.测试开启
+        print("try open ADCU_OneClkCleanCtrlTest")
+        try_signals_open = TrySignals('ADCU_SweepCmd','VCU_SweepStatus')
+        try_signals_open.add_req(TryValues('ADCU_OneClkCleanCtrl',1))
+        try_signals_open.add_res(TryValues('VCU_OneClkClean_Sts',1))
+
+        if self.try_signal(try_signals_open) == TestResult.succeed:
+            succ_count+=1
+
+        #2.测试关闭
+        print("try close ADCU_OneClkCleanCtrlTest")
+        try_signals_close = TrySignals('ADCU_SweepCmd','VCU_SweepStatus')
+        try_signals_close.add_req(TryValues('ADCU_OneClkCleanCtrl',2))
+        try_signals_close.add_res(TryValues('VCU_OneClkClean_Sts',2))
+
+        if self.try_signal(try_signals_close) == TestResult.succeed:
+            succ_count+=1
+
+        if succ_count == 2:
+            return TestResult.succeed
+
+        return TestResult.failed
 
     def ADCU_FenderCtrlTest(self):
         succ_count = 0
 
         #1.测试开启
         print("try open ADCU_FenderCtrl")
-        try_signals_open = TrySignals('ADCU_SweepCmd','ADCU_SweepCmd')
+        try_signals_open = TrySignals('ADCU_SweepCmd','VCU_SweepStatus')
         try_signals_open.add_req(TryValues('ADCU_FenderCtrl',1))
-        try_signals_open.add_res(TryValues('ADCU_FenderCtrl',1))
+        try_signals_open.add_res(TryValues('VCU_Fender_Sts',1))
 
         if self.try_signal(try_signals_open) == TestResult.succeed:
             succ_count+=1
 
         #2.测试关闭
         print("try close ADCU_FenderCtrl")
-        try_signals_close = TrySignals('ADCU_SweepCmd','ADCU_SweepCmd')
+        try_signals_close = TrySignals('ADCU_SweepCmd','VCU_SweepStatus')
         try_signals_close.add_req(TryValues('ADCU_FenderCtrl',2))
-        try_signals_close.add_res(TryValues('ADCU_FenderCtrl',2))
+        try_signals_close.add_res(TryValues('VCU_Fender_Sts',2))
 
         if self.try_signal(try_signals_close) == TestResult.succeed:
             succ_count+=1

@@ -2,7 +2,7 @@
  * @Author: dding3
  * @Date: 2025-04-01 14:56:47
  * @LastEditors: dding3
- * @LastEditTime: 2025-04-02 16:03:33
+ * @LastEditTime: 2025-05-06 18:22:12
  * @Description:
  * @FilePath: \ps_vcu\modules\diag.c
  */
@@ -35,7 +35,8 @@ typedef struct
     uint8_t time_not_sync : 1; // 时间未同步
 
     uint8_t comm_abnormal : 1; // 通信异常
-    uint8_t reserved2 : 7;
+    uint8_t dcharge_not_disconnect : 1; // 充电枪未移除
+    uint8_t reserved2 : 6;
 
     uint8_t reserved3 : 8;
     uint8_t reserved4 : 8;
@@ -212,6 +213,16 @@ void Diag_Set_VcuFault_TimeNotSync(void)
 void Diag_Clear_VcuFault_TimeNotSync(void)
 {
     s_vcu_error_code.time_not_sync = 0;
+}
+
+void Diag_Set_VcuFault_DchargeNotDisconnect(void)
+{
+    s_vcu_error_code.dcharge_not_disconnect = 1;
+}
+
+void Diag_Clear_VcuFault_DchargeNotDisconnect(void)
+{
+    s_vcu_error_code.dcharge_not_disconnect = 0;
 }
 
 void Diag_Update_Node(Node node)
