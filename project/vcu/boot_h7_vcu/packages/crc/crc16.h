@@ -1,0 +1,9 @@
+#ifndef __CRC16_H
+#define __CRC16_H
+
+#include <stdint.h>
+
+uint16_t calc_crc_ccitt(uint8_t *buf, uint16_t len);
+uint16_t calc_crc16_table(uint8_t *ptr, uint16_t len);
+
+#endif /* __CRC16_H */

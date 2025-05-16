@@ -1,0 +1,30 @@
+{
+    "files.associations": {
+        "error_code.h": "c",
+        "main.h": "c",
+        "cmsis_os.h": "c",
+        "vehicle_control.h": "c",
+        "log.h": "c",
+        "usart.h": "c",
+        "data_reader.h": "c",
+        "fdcan.h": "c",
+        "freertos.h": "c",
+        "chassis_status.h": "c",
+        "data_writer.h": "c",
+        "crc.h": "c",
+        "vcu_status.h": "c",
+        "a_can.h": "c",
+        "psa_can.h": "c",
+        "ringbuffer.h": "c",
+        "chassis_control.h": "c",
+        "data_handle.h": "c",
+        "gpio.h": "c",
+        "vcu_info.h": "c",
+        "fatfs.h": "c",
+        "sd_driver.h": "c",
+        "diag.h": "c",
+        "rtc.h": "c",
+        "ota_app.h": "c",
+        "crc16.h": "c"
+    }
+}

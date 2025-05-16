@@ -1,0 +1,5 @@
+
+
+[submodule "boot_component"]
+	path = boot_component
+	url = http://192.168.2.195/ps_embedded/ota/ota_submodule/boot_submodule.git
